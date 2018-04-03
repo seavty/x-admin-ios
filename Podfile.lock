@@ -1,0 +1,25 @@
+PODS:
+  - Alamofire (4.6.0)
+  - AlamofireImage (3.3.0):
+    - Alamofire (~> 4.5)
+  - HandyJSON (1.8.0)
+  - OpalImagePicker (1.4.0)
+  - SwiftyJSON (4.0.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.5)
+  - AlamofireImage (~> 3.3)
+  - HandyJSON (~> 1.8.0)
+  - OpalImagePicker (~> 1.4.0)
+  - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
+  HandyJSON: edaaa3278bf4c4c96d6f7382b80d6b91c88d3bf5
+  OpalImagePicker: 64c2d87f8e1839d1233a6720d3909a22504e3c5d
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+
+PODFILE CHECKSUM: 7479e563a03008ff960e3980270f5e35f1953bf7
+
+COCOAPODS: 1.3.1
