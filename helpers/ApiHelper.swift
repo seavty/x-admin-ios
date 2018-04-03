@@ -1,5 +1,5 @@
 //
-//  SaleOrderViewModel.swift
+//  ApiHelper.swift
 //  X-Admin
 //
 //  Created by BunEav Ros on 4/3/18.
@@ -7,7 +7,3 @@
 //
 
 import Foundation
-
-class SaleOrderViewModel : SaleOrderBase {
-    required init() {}
-}

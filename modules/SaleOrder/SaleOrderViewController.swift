@@ -12,12 +12,13 @@ class SaleOrderViewController: UIViewController, UITableViewDataSource, UITableV
 
     @IBOutlet var tblSaleOrder: UITableView!
     
-    var saleOrders = [SaleOrderViewModel]()
+    var saleOrders = [SaleOrderViewDTO]()
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
+        /*
         var s1 = SaleOrderViewModel()
         s1.id = "1"
         s1.saleOrderNo = "no1"
@@ -27,6 +28,7 @@ class SaleOrderViewController: UIViewController, UITableViewDataSource, UITableV
         s2.id = "2"
         s2.saleOrderNo = "no2"
         saleOrders.append(s2)
+        */
         
         initializeComponents()
     }
@@ -42,8 +44,8 @@ class SaleOrderViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SaleOrderTableViewCell
-        cell.lblSaleOrderNo.text = saleOrders[indexPath.row].id
-        cell.lblCustomerName.text = saleOrders[indexPath.row].saleOrderNo
+        //cell.lblSaleOrderNo.text = saleOrders[indexPath.row].id
+        //cell.lblCustomerName.text = saleOrders[indexPath.row].saleOrderNo
         return cell
     }
 

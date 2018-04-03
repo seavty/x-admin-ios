@@ -9,7 +9,7 @@
 import Foundation
 
 class SaleOrderBase {
-    var id: String = ""
-    var saleOrderNo: String = ""
+    var int: Int?
     required init() {}
 }
+

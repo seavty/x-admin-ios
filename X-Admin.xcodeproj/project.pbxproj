@@ -61,10 +61,11 @@
 		18FA66271FE23079002742CE /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA66261FE23079002742CE /* ItemModel.swift */; };
 		18FA66291FE27AE6002742CE /* ItemSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA66281FE27AE6002742CE /* ItemSummary.swift */; };
 		519958425F64E9A4B435F8C4 /* Pods_X_Admin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B749CE0EF7A3CAEC581BAE62 /* Pods_X_Admin.framework */; };
-		B92E040420733513002DAD4C /* SaleOrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92E040320733513002DAD4C /* SaleOrderViewModel.swift */; };
-		B92E040620733542002DAD4C /* SaleOrderBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92E040520733542002DAD4C /* SaleOrderBase.swift */; };
 		B936659520736EAF00942592 /* SaleOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B936659420736EAF00942592 /* SaleOrderViewController.swift */; };
 		B936659720736F0B00942592 /* SaleOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B936659620736F0B00942592 /* SaleOrderTableViewCell.swift */; };
+		B936659C2073823A00942592 /* SaleOrderBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B936659B2073823A00942592 /* SaleOrderBase.swift */; };
+		B936659E2073831900942592 /* SaleOrderViewDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B936659D2073831900942592 /* SaleOrderViewDTO.swift */; };
+		B93665A120739DE700942592 /* ApiHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93665A020739DE700942592 /* ApiHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -127,10 +128,11 @@
 		18FA66281FE27AE6002742CE /* ItemSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSummary.swift; sourceTree = "<group>"; };
 		3DC30710F44923CEBE2A1A92 /* Pods-X-Admin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-X-Admin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-X-Admin/Pods-X-Admin.debug.xcconfig"; sourceTree = "<group>"; };
 		B749CE0EF7A3CAEC581BAE62 /* Pods_X_Admin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_X_Admin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B92E040320733513002DAD4C /* SaleOrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleOrderViewModel.swift; sourceTree = "<group>"; };
-		B92E040520733542002DAD4C /* SaleOrderBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleOrderBase.swift; sourceTree = "<group>"; };
 		B936659420736EAF00942592 /* SaleOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleOrderViewController.swift; sourceTree = "<group>"; };
 		B936659620736F0B00942592 /* SaleOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleOrderTableViewCell.swift; sourceTree = "<group>"; };
+		B936659B2073823A00942592 /* SaleOrderBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleOrderBase.swift; sourceTree = "<group>"; };
+		B936659D2073831900942592 /* SaleOrderViewDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleOrderViewDTO.swift; sourceTree = "<group>"; };
+		B93665A020739DE700942592 /* ApiHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiHelper.swift; sourceTree = "<group>"; };
 		BF048EF2ED9C46935A6DB050 /* Pods-X-Admin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-X-Admin.release.xcconfig"; path = "Pods/Target Support Files/Pods-X-Admin/Pods-X-Admin.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -156,7 +158,7 @@
 			name = ItemGroup;
 			sourceTree = "<group>";
 		};
-		181B44ED2021804E004631DB /* Controller */ = {
+		181B44ED2021804E004631DB /* modules */ = {
 			isa = PBXGroup;
 			children = (
 				B92E03FD207331C2002DAD4C /* SaleOrder */,
@@ -169,7 +171,7 @@
 				184FC9E0200711FC00254F82 /* Receive */,
 				184FC9E520071EB100254F82 /* SearchItem */,
 			);
-			path = Controller;
+			path = modules;
 			sourceTree = "<group>";
 		};
 		181F18AA2022F924002D4DCB /* Report */ = {
@@ -183,7 +185,6 @@
 		181F8C3E1FD6A25700D08AAF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B92E0402207334F3002DAD4C /* SaleOrder */,
 				18E6C7F72021C94E00C30FA0 /* SlideShow */,
 				181B44EC202162DA004631DB /* ItemGroup */,
 				181F8C3F1FD6A28500D08AAF /* CustomerModel.swift */,
@@ -255,9 +256,11 @@
 		1883956D1FCBB4B7004A8592 = {
 			isa = PBXGroup;
 			children = (
+				B936659F20739D6B00942592 /* helpers */,
+				B9366598207381BB00942592 /* networking */,
 				188395781FCBB4B7004A8592 /* X-Admin */,
 				181F8C3E1FD6A25700D08AAF /* Model */,
-				181B44ED2021804E004631DB /* Controller */,
+				181B44ED2021804E004631DB /* modules */,
 				18CCC0661FFE23810043D74C /* CustomHelper */,
 				18ADAC432015952A00C04532 /* CollectionViewCell */,
 				18F9B7661FD8E7A400BDC399 /* TableCell */,
@@ -418,13 +421,37 @@
 			path = SaleOrder;
 			sourceTree = "<group>";
 		};
-		B92E0402207334F3002DAD4C /* SaleOrder */ = {
+		B9366598207381BB00942592 /* networking */ = {
 			isa = PBXGroup;
 			children = (
-				B92E040320733513002DAD4C /* SaleOrderViewModel.swift */,
-				B92E040520733542002DAD4C /* SaleOrderBase.swift */,
+				B9366599207381E800942592 /* dtos */,
 			);
-			name = SaleOrder;
+			path = networking;
+			sourceTree = "<group>";
+		};
+		B9366599207381E800942592 /* dtos */ = {
+			isa = PBXGroup;
+			children = (
+				B936659A2073820600942592 /* saleorder */,
+			);
+			path = dtos;
+			sourceTree = "<group>";
+		};
+		B936659A2073820600942592 /* saleorder */ = {
+			isa = PBXGroup;
+			children = (
+				B936659B2073823A00942592 /* SaleOrderBase.swift */,
+				B936659D2073831900942592 /* SaleOrderViewDTO.swift */,
+			);
+			path = saleorder;
+			sourceTree = "<group>";
+		};
+		B936659F20739D6B00942592 /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B93665A020739DE700942592 /* ApiHelper.swift */,
+			);
+			path = helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -569,6 +596,7 @@
 				1826D0CE2008D16200AC8B42 /* Issue.swift in Sources */,
 				184FC9E22007122B00254F82 /* Receive.swift in Sources */,
 				1826D0C92008A2E300AC8B42 /* ReceiveIssueModel.swift in Sources */,
+				B93665A120739DE700942592 /* ApiHelper.swift in Sources */,
 				181F8C441FD6AB5900D08AAF /* Server.swift in Sources */,
 				1855FAA4201EDA5200CD8909 /* ItemGroupBase.swift in Sources */,
 				181D4AB3200DAE8800BFCA06 /* WarehouseModel.swift in Sources */,
@@ -579,7 +607,6 @@
 				181D4AB1200D9BA300BFCA06 /* UserModel.swift in Sources */,
 				18ADAC4B2015E40E00C04532 /* DocumentModel.swift in Sources */,
 				1850D567201F3A2600D63928 /* ItemGroupWithDocumentModel.swift in Sources */,
-				B92E040420733513002DAD4C /* SaleOrderViewModel.swift in Sources */,
 				181D4AB5200DAF3000BFCA06 /* UserProfileModel.swift in Sources */,
 				18D83B5F1FCC169700B79AE8 /* CustomerCell.swift in Sources */,
 				18D83B5D1FCC12F700B79AE8 /* Customer.swift in Sources */,
@@ -607,9 +634,10 @@
 				18FA66251FE22FBF002742CE /* ItemCell.swift in Sources */,
 				18ADAC452015954E00C04532 /* ItemGalleryCollectionViewCell.swift in Sources */,
 				18EC04291FE37C2600A3FE49 /* ItemGroup.swift in Sources */,
+				B936659E2073831900942592 /* SaleOrderViewDTO.swift in Sources */,
 				184BE1E01FD51882001AA013 /* Loading.swift in Sources */,
 				B936659720736F0B00942592 /* SaleOrderTableViewCell.swift in Sources */,
-				B92E040620733542002DAD4C /* SaleOrderBase.swift in Sources */,
+				B936659C2073823A00942592 /* SaleOrderBase.swift in Sources */,
 				18FA66291FE27AE6002742CE /* ItemSummary.swift in Sources */,
 				181D4AB7200DF82400BFCA06 /* RequestMethos.swift in Sources */,
 				181F8C401FD6A28500D08AAF /* CustomerModel.swift in Sources */,
