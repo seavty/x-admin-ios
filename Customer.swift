@@ -144,9 +144,10 @@ class Customer: UIViewController, UITableViewDataSource, UITableViewDelegate, UI
             
             LoadingOverlay.shared.hideOverlayView();
             let statusCode = response.response?.statusCode
+            
             switch statusCode! {
             case 200:
-                self.self.loadDataToTable(value: response.result.value!)
+                self.loadDataToTable(value: response.result.value!)
             default:
                 CustomeHelper().errorWhenRequest(vc: self)
             }

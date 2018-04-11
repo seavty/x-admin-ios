@@ -44,7 +44,6 @@ public class LoadingOverlay{
         lbl.frame = CGRect(x: 0,
                            y: overlayView.center.y, width: overlayView.frame.width, height: 50);
         overlayView.addSubview(lbl);
-        
         view.addSubview(overlayView)
     }
     

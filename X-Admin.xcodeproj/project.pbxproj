@@ -61,11 +61,17 @@
 		18FA66271FE23079002742CE /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA66261FE23079002742CE /* ItemModel.swift */; };
 		18FA66291FE27AE6002742CE /* ItemSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA66281FE27AE6002742CE /* ItemSummary.swift */; };
 		519958425F64E9A4B435F8C4 /* Pods_X_Admin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B749CE0EF7A3CAEC581BAE62 /* Pods_X_Admin.framework */; };
+		B91B7CCF207CBE25007FF69B /* CustomerBaseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91B7CCE207CBE25007FF69B /* CustomerBaseDTO.swift */; };
+		B91B7CD1207CBED1007FF69B /* CustomerViewDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91B7CD0207CBED1007FF69B /* CustomerViewDTO.swift */; };
 		B936659520736EAF00942592 /* SaleOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B936659420736EAF00942592 /* SaleOrderViewController.swift */; };
 		B936659720736F0B00942592 /* SaleOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B936659620736F0B00942592 /* SaleOrderTableViewCell.swift */; };
 		B936659C2073823A00942592 /* SaleOrderBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B936659B2073823A00942592 /* SaleOrderBase.swift */; };
 		B936659E2073831900942592 /* SaleOrderViewDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B936659D2073831900942592 /* SaleOrderViewDTO.swift */; };
 		B93665A120739DE700942592 /* ApiHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93665A020739DE700942592 /* ApiHelper.swift */; };
+		B9471C30207786C70065010A /* MetaDataDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9471C2F207786C70065010A /* MetaDataDTO.swift */; };
+		B9471C32207789900065010A /* SaleOrderListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9471C31207789900065010A /* SaleOrderListDTO.swift */; };
+		B9BDB201207DC0E300DE43DB /* NumericHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BDB200207DC0E300DE43DB /* NumericHelper.swift */; };
+		B9BDB203207E04DE00DE43DB /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BDB202207E04DE00DE43DB /* AlertHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,11 +134,17 @@
 		18FA66281FE27AE6002742CE /* ItemSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSummary.swift; sourceTree = "<group>"; };
 		3DC30710F44923CEBE2A1A92 /* Pods-X-Admin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-X-Admin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-X-Admin/Pods-X-Admin.debug.xcconfig"; sourceTree = "<group>"; };
 		B749CE0EF7A3CAEC581BAE62 /* Pods_X_Admin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_X_Admin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B91B7CCE207CBE25007FF69B /* CustomerBaseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerBaseDTO.swift; sourceTree = "<group>"; };
+		B91B7CD0207CBED1007FF69B /* CustomerViewDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewDTO.swift; sourceTree = "<group>"; };
 		B936659420736EAF00942592 /* SaleOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleOrderViewController.swift; sourceTree = "<group>"; };
 		B936659620736F0B00942592 /* SaleOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleOrderTableViewCell.swift; sourceTree = "<group>"; };
 		B936659B2073823A00942592 /* SaleOrderBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleOrderBase.swift; sourceTree = "<group>"; };
 		B936659D2073831900942592 /* SaleOrderViewDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleOrderViewDTO.swift; sourceTree = "<group>"; };
 		B93665A020739DE700942592 /* ApiHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiHelper.swift; sourceTree = "<group>"; };
+		B9471C2F207786C70065010A /* MetaDataDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDataDTO.swift; sourceTree = "<group>"; };
+		B9471C31207789900065010A /* SaleOrderListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleOrderListDTO.swift; sourceTree = "<group>"; };
+		B9BDB200207DC0E300DE43DB /* NumericHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericHelper.swift; sourceTree = "<group>"; };
+		B9BDB202207E04DE00DE43DB /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		BF048EF2ED9C46935A6DB050 /* Pods-X-Admin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-X-Admin.release.xcconfig"; path = "Pods/Target Support Files/Pods-X-Admin/Pods-X-Admin.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -256,22 +268,22 @@
 		1883956D1FCBB4B7004A8592 = {
 			isa = PBXGroup;
 			children = (
-				B936659F20739D6B00942592 /* helpers */,
-				B9366598207381BB00942592 /* networking */,
 				188395781FCBB4B7004A8592 /* X-Admin */,
-				181F8C3E1FD6A25700D08AAF /* Model */,
+				B9366598207381BB00942592 /* networking */,
 				181B44ED2021804E004631DB /* modules */,
-				18CCC0661FFE23810043D74C /* CustomHelper */,
-				18ADAC432015952A00C04532 /* CollectionViewCell */,
-				18F9B7661FD8E7A400BDC399 /* TableCell */,
+				B936659F20739D6B00942592 /* helpers */,
 				182102B9200CBC0200267F9E /* Auth */,
-				186E458D201204FA0014E30A /* Setting */,
-				18D83B581FCBF72C00B79AE8 /* Home */,
-				184BE1DE1FD5185A001AA013 /* Server */,
+				18ADAC432015952A00C04532 /* CollectionViewCell */,
+				18CCC0661FFE23810043D74C /* CustomHelper */,
 				45102BE816C5CEDA759FCBA4 /* Frameworks */,
+				18D83B581FCBF72C00B79AE8 /* Home */,
+				181F8C3E1FD6A25700D08AAF /* Model */,
 				451FB404A4BAABFC522FB489 /* Pods */,
 				188395771FCBB4B7004A8592 /* Products */,
+				184BE1DE1FD5185A001AA013 /* Server */,
+				186E458D201204FA0014E30A /* Setting */,
 				1883958B1FCBB862004A8592 /* SWRevealViewController */,
+				18F9B7661FD8E7A400BDC399 /* TableCell */,
 			);
 			sourceTree = "<group>";
 		};
@@ -412,6 +424,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B91B7CCD207CBE03007FF69B /* customer */ = {
+			isa = PBXGroup;
+			children = (
+				B91B7CCE207CBE25007FF69B /* CustomerBaseDTO.swift */,
+				B91B7CD0207CBED1007FF69B /* CustomerViewDTO.swift */,
+			);
+			path = customer;
+			sourceTree = "<group>";
+		};
 		B92E03FD207331C2002DAD4C /* SaleOrder */ = {
 			isa = PBXGroup;
 			children = (
@@ -424,17 +445,19 @@
 		B9366598207381BB00942592 /* networking */ = {
 			isa = PBXGroup;
 			children = (
-				B9366599207381E800942592 /* dtos */,
+				B9366599207381E800942592 /* dto */,
 			);
 			path = networking;
 			sourceTree = "<group>";
 		};
-		B9366599207381E800942592 /* dtos */ = {
+		B9366599207381E800942592 /* dto */ = {
 			isa = PBXGroup;
 			children = (
+				B91B7CCD207CBE03007FF69B /* customer */,
 				B936659A2073820600942592 /* saleorder */,
+				B9471C2F207786C70065010A /* MetaDataDTO.swift */,
 			);
-			path = dtos;
+			path = dto;
 			sourceTree = "<group>";
 		};
 		B936659A2073820600942592 /* saleorder */ = {
@@ -442,6 +465,7 @@
 			children = (
 				B936659B2073823A00942592 /* SaleOrderBase.swift */,
 				B936659D2073831900942592 /* SaleOrderViewDTO.swift */,
+				B9471C31207789900065010A /* SaleOrderListDTO.swift */,
 			);
 			path = saleorder;
 			sourceTree = "<group>";
@@ -450,6 +474,8 @@
 			isa = PBXGroup;
 			children = (
 				B93665A020739DE700942592 /* ApiHelper.swift */,
+				B9BDB200207DC0E300DE43DB /* NumericHelper.swift */,
+				B9BDB202207E04DE00DE43DB /* AlertHelper.swift */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -599,6 +625,7 @@
 				B93665A120739DE700942592 /* ApiHelper.swift in Sources */,
 				181F8C441FD6AB5900D08AAF /* Server.swift in Sources */,
 				1855FAA4201EDA5200CD8909 /* ItemGroupBase.swift in Sources */,
+				B91B7CD1207CBED1007FF69B /* CustomerViewDTO.swift in Sources */,
 				181D4AB3200DAE8800BFCA06 /* WarehouseModel.swift in Sources */,
 				1883957C1FCBB4B7004A8592 /* ViewController.swift in Sources */,
 				18E6C7F62021C2FD00C30FA0 /* SlideShowCollectionViewController.swift in Sources */,
@@ -612,6 +639,7 @@
 				18D83B5D1FCC12F700B79AE8 /* Customer.swift in Sources */,
 				184FC9E42007123D00254F82 /* ReceiveCell.swift in Sources */,
 				1883957A1FCBB4B7004A8592 /* AppDelegate.swift in Sources */,
+				B9BDB201207DC0E300DE43DB /* NumericHelper.swift in Sources */,
 				184FC9E720071EC900254F82 /* SearchItem.swift in Sources */,
 				184FC9EB20074DC200254F82 /* ReceiveSummary.swift in Sources */,
 				186E4591201206C10014E30A /* Setting.swift in Sources */,
@@ -619,15 +647,18 @@
 				18EC042B1FE3807200A3FE49 /* ItemGroupSummary.swift in Sources */,
 				1855FAA6201EDA9C00CD8909 /* ItemGroupWithUploadImagesModel.swift in Sources */,
 				184EE4C11FFB2E6F005BB941 /* ItemGroupCheckboxCell.swift in Sources */,
+				B9471C32207789900065010A /* SaleOrderListDTO.swift in Sources */,
 				18FA66231FE22F79002742CE /* Item.swift in Sources */,
 				1883958F1FCBB88B004A8592 /* SWRevealViewController.m in Sources */,
 				181F18AC2022F93F002D4DCB /* ReportViewController.swift in Sources */,
 				1826D0D02008D17B00AC8B42 /* IssueCell.swift in Sources */,
 				18870BF71FFF6CD8003242DC /* MetaDataModel.swift in Sources */,
 				18EC04231FE3754100A3FE49 /* ItemGroupCell.swift in Sources */,
+				B91B7CCF207CBE25007FF69B /* CustomerBaseDTO.swift in Sources */,
 				1834ABBD201845350086DC79 /* Mode.swift in Sources */,
 				1826D0CB2008CA2B00AC8B42 /* SettingModel.swift in Sources */,
 				182102BB200CBC1F00267F9E /* Auth.swift in Sources */,
+				B9471C30207786C70065010A /* MetaDataDTO.swift in Sources */,
 				18E6C7F92021C96900C30FA0 /* SlideShowWithDocumentModel.swift in Sources */,
 				18CCC0681FFE23A50043D74C /* CustomHelper.swift in Sources */,
 				B936659520736EAF00942592 /* SaleOrderViewController.swift in Sources */,
@@ -642,6 +673,7 @@
 				181D4AB7200DF82400BFCA06 /* RequestMethos.swift in Sources */,
 				181F8C401FD6A28500D08AAF /* CustomerModel.swift in Sources */,
 				18ADAC3F20158DD200C04532 /* ItemGallery.swift in Sources */,
+				B9BDB203207E04DE00DE43DB /* AlertHelper.swift in Sources */,
 				181118952021E45B0007D621 /* SlideShowWithUploadImagesModel.swift in Sources */,
 				1826D0C720089CC600AC8B42 /* ReceiveSubmit.swift in Sources */,
 				184A88D8200F49430094F994 /* ItemBase.swift in Sources */,

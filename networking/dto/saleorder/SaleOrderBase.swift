@@ -8,8 +8,11 @@
 
 import Foundation
 
-class SaleOrderBase {
-    var int: Int?
-    required init() {}
+class SaleOrderBase: Decodable {
+    var id: Int?
+    
+    private enum CodingKeys: String, CodingKey {
+        case id
+    }
 }
 

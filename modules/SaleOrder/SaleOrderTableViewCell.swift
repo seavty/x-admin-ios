@@ -11,5 +11,12 @@ import UIKit
 class SaleOrderTableViewCell: UITableViewCell {
 
     @IBOutlet var lblSaleOrderNo: UILabel!
+    @IBOutlet var lblTotal: UILabel!
     @IBOutlet var lblCustomerName: UILabel!
+    
+    func setSaleOrder(saleOrder: SaleOrderViewDTO) {
+        self.lblSaleOrderNo.text = saleOrder.saleOrderNo
+        self.lblTotal.text = NumericHelper().showTwoDecimal(number: saleOrder.total ?? 0.0)
+        self.lblCustomerName.text = saleOrder.customer?.name
+    }
 }
