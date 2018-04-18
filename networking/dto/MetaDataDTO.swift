@@ -16,5 +16,4 @@ class MetaDataDTO: Decodable {
     var orderColumn: String?
     var orderBy: String?
     var search: String?
-    //required init() {}
  }

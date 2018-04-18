@@ -8,18 +8,20 @@
 
 import UIKit
 import Alamofire
+import Toast_Swift
 
 class SaleOrderViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
-    let apiURL = ApiHelper().apiURL() + "saleorders/"
+    
+    //let apiURL = ApiHelper().apiURL() + "saleorders/"
+    let apiURL = ApiHelper.apiURL() + "saleorders/"
     
     @IBOutlet var tblSaleOrder: UITableView!
     
-    var saleOrders = [SaleOrderViewDTO]()
-    var currentPage:Int = 1
-    var isEOF = false
+    fileprivate var saleOrders = [SaleOrderViewDTO]()
+    fileprivate var currentPage:Int = 1
+    fileprivate var isEOF = false
     
-    var refreshControll = UIRefreshControl()
+    fileprivate var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,16 +40,16 @@ class SaleOrderViewController: UIViewController, UITableViewDataSource, UITableV
     //-> setupRefreshControl
     fileprivate func setupRefreshControl() {
         //refreshControll.tintColor = UIColor.red
-        refreshControll.attributedTitle = NSAttributedString(string: "");
-        refreshControll.addTarget(self, action: #selector(SaleOrderViewController.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
-        self.tblSaleOrder.addSubview(refreshControll)
+        refreshControl.attributedTitle = NSAttributedString(string: "");
+        refreshControl.addTarget(self, action: #selector(SaleOrderViewController.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
+        self.tblSaleOrder.addSubview(refreshControl)
     }
     
     //-> handleRefresh
     @objc func handleRefresh( refreshControl: UIRefreshControl) {
         //searchBar.text = nil
         resetData()
-        refreshControll.endRefreshing()
+        refreshControl.endRefreshing()
     }
     
     //-> resetData
@@ -60,7 +62,7 @@ class SaleOrderViewController: UIViewController, UITableViewDataSource, UITableV
     
     //-> heightForRowAt
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 70
     }
     
     //-> numberOfRowsInSection
@@ -90,44 +92,62 @@ class SaleOrderViewController: UIViewController, UITableViewDataSource, UITableV
     //-> commit editingStyle
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
-            //deleteRecord(indexPath: indexPath)
+            deleteSaleOrder(indexPath: indexPath)
+        }
+    }
+    
+    //-> deleteSaleOrder
+    fileprivate func deleteSaleOrder(indexPath: IndexPath) {
+        let saleOrder = self.saleOrders[indexPath.row]
+        let url = apiURL + "\(saleOrder.id!)"
+        var request = ApiHelper.getRequestHeader(url: url, method: RequestMethodEnum.delete)
+        do {
+            let json = try JSONEncoder().encode(saleOrder)
+            request.httpBody = json
+            LoadingOverlay.shared.showOverlay(view: self.view)
+            
+            //print("request body: \(request.httpBody)")
+            print(String(data: request.httpBody!, encoding: .utf8)!)
+            
+            Alamofire.request(request).responseJSON {
+                (response) in
+                LoadingOverlay.shared.hideOverlayView()
+                if  ApiHelper.isSuccessful(vc: self, response: response){
+                    
+                }
+            }
+        }
+        catch {
+            self.view.makeToast(ConstantHelper.errorOccurred)
         }
     }
     
     //-> getSaleOrders
     fileprivate func getSaleOrders() {
         let url = apiURL + "?currentPage=\(currentPage)"
-        let request = ApiHelper().getRequestHeader(url: url, method: RequestMethod.get)
-        LoadingOverlay.shared.showOverlay(view: self.view);
+        let request = ApiHelper.getRequestHeader(url: url, method: RequestMethodEnum.get)
+        LoadingOverlay.shared.showOverlay(view: self.view)
         Alamofire.request(request).responseJSON {
             response in
             LoadingOverlay.shared.hideOverlayView()
-            let statusCode = response.response?.statusCode ?? 0
-            print(statusCode)
-            
-            
-            if  ApiHelper().isSuccessful(vc: self, statusCode: statusCode) {
+            if  ApiHelper.isSuccessful(vc: self, response: response){
                 do {
-                    guard let data = response.data as Data! else {return}
-                    let results = try JSONDecoder().decode(SaleOrderListDTO.self, from:data)
-                    let totalPage = results.metaData?.totalPage ?? 0
+                    guard let data = response.data as Data! else { return }
+                    let json = try JSONDecoder().decode(GetListDTO<SaleOrderViewDTO>.self, from: data)
+                    guard let totalPage = json.metaData?.totalPage as Int! else { return }
                     if(self.currentPage <= totalPage) {
-                        self.currentPage = self.currentPage + 1
-                        self.saleOrders.append(contentsOf: results.results!)
+                        self.saleOrders.append(contentsOf: json.results!)
                         self.tblSaleOrder.reloadData()
+                        self.currentPage = self.currentPage + 1
                     }
                     else {
                         self.isEOF = true
                     }
-                    
                 }
                 catch {
-                    print("caught: \(error)")
+                    self.view.makeToast(ConstantHelper.errorOccurred)
                 }
             }
-            
         }
     }
-    
-    
 }

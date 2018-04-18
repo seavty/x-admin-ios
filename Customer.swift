@@ -164,7 +164,7 @@ class Customer: UIViewController, UITableViewDataSource, UITableViewDelegate, UI
         let jsonData = json.data(using: .utf8, allowLossyConversion: false)!
         request.httpBody = jsonData
         
-        LoadingOverlay.shared.showOverlay(view: self.view);
+        LoadingOverlay.shared.showOverlay(view: self.view)
         Alamofire.request(request).responseJSON {
             (response) in
             

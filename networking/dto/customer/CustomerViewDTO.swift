@@ -8,15 +8,33 @@
 
 import Foundation
 class CustomerViewDTO: CustomerBaseDTO {
+    
     var code: String?
     
-    private enum CodingKeys: String, CodingKey {
+    fileprivate enum CodingKeys: String, CodingKey {
         case code
     }
     
     required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.code = try container.decode(String.self, forKey: .code)
         try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.code = try container.decode(String?.self, forKey: .code)
     }
+    
+    override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(code, forKey: .code)
+    }
+    
+    
+    
+    //-- ** must use it, if not can not create object in CusotmerSummaryView Control ***/
+    
+    override required init() {
+        super.init()
+    }
+    
+    
+ 
 }

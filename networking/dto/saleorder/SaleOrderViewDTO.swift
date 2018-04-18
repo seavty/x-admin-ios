@@ -8,8 +8,8 @@
 
 import Foundation
 
+//class SaleOrderViewDTO : SaleOrderBase {
 class SaleOrderViewDTO : SaleOrderBase {
-    
     var saleOrderNo: String?
     var total: Double?
     var customer: CustomerViewDTO?
@@ -20,11 +20,22 @@ class SaleOrderViewDTO : SaleOrderBase {
         case total
     }
     
+    
     required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.saleOrderNo = try container.decode(String.self, forKey: .saleOrderNo)
-        self.total = try container.decode(Double.self, forKey: .total)
-        self.customer = try container.decode(CustomerViewDTO.self, forKey: .customer)
         try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        saleOrderNo = try container.decode(String.self, forKey: .saleOrderNo)
+        total = try container.decode(Double.self, forKey: .total)
+        customer = try container.decode(CustomerViewDTO.self, forKey: .customer)
+        
+    }
+ 
+    
+    override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(saleOrderNo, forKey: .saleOrderNo)
+        try container.encode(total, forKey: .total)
     }
 }
+

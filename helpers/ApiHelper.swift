@@ -9,26 +9,31 @@
 import Foundation
 import Alamofire
 
-class ApiHelper {
-    let getDefaultValue = UserDefaults.standard;
+final class ApiHelper {
+    fileprivate let getDefaultValue = UserDefaults.standard
     
-    func apiURL() -> String {
-        guard let URL = getDefaultValue.value(forKey: "IP") as! String? else { return "" }
-        return URL + "/api/v1/"
+    static let customerEndPoint = apiURL() + "customers/"
+    
+    //-> apiURL()
+    static func apiURL() -> String {
+        //guard let URL = getDefaultValue.value(forKey: "IP") as! String? else { return "" }
+        //return URL + "/api/v1/"
+        
+        return "http://192.168.0.107/x-admin-api/api/v1/"
     }
     
-    func getRequestHeader(url:String, method:RequestMethod) -> URLRequest{
+    //-> getRequestHeader
+    static func getRequestHeader(url:String, method:RequestMethodEnum) -> URLRequest{
         let requestURL = URL(string: url)!
         var request = URLRequest(url: requestURL)
-        
         switch method {
-        case RequestMethod.get:
+        case RequestMethodEnum.get:
             request.httpMethod = HTTPMethod.get.rawValue
-        case RequestMethod.post:
+        case RequestMethodEnum.post:
             request.httpMethod = HTTPMethod.post.rawValue
-        case RequestMethod.put:
+        case RequestMethodEnum.put:
             request.httpMethod = HTTPMethod.put.rawValue
-        case RequestMethod.delete:
+        case RequestMethodEnum.delete:
             request.httpMethod = HTTPMethod.delete.rawValue
         }
         request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
@@ -43,25 +48,37 @@ class ApiHelper {
         return request
     }
     
-    func isSuccessful(vc: UIViewController ,statusCode: Int) -> Bool {
+    //-> isSuccessful
+    static func isSuccessful(vc: UIViewController, response: DataResponse<Any>) -> Bool {
+        let statusCode = response.response?.statusCode ?? 0
         switch statusCode {
         case 200:
             return true
+        case 400:
+            do {
+                guard let data = response.data as Data! else { return false }
+                let json = try JSONDecoder().decode(ErrorDTO.self, from: data)
+                vc.navigationController?.view.makeToast(json.message)
+            }
+            catch {
+                vc.view.makeToast(ConstantHelper.errorOccurred)
+            }
+            return false
         case 401:
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "Auth")
             vc.present(controller, animated: true, completion: nil)
             return false
-            
+        case 404:
+            vc.navigationController?.view.makeToast(ConstantHelper.error404)
+            return false
         case 500:
-            AlertHelper().alertMessage(vc: vc, message: "Error occurred while processing your request! Please try again! ")
+            vc.view.makeToast(ConstantHelper.errorOccurred)
             return false
         default:
-            AlertHelper().alertMessage(vc: vc, message: "Error occurred while processing your request! Please try again! ")
+            vc.view.makeToast(ConstantHelper.errorOccurred)
             return false
         }
-        
-        
     }
 
 }

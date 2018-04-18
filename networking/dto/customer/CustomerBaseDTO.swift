@@ -7,13 +7,14 @@
 //
 
 import Foundation
-class CustomerBaseDTO: Decodable {
+//class CustomerBaseDTO: Decodable {
+class CustomerBaseDTO: Codable {
     var id: Int?
     var name: String?
     var phone: String?
     var address: String?
     
-    private enum CodingKeys: String, CodingKey {
+    fileprivate enum CodingKeys: String, CodingKey {
         case id
         case name
         case phone
