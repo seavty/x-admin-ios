@@ -13,6 +13,7 @@ import NVActivityIndicatorView
 class CustomerViewController : UIViewController {
     
     @IBOutlet fileprivate var tblCustomer: UITableView!
+    @IBOutlet fileprivate var bbiAdd: UIBarButtonItem!
     
     fileprivate var customers = [CustomerViewDTO]()
     fileprivate var currentPage = 1
@@ -24,12 +25,22 @@ class CustomerViewController : UIViewController {
     fileprivate struct StoryBoardInfo {
         static let tableCustomerCellIndentifier = "cell"
         static let customerSummarySegue = "CustomerSummarySegue"
+        static let createCustomerSegue = "CreateCustomerSegue"
     }
     
     //-> viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeComponents()
+    }
+    
+    
+    @IBAction func addClick(_ sender: UIBarButtonItem) {
+        handleAdd()
+    }
+    
+    fileprivate func handleAdd() {
+        performSegue(withIdentifier: StoryBoardInfo.createCustomerSegue, sender: self)
     }
     
     //-> initializeComponents
@@ -126,24 +137,20 @@ class CustomerViewController : UIViewController {
     
     //-> prepare
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier! {
-        case StoryBoardInfo.customerSummarySegue:
-            print("StoryBoardInfo.customerSummarySegue")
-            if let vc = segue.destination as? CustomerSummaryTableViewController {
-                guard let indexPath = sender as? IndexPath else {return}
-                
-                print("customer")
-                print(customers[indexPath.row].code)
-                vc.customer = customers[indexPath.row]
-                vc.rowPosition = indexPath.row
-                vc.delegate = self
-                
-            }
+        switch segue.identifier {
+        case StoryBoardInfo.createCustomerSegue? :
+            guard let vc = segue.destination as? CustomerSummaryTableViewController else {return}
+            vc.createdListener = self
+        case StoryBoardInfo.customerSummarySegue?:
+            guard let vc = segue.destination as? CustomerSummaryTableViewController else {return}
+            guard let indexPath = sender as? IndexPath else {return}
+            vc.customer = customers[indexPath.row]
+            vc.rowPosition = indexPath.row
+            vc.backClickListener = self
         default:
             self.view.makeToast(ConstantHelper.wrongSegueName)
         }
     }
- 
 }
 
 //*** TableView *** //
@@ -204,6 +211,7 @@ extension CustomerViewController : UISearchBarDelegate {
     //-> searchBarTextDidBeginEditing
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
+        self.navigationItem.rightBarButtonItems = []
     }
     
     //-> searchBarCancelButtonClicked
@@ -211,19 +219,25 @@ extension CustomerViewController : UISearchBarDelegate {
         searchBar.text = nil
         searchBar.showsCancelButton = false
         searchBar.endEditing(true)
+        self.navigationItem.rightBarButtonItems = [bbiAdd]
         resetData()
     }
 }
 //*** End SearchBar *** //
 
 
-//*** handel protocol OnBackButtonClickListener
-extension CustomerViewController: OnBackButtonClickListener {
+//*** handel protocol **/
+extension CustomerViewController: OnUpdatedListener, OnCreatedListener {
+    
     func updateTableRow<T>(data: T, position: Int) {
        guard let customer = data as? CustomerViewDTO else { return }
         self.customers[position] = customer
         tblCustomer.reloadData()
         let indexPath = IndexPath(row: position, section: 0)
         tblCustomer.selectRow(at: indexPath, animated: true, scrollPosition: .middle)
+    }
+    
+    func created() {
+        resetData()
     }
 }

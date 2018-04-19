@@ -62,7 +62,7 @@
 		18FA66291FE27AE6002742CE /* ItemSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA66281FE27AE6002742CE /* ItemSummary.swift */; };
 		519958425F64E9A4B435F8C4 /* Pods_X_Admin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B749CE0EF7A3CAEC581BAE62 /* Pods_X_Admin.framework */; };
 		B906FB1720872C3B009BE880 /* ErrorDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B906FB1620872C3B009BE880 /* ErrorDTO.swift */; };
-		B906FB1A208741F5009BE880 /* OnBackButtonClickListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B906FB19208741F5009BE880 /* OnBackButtonClickListener.swift */; };
+		B906FB1A208741F5009BE880 /* OnUpdatedListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B906FB19208741F5009BE880 /* OnUpdatedListener.swift */; };
 		B90E08AC2086FC4300547F5C /* CustomerNewDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90E08AB2086FC4300547F5C /* CustomerNewDTO.swift */; };
 		B90E08B02086FF4100547F5C /* CustomerEditDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90E08AF2086FF4100547F5C /* CustomerEditDTO.swift */; };
 		B91B7CCF207CBE25007FF69B /* CustomerBaseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91B7CCE207CBE25007FF69B /* CustomerBaseDTO.swift */; };
@@ -82,6 +82,7 @@
 		B9B568E6208364E700F89863 /* IndicatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B568E5208364E700F89863 /* IndicatorHelper.swift */; };
 		B9BDB201207DC0E300DE43DB /* NumericHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BDB200207DC0E300DE43DB /* NumericHelper.swift */; };
 		B9BDB203207E04DE00DE43DB /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BDB202207E04DE00DE43DB /* AlertHelper.swift */; };
+		B9E30803208845DB00D6EDD5 /* OnCreatedListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E30802208845DB00D6EDD5 /* OnCreatedListener.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -145,7 +146,7 @@
 		3DC30710F44923CEBE2A1A92 /* Pods-X-Admin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-X-Admin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-X-Admin/Pods-X-Admin.debug.xcconfig"; sourceTree = "<group>"; };
 		B749CE0EF7A3CAEC581BAE62 /* Pods_X_Admin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_X_Admin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B906FB1620872C3B009BE880 /* ErrorDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDTO.swift; sourceTree = "<group>"; };
-		B906FB19208741F5009BE880 /* OnBackButtonClickListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBackButtonClickListener.swift; sourceTree = "<group>"; };
+		B906FB19208741F5009BE880 /* OnUpdatedListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnUpdatedListener.swift; sourceTree = "<group>"; };
 		B90E08AB2086FC4300547F5C /* CustomerNewDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerNewDTO.swift; sourceTree = "<group>"; };
 		B90E08AF2086FF4100547F5C /* CustomerEditDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerEditDTO.swift; sourceTree = "<group>"; };
 		B91B7CCE207CBE25007FF69B /* CustomerBaseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerBaseDTO.swift; sourceTree = "<group>"; };
@@ -165,6 +166,7 @@
 		B9B568E5208364E700F89863 /* IndicatorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorHelper.swift; sourceTree = "<group>"; };
 		B9BDB200207DC0E300DE43DB /* NumericHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericHelper.swift; sourceTree = "<group>"; };
 		B9BDB202207E04DE00DE43DB /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
+		B9E30802208845DB00D6EDD5 /* OnCreatedListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnCreatedListener.swift; sourceTree = "<group>"; };
 		BF048EF2ED9C46935A6DB050 /* Pods-X-Admin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-X-Admin.release.xcconfig"; path = "Pods/Target Support Files/Pods-X-Admin/Pods-X-Admin.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -288,8 +290,8 @@
 		1883956D1FCBB4B7004A8592 = {
 			isa = PBXGroup;
 			children = (
-				B906FB18208741D2009BE880 /* protocols */,
 				188395781FCBB4B7004A8592 /* X-Admin */,
+				B906FB18208741D2009BE880 /* protocols */,
 				B9366598207381BB00942592 /* networking */,
 				181B44ED2021804E004631DB /* modules */,
 				B936659F20739D6B00942592 /* helpers */,
@@ -452,7 +454,8 @@
 		B906FB18208741D2009BE880 /* protocols */ = {
 			isa = PBXGroup;
 			children = (
-				B906FB19208741F5009BE880 /* OnBackButtonClickListener.swift */,
+				B906FB19208741F5009BE880 /* OnUpdatedListener.swift */,
+				B9E30802208845DB00D6EDD5 /* OnCreatedListener.swift */,
 			);
 			path = protocols;
 			sourceTree = "<group>";
@@ -668,7 +671,7 @@
 				18FA66271FE23079002742CE /* ItemModel.swift in Sources */,
 				184EE4BF1FFB2973005BB941 /* ItemGroupCheckbox.swift in Sources */,
 				B93004C22081FC6B00731852 /* GetListDTO.swift in Sources */,
-				B906FB1A208741F5009BE880 /* OnBackButtonClickListener.swift in Sources */,
+				B906FB1A208741F5009BE880 /* OnUpdatedListener.swift in Sources */,
 				181D4AB1200D9BA300BFCA06 /* UserModel.swift in Sources */,
 				18ADAC4B2015E40E00C04532 /* DocumentModel.swift in Sources */,
 				1850D567201F3A2600D63928 /* ItemGroupWithDocumentModel.swift in Sources */,
@@ -705,6 +708,7 @@
 				18E6C7F92021C96900C30FA0 /* SlideShowWithDocumentModel.swift in Sources */,
 				18CCC0681FFE23A50043D74C /* CustomHelper.swift in Sources */,
 				B936659520736EAF00942592 /* SaleOrderViewController.swift in Sources */,
+				B9E30803208845DB00D6EDD5 /* OnCreatedListener.swift in Sources */,
 				18FA66251FE22FBF002742CE /* ItemCell.swift in Sources */,
 				18ADAC452015954E00C04532 /* ItemGalleryCollectionViewCell.swift in Sources */,
 				18EC04291FE37C2600A3FE49 /* ItemGroup.swift in Sources */,

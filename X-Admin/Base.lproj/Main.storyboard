@@ -2097,7 +2097,7 @@
         <!--Customer View Controller-->
         <scene sceneID="p35-zq-h7r">
             <objects>
-                <viewController id="TIC-oc-Gk7" customClass="CustomerViewController" customModule="X_Admin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Customer" id="TIC-oc-Gk7" customClass="CustomerViewController" customModule="X_Admin" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AiU-7z-ity"/>
                         <viewControllerLayoutGuide type="bottom" id="RXQ-8G-NqB"/>
@@ -2158,9 +2158,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Tng-Bv-JDs">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="21N-v6-BiJ"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="21N-v6-BiJ">
+                            <connections>
+                                <action selector="addClick:" destination="TIC-oc-Gk7" id="KY4-Pb-rdo"/>
+                                <segue destination="r3B-dH-4rv" kind="show" identifier="CreateCustomerSegue" id="Wj4-Ae-QG9"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bbiAdd" destination="21N-v6-BiJ" id="Te4-wv-T1D"/>
                         <outlet property="tblCustomer" destination="bgb-t2-yHU" id="XFe-gZ-vJf"/>
                         <segue destination="r3B-dH-4rv" kind="show" identifier="CustomerSummarySegue" id="bSg-bM-kcM"/>
                     </connections>
@@ -2204,7 +2210,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Code (*):" id="YdU-6e-dcs">
+                            <tableViewSection headerTitle="Code:" id="YdU-6e-dcs">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" editingAccessoryType="checkmark" id="xkY-TV-UAg">
                                         <rect key="frame" x="0.0" y="138.5" width="320" height="44"/>
@@ -2213,7 +2219,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Custoemer Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2hI-Kc-cKZ">
+                                                <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Custoemer Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2hI-Kc-cKZ">
                                                     <rect key="frame" x="16" y="10" width="296" height="24"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -2372,7 +2378,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Bhb-qP-Wlb"/>
-        <segue reference="bSg-bM-kcM"/>
+        <segue reference="Wj4-Ae-QG9"/>
         <segue reference="1aP-TD-vSl"/>
         <segue reference="BkZ-lq-852"/>
         <segue reference="L97-v5-DsE"/>
@@ -2380,7 +2386,7 @@
         <segue reference="pjF-0Y-jmg"/>
         <segue reference="qMu-3I-Oxx"/>
         <segue reference="bdh-PV-dJQ"/>
-        <segue reference="UWG-Dw-jsJ"/>
+        <segue reference="p5N-bW-mp7"/>
         <segue reference="eUO-a1-W0N"/>
     </inferredMetricsTieBreakers>
 </document>

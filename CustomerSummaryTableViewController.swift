@@ -20,8 +20,9 @@ class CustomerSummaryTableViewController: UITableViewController {
     @IBOutlet fileprivate var tarAddress: UITextView!
     
     var customer = CustomerViewDTO()
-    var rowPosition = 0
-    var delegate: OnBackButtonClickListener?
+    var rowPosition = -1
+    var backClickListener: OnUpdatedListener?
+    var createdListener: OnCreatedListener?
     
     fileprivate var isEdited = false
     
@@ -29,8 +30,6 @@ class CustomerSummaryTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeComponents()
-        
-        print("row postion in summary = \(rowPosition)")
     }
     
     //-> cancelClick
@@ -66,7 +65,12 @@ extension CustomerSummaryTableViewController {
     //-> initializeComponents
     fileprivate func initializeComponents() {
         setupNavBar()
-        setupData()
+        if(rowPosition > -1) {
+            setupData()
+        }
+        else {
+            txtName.becomeFirstResponder()
+        }
     }
     
     //-> setupNavBar
@@ -75,20 +79,25 @@ extension CustomerSummaryTableViewController {
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(CustomerSummaryTableViewController.back(sender:)))
         self.navigationItem.leftBarButtonItem = newBackButton
+        
+        if(rowPosition == -1) {
+            self.navigationItem.rightBarButtonItems = [self.bbiSave]
+        }
     }
     
     //-> back
     @objc func back(sender: UIBarButtonItem) {
         if(isEdited) {
-            delegate?.updateTableRow(data: customer, position: rowPosition)
+            backClickListener?.updateTableRow(data: customer, position: rowPosition)
         }
-        _ = navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     //-> setupData
     fileprivate func setupData(){
         IndicatorHelper.showIndicator(view: self.view)
         let url = ApiHelper.customerEndPoint + "\(self.customer.id!)"
+        
         let request = ApiHelper.getRequestHeader(url: url, method: RequestMethodEnum.get)
         Alamofire.request(request).responseJSON {
             (response) in
@@ -125,7 +134,6 @@ extension CustomerSummaryTableViewController {
     fileprivate func enableComponents(isEnable:Bool = true ) {
         txtName.isUserInteractionEnabled = !isEnable
         txtName.isEnabled = !isEnable
-        txtCode.isEnabled = false
         txtPhone.isEnabled = !isEnable
         tarAddress.isEditable = !isEnable
     }
@@ -143,12 +151,18 @@ extension CustomerSummaryTableViewController {
         if(isValidated()) {
             do {
                 let customer = CustomerEditDTO()
+                var url = ApiHelper.customerEndPoint
+                var requestMethod = RequestMethodEnum.post
+                if(rowPosition > -1) {
                     customer.id = self.customer.id
-                    customer.name = txtName.text!
-                    customer.phone = txtPhone.text!
-                    customer.address = tarAddress.text!
-                let url = ApiHelper.customerEndPoint + "\(self.customer.id!)"
-                var request = ApiHelper.getRequestHeader(url: url, method: RequestMethodEnum.put)
+                    url = url + "\(self.customer.id!)"
+                    requestMethod = RequestMethodEnum.put
+                }
+                customer.name = txtName.text!
+                customer.phone = txtPhone.text!
+                customer.address = tarAddress.text!
+                //let url = ApiHelper.customerEndPoint + "\(self.customer.id!)"
+                var request = ApiHelper.getRequestHeader(url: url, method: requestMethod)
                 request.httpBody = try JSONEncoder().encode(customer)
                 IndicatorHelper.showIndicator(view: self.view)
                 Alamofire.request(request).responseJSON {
@@ -156,7 +170,13 @@ extension CustomerSummaryTableViewController {
                     IndicatorHelper.hideIndicator()
                     if  ApiHelper.isSuccessful(vc: self, response: response){
                         self.isEdited = true
-                        self.setupData()
+                        if(self.rowPosition > -1) {
+                            self.setupData()
+                        }
+                        else {
+                            self.createdListener?.created()
+                            self.navigationController?.popViewController(animated: true)
+                        }
                     }
                 }
             }
@@ -177,7 +197,9 @@ extension CustomerSummaryTableViewController {
     fileprivate func isValidated() -> Bool {
         //--since I could not find the best solution to address this validation issue so that temporary I will this way first
         if(txtName.text == "") {
-            self.navigationController?.view.makeToast("Customer Name is required")
+            //self.navigationController?.view.makeToast("Customer Name is required")
+            
+            self.navigationController?.view.makeToast("This is a piece of toast", duration: 3.0, position: .top)
             return false
         }
         else if(txtPhone.text == "") {
