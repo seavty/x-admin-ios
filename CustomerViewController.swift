@@ -8,7 +8,6 @@
 
 import UIKit
 import Alamofire
-import NVActivityIndicatorView
 
 class CustomerViewController : UIViewController {
     
@@ -34,20 +33,37 @@ class CustomerViewController : UIViewController {
         initializeComponents()
     }
     
-    
+    //-> addClick
     @IBAction func addClick(_ sender: UIBarButtonItem) {
         handleAdd()
     }
     
-    fileprivate func handleAdd() {
-        performSegue(withIdentifier: StoryBoardInfo.createCustomerSegue, sender: self)
+    //-> prepare
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case StoryBoardInfo.createCustomerSegue? :
+            guard let vc = segue.destination as? CustomerSummaryTableViewController else {return}
+            vc.createdListener = self
+        case StoryBoardInfo.customerSummarySegue?:
+            guard let vc = segue.destination as? CustomerSummaryTableViewController else {return}
+            guard let indexPath = sender as? IndexPath else {return}
+            vc.customer = customers[indexPath.row]
+            vc.rowPosition = indexPath.row
+            vc.backClickListener = self
+        default:
+            self.view.makeToast(ConstantHelper.wrongSegueName)
+        }
     }
+}
+
+//*** function *** //
+extension CustomerViewController {
     
     //-> initializeComponents
     fileprivate func initializeComponents() {
         setupTableView()
-        setupRefreshControl()
         setupSearchBar()
+        setupRefreshControl()
         self.getCustomers()
     }
     
@@ -64,18 +80,11 @@ class CustomerViewController : UIViewController {
         self.navigationItem.titleView = searchBar
     }
     
-    
     //-> setupRefreshControl
     fileprivate func setupRefreshControl() {
         refreshControl.attributedTitle = NSAttributedString(string: "");
         refreshControl.addTarget(self, action: #selector(CustomerViewController.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
         self.tblCustomer.addSubview(refreshControl)
-    }
-    
-    //-> handleRefresh
-    @objc func handleRefresh( refreshControl: UIRefreshControl) {
-        resetData()
-        refreshControl.endRefreshing()
     }
     
     //-> resetData
@@ -84,6 +93,16 @@ class CustomerViewController : UIViewController {
         isEOF = false
         currentPage = 1
         getCustomers()
+    }
+    
+    //-> handleRefresh
+    @objc func handleRefresh( refreshControl: UIRefreshControl) {
+        resetData()
+        refreshControl.endRefreshing()
+    }
+    //-> handleAdd
+    fileprivate func handleAdd() {
+        performSegue(withIdentifier: StoryBoardInfo.createCustomerSegue, sender: self)
     }
     
     //-> deleteCustomer
@@ -134,24 +153,9 @@ class CustomerViewController : UIViewController {
             }
         }
     }
-    
-    //-> prepare
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case StoryBoardInfo.createCustomerSegue? :
-            guard let vc = segue.destination as? CustomerSummaryTableViewController else {return}
-            vc.createdListener = self
-        case StoryBoardInfo.customerSummarySegue?:
-            guard let vc = segue.destination as? CustomerSummaryTableViewController else {return}
-            guard let indexPath = sender as? IndexPath else {return}
-            vc.customer = customers[indexPath.row]
-            vc.rowPosition = indexPath.row
-            vc.backClickListener = self
-        default:
-            self.view.makeToast(ConstantHelper.wrongSegueName)
-        }
-    }
 }
+//*** end function *** //
+
 
 //*** TableView *** //
 extension CustomerViewController : UITableViewDataSource, UITableViewDelegate {
@@ -193,7 +197,6 @@ extension CustomerViewController : UITableViewDataSource, UITableViewDelegate {
     
     //-> didSelectRowAt
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(customers[indexPath.row].id)
         self.performSegue(withIdentifier: StoryBoardInfo.customerSummarySegue, sender: indexPath)
     }
 
@@ -225,10 +228,10 @@ extension CustomerViewController : UISearchBarDelegate {
 }
 //*** End SearchBar *** //
 
-
 //*** handel protocol **/
 extension CustomerViewController: OnUpdatedListener, OnCreatedListener {
     
+    //->
     func updateTableRow<T>(data: T, position: Int) {
        guard let customer = data as? CustomerViewDTO else { return }
         self.customers[position] = customer
@@ -237,6 +240,7 @@ extension CustomerViewController: OnUpdatedListener, OnCreatedListener {
         tblCustomer.selectRow(at: indexPath, animated: true, scrollPosition: .middle)
     }
     
+    //-> created
     func created() {
         resetData()
     }

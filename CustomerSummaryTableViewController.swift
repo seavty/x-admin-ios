@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import Toaster
 
 class CustomerSummaryTableViewController: UITableViewController {
     @IBOutlet var bbiCancel: UIBarButtonItem!
@@ -197,13 +198,11 @@ extension CustomerSummaryTableViewController {
     fileprivate func isValidated() -> Bool {
         //--since I could not find the best solution to address this validation issue so that temporary I will this way first
         if(txtName.text == "") {
-            //self.navigationController?.view.makeToast("Customer Name is required")
-            
-            self.navigationController?.view.makeToast("This is a piece of toast", duration: 3.0, position: .top)
+            self.navigationController?.view.makeToast("Customer Name is required", duration: 3.0, position: .center)
             return false
         }
         else if(txtPhone.text == "") {
-            self.navigationController?.view.makeToast("Phone number is required")
+            self.navigationController?.view.makeToast("Phone number is required", duration: 3.0, position: .center)
             return false
         }
         return true

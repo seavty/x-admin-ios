@@ -58,10 +58,10 @@ final class ApiHelper {
             do {
                 guard let data = response.data as Data! else { return false }
                 let json = try JSONDecoder().decode(ErrorDTO.self, from: data)
-                vc.navigationController?.view.makeToast(json.message)
+                vc.navigationController?.view.makeToast(json.message, duration: 3.0, position: .center)
             }
             catch {
-                vc.view.makeToast(ConstantHelper.errorOccurred)
+               vc.view.makeToast(ConstantHelper.error404, duration: 3.0, position: .center)
             }
             return false
         case 401:
@@ -70,13 +70,13 @@ final class ApiHelper {
             vc.present(controller, animated: true, completion: nil)
             return false
         case 404:
-            vc.navigationController?.view.makeToast(ConstantHelper.error404)
+            vc.navigationController?.view.makeToast(ConstantHelper.error404, duration: 3.0, position: .center)
             return false
         case 500:
             vc.view.makeToast(ConstantHelper.errorOccurred)
             return false
         default:
-            vc.view.makeToast(ConstantHelper.errorOccurred)
+            vc.view.makeToast(ConstantHelper.errorOccurred, duration: 3.0, position: .center)
             return false
         }
     }

@@ -12,5 +12,5 @@ target 'X-Admin' do
 	pod 'HandyJSON', '~> 1.8.0'
 	pod 'OpalImagePicker', '~> 1.4.0’
 	pod 'Toast-Swift', '~> 3.0.1'
-	pod 'NVActivityIndicatorView'
+	pod 'Toaster', :git => 'https://github.com/devxoul/Toaster.git', :branch => 'ios-11-above-keyboard'
 end
