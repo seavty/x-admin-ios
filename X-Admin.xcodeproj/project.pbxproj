@@ -79,10 +79,19 @@
 		B9471C30207786C70065010A /* MetaDataDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9471C2F207786C70065010A /* MetaDataDTO.swift */; };
 		B97368E02082FD16002AC6CD /* CustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97368DF2082FD16002AC6CD /* CustomerViewController.swift */; };
 		B97368E220830198002AC6CD /* CustomerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97368E120830198002AC6CD /* CustomerTableViewCell.swift */; };
+		B98BD43520898D9E008B6619 /* ItemSummaryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98BD43420898D9E008B6619 /* ItemSummaryTableViewController.swift */; };
+		B98BD43A20899A05008B6619 /* ItemGroupBaseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98BD43920899A05008B6619 /* ItemGroupBaseDTO.swift */; };
+		B98BD43C20899A58008B6619 /* ItemGroupViewDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98BD43B20899A58008B6619 /* ItemGroupViewDTO.swift */; };
+		B98BD43E2089A1EC008B6619 /* ItemEditDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98BD43D2089A1EC008B6619 /* ItemEditDTO.swift */; };
+		B98BD4422089A760008B6619 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4412089A760008B6619 /* StringExtension.swift */; };
 		B9B568E6208364E700F89863 /* IndicatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B568E5208364E700F89863 /* IndicatorHelper.swift */; };
 		B9BDB201207DC0E300DE43DB /* NumericHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BDB200207DC0E300DE43DB /* NumericHelper.swift */; };
 		B9BDB203207E04DE00DE43DB /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BDB202207E04DE00DE43DB /* AlertHelper.swift */; };
 		B9E30803208845DB00D6EDD5 /* OnCreatedListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E30802208845DB00D6EDD5 /* OnCreatedListener.swift */; };
+		B9E3080520888AF100D6EDD5 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E3080420888AF100D6EDD5 /* ItemViewController.swift */; };
+		B9E3080820888B1400D6EDD5 /* ItemBaseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E3080720888B1400D6EDD5 /* ItemBaseDTO.swift */; };
+		B9E3080A20888BD200D6EDD5 /* ItemViewDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E3080920888BD200D6EDD5 /* ItemViewDTO.swift */; };
+		B9E3080C20888CAB00D6EDD5 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E3080B20888CAB00D6EDD5 /* ItemTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -163,10 +172,19 @@
 		B9471C2F207786C70065010A /* MetaDataDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDataDTO.swift; sourceTree = "<group>"; };
 		B97368DF2082FD16002AC6CD /* CustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewController.swift; sourceTree = "<group>"; };
 		B97368E120830198002AC6CD /* CustomerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerTableViewCell.swift; sourceTree = "<group>"; };
+		B98BD43420898D9E008B6619 /* ItemSummaryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSummaryTableViewController.swift; sourceTree = "<group>"; };
+		B98BD43920899A05008B6619 /* ItemGroupBaseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGroupBaseDTO.swift; sourceTree = "<group>"; };
+		B98BD43B20899A58008B6619 /* ItemGroupViewDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGroupViewDTO.swift; sourceTree = "<group>"; };
+		B98BD43D2089A1EC008B6619 /* ItemEditDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemEditDTO.swift; sourceTree = "<group>"; };
+		B98BD4412089A760008B6619 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		B9B568E5208364E700F89863 /* IndicatorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorHelper.swift; sourceTree = "<group>"; };
 		B9BDB200207DC0E300DE43DB /* NumericHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericHelper.swift; sourceTree = "<group>"; };
 		B9BDB202207E04DE00DE43DB /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		B9E30802208845DB00D6EDD5 /* OnCreatedListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnCreatedListener.swift; sourceTree = "<group>"; };
+		B9E3080420888AF100D6EDD5 /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
+		B9E3080720888B1400D6EDD5 /* ItemBaseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemBaseDTO.swift; sourceTree = "<group>"; };
+		B9E3080920888BD200D6EDD5 /* ItemViewDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewDTO.swift; sourceTree = "<group>"; };
+		B9E3080B20888CAB00D6EDD5 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		BF048EF2ED9C46935A6DB050 /* Pods-X-Admin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-X-Admin.release.xcconfig"; path = "Pods/Target Support Files/Pods-X-Admin/Pods-X-Admin.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -195,12 +213,12 @@
 		181B44ED2021804E004631DB /* modules */ = {
 			isa = PBXGroup;
 			children = (
+				18FA661B1FE2296E002742CE /* Item */,
+				18D83B5B1FCC118E00B79AE8 /* Customer */,
 				B92E03FD207331C2002DAD4C /* SaleOrder */,
 				181F18AA2022F924002D4DCB /* Report */,
 				18E6C7F42021C2E000C30FA0 /* SlideShow */,
-				18D83B5B1FCC118E00B79AE8 /* Customer */,
 				1826D0CC2008D14D00AC8B42 /* Issue */,
-				18FA661B1FE2296E002742CE /* Item */,
 				18EC041F1FE374FE00A3FE49 /* ItemGroup */,
 				184FC9E0200711FC00254F82 /* Receive */,
 				184FC9E520071EB100254F82 /* SearchItem */,
@@ -290,6 +308,7 @@
 		1883956D1FCBB4B7004A8592 = {
 			isa = PBXGroup;
 			children = (
+				B98BD4402089A745008B6619 /* extension */,
 				188395781FCBB4B7004A8592 /* X-Admin */,
 				B906FB18208741D2009BE880 /* protocols */,
 				B9366598207381BB00942592 /* networking */,
@@ -429,6 +448,9 @@
 				18FA66221FE22F79002742CE /* Item.swift */,
 				18FA66281FE27AE6002742CE /* ItemSummary.swift */,
 				18ADAC3E20158DD200C04532 /* ItemGallery.swift */,
+				B9E3080420888AF100D6EDD5 /* ItemViewController.swift */,
+				B9E3080B20888CAB00D6EDD5 /* ItemTableViewCell.swift */,
+				B98BD43420898D9E008B6619 /* ItemSummaryTableViewController.swift */,
 			);
 			name = Item;
 			path = ..;
@@ -499,6 +521,8 @@
 		B9366599207381E800942592 /* dto */ = {
 			isa = PBXGroup;
 			children = (
+				B98BD438208999F4008B6619 /* itemgroup */,
+				B9E3080620888B0000D6EDD5 /* item */,
 				B91B7CCD207CBE03007FF69B /* customer */,
 				B936659A2073820600942592 /* saleorder */,
 				B9471C2F207786C70065010A /* MetaDataDTO.swift */,
@@ -527,6 +551,33 @@
 				B9B568E5208364E700F89863 /* IndicatorHelper.swift */,
 			);
 			path = helpers;
+			sourceTree = "<group>";
+		};
+		B98BD438208999F4008B6619 /* itemgroup */ = {
+			isa = PBXGroup;
+			children = (
+				B98BD43920899A05008B6619 /* ItemGroupBaseDTO.swift */,
+				B98BD43B20899A58008B6619 /* ItemGroupViewDTO.swift */,
+			);
+			path = itemgroup;
+			sourceTree = "<group>";
+		};
+		B98BD4402089A745008B6619 /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				B98BD4412089A760008B6619 /* StringExtension.swift */,
+			);
+			path = extension;
+			sourceTree = "<group>";
+		};
+		B9E3080620888B0000D6EDD5 /* item */ = {
+			isa = PBXGroup;
+			children = (
+				B9E3080720888B1400D6EDD5 /* ItemBaseDTO.swift */,
+				B9E3080920888BD200D6EDD5 /* ItemViewDTO.swift */,
+				B98BD43D2089A1EC008B6619 /* ItemEditDTO.swift */,
+			);
+			path = item;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -659,19 +710,23 @@
 				1826D0CE2008D16200AC8B42 /* Issue.swift in Sources */,
 				184FC9E22007122B00254F82 /* Receive.swift in Sources */,
 				1826D0C92008A2E300AC8B42 /* ReceiveIssueModel.swift in Sources */,
+				B9E3080C20888CAB00D6EDD5 /* ItemTableViewCell.swift in Sources */,
 				B906FB1720872C3B009BE880 /* ErrorDTO.swift in Sources */,
 				B93665A120739DE700942592 /* ApiHelper.swift in Sources */,
 				181F8C441FD6AB5900D08AAF /* Server.swift in Sources */,
 				1855FAA4201EDA5200CD8909 /* ItemGroupBase.swift in Sources */,
 				B91B7CD1207CBED1007FF69B /* CustomerViewDTO.swift in Sources */,
 				B97368E02082FD16002AC6CD /* CustomerViewController.swift in Sources */,
+				B98BD43A20899A05008B6619 /* ItemGroupBaseDTO.swift in Sources */,
 				181D4AB3200DAE8800BFCA06 /* WarehouseModel.swift in Sources */,
+				B9E3080A20888BD200D6EDD5 /* ItemViewDTO.swift in Sources */,
 				1883957C1FCBB4B7004A8592 /* ViewController.swift in Sources */,
 				18E6C7F62021C2FD00C30FA0 /* SlideShowCollectionViewController.swift in Sources */,
 				18FA66271FE23079002742CE /* ItemModel.swift in Sources */,
 				184EE4BF1FFB2973005BB941 /* ItemGroupCheckbox.swift in Sources */,
 				B93004C22081FC6B00731852 /* GetListDTO.swift in Sources */,
 				B906FB1A208741F5009BE880 /* OnUpdatedListener.swift in Sources */,
+				B98BD43520898D9E008B6619 /* ItemSummaryTableViewController.swift in Sources */,
 				181D4AB1200D9BA300BFCA06 /* UserModel.swift in Sources */,
 				18ADAC4B2015E40E00C04532 /* DocumentModel.swift in Sources */,
 				1850D567201F3A2600D63928 /* ItemGroupWithDocumentModel.swift in Sources */,
@@ -683,6 +738,7 @@
 				1883957A1FCBB4B7004A8592 /* AppDelegate.swift in Sources */,
 				B9BDB201207DC0E300DE43DB /* NumericHelper.swift in Sources */,
 				184FC9E720071EC900254F82 /* SearchItem.swift in Sources */,
+				B98BD4422089A760008B6619 /* StringExtension.swift in Sources */,
 				184FC9EB20074DC200254F82 /* ReceiveSummary.swift in Sources */,
 				186E4591201206C10014E30A /* Setting.swift in Sources */,
 				18D83B5A1FCBF74A00B79AE8 /* Home.swift in Sources */,
@@ -691,7 +747,9 @@
 				184EE4C11FFB2E6F005BB941 /* ItemGroupCheckboxCell.swift in Sources */,
 				18FA66231FE22F79002742CE /* Item.swift in Sources */,
 				1883958F1FCBB88B004A8592 /* SWRevealViewController.m in Sources */,
+				B98BD43E2089A1EC008B6619 /* ItemEditDTO.swift in Sources */,
 				B9B568E6208364E700F89863 /* IndicatorHelper.swift in Sources */,
+				B9E3080820888B1400D6EDD5 /* ItemBaseDTO.swift in Sources */,
 				181F18AC2022F93F002D4DCB /* ReportViewController.swift in Sources */,
 				1826D0D02008D17B00AC8B42 /* IssueCell.swift in Sources */,
 				B97368E220830198002AC6CD /* CustomerTableViewCell.swift in Sources */,
@@ -700,6 +758,7 @@
 				B93004C420820DF000731852 /* ConstantHelper.swift in Sources */,
 				B90E08B02086FF4100547F5C /* CustomerEditDTO.swift in Sources */,
 				B91B7CCF207CBE25007FF69B /* CustomerBaseDTO.swift in Sources */,
+				B9E3080520888AF100D6EDD5 /* ItemViewController.swift in Sources */,
 				1834ABBD201845350086DC79 /* Mode.swift in Sources */,
 				1826D0CB2008CA2B00AC8B42 /* SettingModel.swift in Sources */,
 				182102BB200CBC1F00267F9E /* Auth.swift in Sources */,
@@ -717,6 +776,7 @@
 				184BE1E01FD51882001AA013 /* Loading.swift in Sources */,
 				B936659720736F0B00942592 /* SaleOrderTableViewCell.swift in Sources */,
 				B936659C2073823A00942592 /* SaleOrderBase.swift in Sources */,
+				B98BD43C20899A58008B6619 /* ItemGroupViewDTO.swift in Sources */,
 				18FA66291FE27AE6002742CE /* ItemSummary.swift in Sources */,
 				181D4AB7200DF82400BFCA06 /* RequestMethod.swift in Sources */,
 				181F8C401FD6A28500D08AAF /* CustomerModel.swift in Sources */,

@@ -1,42 +1,40 @@
 //
-//  CustomerViewDTO.swift
+//  ItemEditDTO.swift
 //  X-Admin
 //
-//  Created by BunEav Ros on 4/10/18.
+//  Created by BunEav Ros on 4/20/18.
 //  Copyright © 2018 SeavTy. All rights reserved.
 //
 
 import Foundation
-class CustomerViewDTO: CustomerBaseDTO {
+
+class ItemEditDTO: ItemBaseDTO {
     
-    var code: String?
+    var price: Double?
+    var itemGroup: ItemGroupViewDTO?
     
     fileprivate enum CodingKeys: String, CodingKey {
-        case code
+        case price
+        case itemGroup
     }
     
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.code = try container.decode(String?.self, forKey: .code)
+        self.price = try container.decode(Double?.self, forKey: .price)
+        self.itemGroup = try container.decode(ItemGroupViewDTO?.self, forKey: .itemGroup)
     }
     
     override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(code, forKey: .code)
+        try container.encode(price, forKey: .price)
+        try container.encode(itemGroup, forKey: .itemGroup )
+        
     }
-    
-    
-    
-    //-- ** must use it, if not can not create object in CusotmerSummaryView Control ***/
-    /*
-    override required init() {
-        super.init()
-    }
-    */
     
     required init() {
         super.init()
     }
+    
 }

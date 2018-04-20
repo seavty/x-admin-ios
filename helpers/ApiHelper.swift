@@ -13,6 +13,7 @@ final class ApiHelper {
     fileprivate let getDefaultValue = UserDefaults.standard
     
     static let customerEndPoint = apiURL() + "customers/"
+    static let itemEndPoint = apiURL() + "items/"
     
     //-> apiURL()
     static func apiURL() -> String {
@@ -20,6 +21,7 @@ final class ApiHelper {
         //return URL + "/api/v1/"
         
         return "http://192.168.0.107/x-admin-api/api/v1/"
+        //return "http://192.168.1.104/x-admin-api/api/v1/"
     }
     
     //-> getRequestHeader
@@ -63,6 +65,7 @@ final class ApiHelper {
             catch {
                vc.view.makeToast(ConstantHelper.error404, duration: 3.0, position: .center)
             }
+            print(response)
             return false
         case 401:
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -74,6 +77,7 @@ final class ApiHelper {
             return false
         case 500:
             vc.view.makeToast(ConstantHelper.errorOccurred)
+            print(response)
             return false
         default:
             vc.view.makeToast(ConstantHelper.errorOccurred, duration: 3.0, position: .center)

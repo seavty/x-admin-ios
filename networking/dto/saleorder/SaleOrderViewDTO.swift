@@ -37,5 +37,9 @@ class SaleOrderViewDTO : SaleOrderBase {
         try container.encode(saleOrderNo, forKey: .saleOrderNo)
         try container.encode(total, forKey: .total)
     }
+    
+    override required init() {
+        super.init()
+    }
 }
 

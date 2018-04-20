@@ -1,27 +1,27 @@
 //
-//  CustomerSummaryTableViewController.swift
+//  ItemSummaryTableViewController.swift
 //  X-Admin
 //
-//  Created by BunEav Ros on 4/16/18.
+//  Created by BunEav Ros on 4/20/18.
 //  Copyright © 2018 SeavTy. All rights reserved.
 //
 
 import UIKit
 import Alamofire
-import Toaster
 
-class CustomerSummaryTableViewController: UITableViewController {
+class ItemSummaryTableViewController: UITableViewController {
     
     @IBOutlet fileprivate var bbiCancel: UIBarButtonItem!
-    @IBOutlet fileprivate var bbiEdit: UIBarButtonItem!
     @IBOutlet fileprivate var bbiSave: UIBarButtonItem!
+    @IBOutlet fileprivate var bbiEdit: UIBarButtonItem!
     
     @IBOutlet fileprivate var txtName: UITextField!
     @IBOutlet fileprivate var txtCode: UITextField!
-    @IBOutlet fileprivate var txtPhone: UITextField!
-    @IBOutlet fileprivate var tarAddress: UITextView!
+    @IBOutlet fileprivate var txtDescription: UITextField!
+    @IBOutlet fileprivate var txtPrice: UITextField!
     
-    var customer = CustomerViewDTO()
+    @IBOutlet var btnItemGroup: UIButton!
+    var item = ItemViewDTO()
     var rowPosition = -1
     var backClickListener: OnUpdatedListener?
     var createdListener: OnCreatedListener?
@@ -33,7 +33,7 @@ class CustomerSummaryTableViewController: UITableViewController {
         super.viewDidLoad()
         initializeComponents()
     }
-    
+
     //-> cancelClick
     @IBAction func cancelClick(_ sender: UIBarButtonItem) {
         handCancel()
@@ -46,12 +46,15 @@ class CustomerSummaryTableViewController: UITableViewController {
     
     //-> editClick
     @IBAction func editClick(_ sender: UIBarButtonItem) {
-        handleEdit()
+         handleEdit()
+    }
+    @IBAction func itemGroupClick(_ sender: UIButton) {
+        print("item group click")
     }
 }
 
 //*** CustomerSummaryTableViewController
-extension CustomerSummaryTableViewController {
+extension ItemSummaryTableViewController {
     
     //-> willDisplayHeaderView
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -61,11 +64,13 @@ extension CustomerSummaryTableViewController {
     }
 }
 
+
 //*** function  *** /
-extension CustomerSummaryTableViewController {
+extension ItemSummaryTableViewController {
     
     //-> initializeComponents
     fileprivate func initializeComponents() {
+        btnItemGroup.contentHorizontalAlignment = .left
         setupNavBar()
         if(rowPosition > -1) {
             setupData()
@@ -90,7 +95,7 @@ extension CustomerSummaryTableViewController {
     //-> back
     @objc func back(sender: UIBarButtonItem) {
         if(isEdited) {
-            backClickListener?.updateTableRow(data: customer, position: rowPosition)
+            backClickListener?.updateTableRow(data: item, position: rowPosition)
         }
         navigationController?.popViewController(animated: true)
     }
@@ -98,7 +103,7 @@ extension CustomerSummaryTableViewController {
     //-> setupData
     fileprivate func setupData(){
         IndicatorHelper.showIndicator(view: self.view)
-        let url = ApiHelper.customerEndPoint + "\(self.customer.id!)"
+        let url = ApiHelper.itemEndPoint + "\(self.item.id!)"
         
         let request = ApiHelper.getRequestHeader(url: url, method: RequestMethodEnum.get)
         Alamofire.request(request).responseJSON {
@@ -108,11 +113,12 @@ extension CustomerSummaryTableViewController {
                 do {
                     self.navigationItem.rightBarButtonItems = [self.bbiEdit]
                     guard let data = response.data as Data! else { return }
-                    let json = try JSONDecoder().decode(CustomerViewDTO.self, from: data)
-                    self.customer.name = json.name
-                    self.customer.code = json.code
-                    self.customer.phone = json.phone
-                    self.customer.address = json.address
+                    let json = try JSONDecoder().decode(ItemViewDTO.self, from: data)
+                    self.item.name = json.name
+                    self.item.code = json.code
+                    self.item.description = json.description
+                    self.item.price = json.price
+                    
                     self.displayData()
                 }
                 catch {
@@ -125,19 +131,20 @@ extension CustomerSummaryTableViewController {
     
     //-> displayData
     fileprivate func displayData() {
-        txtName.text = customer.name
-        txtCode.text = customer.code
-        txtPhone.text = customer.phone
-        tarAddress.text = customer.address
+        txtName.text = item.name
+        txtCode.text = item.code
+        txtDescription.text = item.description
+        txtPrice.text = "\(item.price!)"
+        btnItemGroup.setTitle(item.itemGroup?.name, for: .normal)
         enableComponents()
     }
     
     //-> enableComponents
     fileprivate func enableComponents(isEnable:Bool = true ) {
-        //txtName.isUserInteractionEnabled = !isEnable
         txtName.isEnabled = !isEnable
-        txtPhone.isEnabled = !isEnable
-        tarAddress.isEditable = !isEnable
+        txtCode.isEnabled = !isEnable
+        txtDescription.isEnabled = !isEnable
+        txtPrice.isEnabled = !isEnable
     }
     
     //-> handleEdit
@@ -152,20 +159,23 @@ extension CustomerSummaryTableViewController {
     fileprivate func handleSave() {
         if(isValidated()) {
             do {
-                let customer = CustomerEditDTO()
-                var url = ApiHelper.customerEndPoint
+                let item = ItemEditDTO()
+                var url = ApiHelper.itemEndPoint
                 var requestMethod = RequestMethodEnum.post
                 if(rowPosition > -1) {
-                    customer.id = self.customer.id
-                    url = url + "\(self.customer.id!)"
+                    item.id = self.item.id
+                    url = url + "\(self.item.id!)"
                     requestMethod = RequestMethodEnum.put
                 }
-                customer.name = txtName.text!
-                customer.phone = txtPhone.text!
-                customer.address = tarAddress.text!
-                //let url = ApiHelper.customerEndPoint + "\(self.customer.id!)"
+                item.itemGroup = self.item.itemGroup
+                item.name = txtName.text!
+                item.code = txtCode.text!
+                item.description = txtDescription.text!
+                item.price = txtPrice.text!.toDouble
+                
                 var request = ApiHelper.getRequestHeader(url: url, method: requestMethod)
-                request.httpBody = try JSONEncoder().encode(customer)
+                request.httpBody = try JSONEncoder().encode(item)
+                print(String(data: try JSONEncoder().encode(item), encoding: .utf8)!)
                 IndicatorHelper.showIndicator(view: self.view)
                 Alamofire.request(request).responseJSON {
                     (response) in
@@ -199,16 +209,18 @@ extension CustomerSummaryTableViewController {
     fileprivate func isValidated() -> Bool {
         //--since I could not find the best solution to address this validation issue so that temporary I will this way first
         if(txtName.text == "") {
-            self.navigationController?.view.makeToast("Customer Name is required", duration: 3.0, position: .center)
+            self.navigationController?.view.makeToast("Name is required", duration: 3.0, position: .center)
             return false
         }
-        else if(txtPhone.text == "") {
-            self.navigationController?.view.makeToast("Phone number is required", duration: 3.0, position: .center)
+        else if(txtCode.text == "") {
+            self.navigationController?.view.makeToast("Code is required", duration: 3.0, position: .center)
             return false
         }
+        else if(txtPrice.text == "") {
+            self.navigationController?.view.makeToast("Price is required", duration: 3.0, position: .center)
+            return false
+        }
+        
         return true
     }
 }
-
-
-
