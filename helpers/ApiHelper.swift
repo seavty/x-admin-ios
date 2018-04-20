@@ -14,7 +14,7 @@ final class ApiHelper {
     
     static let customerEndPoint = apiURL() + "customers/"
     static let itemEndPoint = apiURL() + "items/"
-    
+    static let itemGroupEndPoint = apiURL() + "itemgroups/"
     //-> apiURL()
     static func apiURL() -> String {
         //guard let URL = getDefaultValue.value(forKey: "IP") as! String? else { return "" }

@@ -1,5 +1,5 @@
 //
-//  ItemSummaryTableViewController.swift
+//  ItemGroupSummaryTableViewController.swift
 //  X-Admin
 //
 //  Created by BunEav Ros on 4/20/18.
@@ -9,19 +9,16 @@
 import UIKit
 import Alamofire
 
-class ItemSummaryTableViewController: UITableViewController {
-    
+class ItemGroupSummaryTableViewController: UITableViewController {
+
     @IBOutlet fileprivate var bbiCancel: UIBarButtonItem!
     @IBOutlet fileprivate var bbiSave: UIBarButtonItem!
     @IBOutlet fileprivate var bbiEdit: UIBarButtonItem!
+   
+    @IBOutlet var txtName: UITextField!
     
-    @IBOutlet fileprivate var txtName: UITextField!
-    @IBOutlet fileprivate var txtCode: UITextField!
-    @IBOutlet fileprivate var txtDescription: UITextField!
-    @IBOutlet fileprivate var txtPrice: UITextField!
     
-    @IBOutlet fileprivate var btnItemGroup: UIButton!
-    var item = ItemViewDTO()
+    var itemGroup = ItemGroupViewDTO()
     var rowPosition = -1
     var backClickListener: OnUpdatedListener?
     var createdListener: OnCreatedListener?
@@ -33,7 +30,7 @@ class ItemSummaryTableViewController: UITableViewController {
         super.viewDidLoad()
         initializeComponents()
     }
-
+    
     //-> cancelClick
     @IBAction func cancelClick(_ sender: UIBarButtonItem) {
         handCancel()
@@ -44,33 +41,17 @@ class ItemSummaryTableViewController: UITableViewController {
         handleSave()
     }
     
-    //-> editClick
-    @IBAction func editClick(_ sender: UIBarButtonItem) {
-         handleEdit()
-    }
-    @IBAction func itemGroupClick(_ sender: UIButton) {
-        print("item group click")
+    //-> EditClick
+    @IBAction func EditClick(_ sender: UIBarButtonItem) {
+        handleEdit()
     }
 }
-
-//*** CustomerSummaryTableViewController
-extension ItemSummaryTableViewController {
-    
-    //-> willDisplayHeaderView
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        guard let header = view as? UITableViewHeaderFooterView else { return }
-        header.textLabel?.font = UIFont(name: "Arial", size: 16)
-        header.textLabel?.text? = header.textLabel?.text?.capitalized ?? ""
-    }
-}
-
 
 //*** function  *** /
-extension ItemSummaryTableViewController {
+extension ItemGroupSummaryTableViewController {
     
     //-> initializeComponents
     fileprivate func initializeComponents() {
-        btnItemGroup.contentHorizontalAlignment = .left
         setupNavBar()
         if(rowPosition > -1) {
             setupData()
@@ -84,7 +65,7 @@ extension ItemSummaryTableViewController {
     fileprivate func setupNavBar() {
         navigationItem.rightBarButtonItems = []
         self.navigationItem.hidesBackButton = true
-        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(CustomerSummaryTableViewController.back(sender:)))
+        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ItemGroupSummaryTableViewController.back(sender:)))
         self.navigationItem.leftBarButtonItem = newBackButton
         
         if(rowPosition == -1) {
@@ -95,7 +76,7 @@ extension ItemSummaryTableViewController {
     //-> back
     @objc func back(sender: UIBarButtonItem) {
         if(isEdited) {
-            backClickListener?.updateTableRow(data: item, position: rowPosition)
+            backClickListener?.updateTableRow(data: itemGroup, position: rowPosition)
         }
         navigationController?.popViewController(animated: true)
     }
@@ -103,7 +84,7 @@ extension ItemSummaryTableViewController {
     //-> setupData
     fileprivate func setupData(){
         IndicatorHelper.showIndicator(view: self.view)
-        let url = ApiHelper.itemEndPoint + "\(self.item.id!)"
+        let url = ApiHelper.itemGroupEndPoint + "\(self.itemGroup.id!)"
         
         let request = ApiHelper.getRequestHeader(url: url, method: RequestMethodEnum.get)
         Alamofire.request(request).responseJSON {
@@ -113,12 +94,8 @@ extension ItemSummaryTableViewController {
                 do {
                     self.navigationItem.rightBarButtonItems = [self.bbiEdit]
                     guard let data = response.data as Data! else { return }
-                    let json = try JSONDecoder().decode(ItemViewDTO.self, from: data)
-                    self.item.name = json.name
-                    self.item.code = json.code
-                    self.item.description = json.description
-                    self.item.price = json.price
-                    
+                    let json = try JSONDecoder().decode(ItemGroupViewDTO.self, from: data)
+                    self.itemGroup.name = json.name
                     self.displayData()
                 }
                 catch {
@@ -131,20 +108,13 @@ extension ItemSummaryTableViewController {
     
     //-> displayData
     fileprivate func displayData() {
-        txtName.text = item.name
-        txtCode.text = item.code
-        txtDescription.text = item.description
-        txtPrice.text = "\(item.price!)"
-        btnItemGroup.setTitle(item.itemGroup?.name, for: .normal)
+        txtName.text = itemGroup.name
         enableComponents()
     }
     
     //-> enableComponents
     fileprivate func enableComponents(isEnable:Bool = true ) {
         txtName.isEnabled = !isEnable
-        txtCode.isEnabled = !isEnable
-        txtDescription.isEnabled = !isEnable
-        txtPrice.isEnabled = !isEnable
     }
     
     //-> handleEdit
@@ -159,23 +129,18 @@ extension ItemSummaryTableViewController {
     fileprivate func handleSave() {
         if(isValidated()) {
             do {
-                let item = ItemEditDTO()
-                var url = ApiHelper.itemEndPoint
+                let itemGroup = ItemGroupEditDTO()
+                var url = ApiHelper.itemGroupEndPoint
                 var requestMethod = RequestMethodEnum.post
                 if(rowPosition > -1) {
-                    item.id = self.item.id
-                    url = url + "\(self.item.id!)"
+                    itemGroup.id = self.itemGroup.id
+                    url = url + "\(self.itemGroup.id!)"
                     requestMethod = RequestMethodEnum.put
                 }
-                item.itemGroup = self.item.itemGroup
-                item.name = txtName.text!
-                item.code = txtCode.text!
-                item.description = txtDescription.text!
-                item.price = txtPrice.text!.toDouble
+                itemGroup.name = txtName.text!
                 
                 var request = ApiHelper.getRequestHeader(url: url, method: requestMethod)
-                request.httpBody = try JSONEncoder().encode(item)
-                print(String(data: try JSONEncoder().encode(item), encoding: .utf8)!)
+                request.httpBody = try JSONEncoder().encode(itemGroup)
                 IndicatorHelper.showIndicator(view: self.view)
                 Alamofire.request(request).responseJSON {
                     (response) in
@@ -212,15 +177,8 @@ extension ItemSummaryTableViewController {
             self.navigationController?.view.makeToast("Name is required", duration: 3.0, position: .center)
             return false
         }
-        else if(txtCode.text == "") {
-            self.navigationController?.view.makeToast("Code is required", duration: 3.0, position: .center)
-            return false
-        }
-        else if(txtPrice.text == "") {
-            self.navigationController?.view.makeToast("Price is required", duration: 3.0, position: .center)
-            return false
-        }
-        
         return true
     }
 }
+
+

@@ -29,12 +29,11 @@ class ItemEditDTO: ItemBaseDTO {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(price, forKey: .price)
-        try container.encode(itemGroup, forKey: .itemGroup )
+        try container.encode(itemGroup, forKey: .itemGroup)
         
     }
     
     required init() {
         super.init()
     }
-    
 }

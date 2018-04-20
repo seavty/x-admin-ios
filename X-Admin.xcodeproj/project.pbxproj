@@ -84,6 +84,10 @@
 		B98BD43C20899A58008B6619 /* ItemGroupViewDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98BD43B20899A58008B6619 /* ItemGroupViewDTO.swift */; };
 		B98BD43E2089A1EC008B6619 /* ItemEditDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98BD43D2089A1EC008B6619 /* ItemEditDTO.swift */; };
 		B98BD4422089A760008B6619 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4412089A760008B6619 /* StringExtension.swift */; };
+		B98BD4462089D1CA008B6619 /* ItemGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4452089D1CA008B6619 /* ItemGroupTableViewCell.swift */; };
+		B98BD4482089D207008B6619 /* ItemGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4472089D207008B6619 /* ItemGroupViewController.swift */; };
+		B98BD44A2089D271008B6619 /* ItemGroupSummaryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4492089D271008B6619 /* ItemGroupSummaryTableViewController.swift */; };
+		B98BD44C2089E06C008B6619 /* ItemGroupEditDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98BD44B2089E06C008B6619 /* ItemGroupEditDTO.swift */; };
 		B9B568E6208364E700F89863 /* IndicatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B568E5208364E700F89863 /* IndicatorHelper.swift */; };
 		B9BDB201207DC0E300DE43DB /* NumericHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BDB200207DC0E300DE43DB /* NumericHelper.swift */; };
 		B9BDB203207E04DE00DE43DB /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BDB202207E04DE00DE43DB /* AlertHelper.swift */; };
@@ -177,6 +181,10 @@
 		B98BD43B20899A58008B6619 /* ItemGroupViewDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGroupViewDTO.swift; sourceTree = "<group>"; };
 		B98BD43D2089A1EC008B6619 /* ItemEditDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemEditDTO.swift; sourceTree = "<group>"; };
 		B98BD4412089A760008B6619 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		B98BD4452089D1CA008B6619 /* ItemGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGroupTableViewCell.swift; sourceTree = "<group>"; };
+		B98BD4472089D207008B6619 /* ItemGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGroupViewController.swift; sourceTree = "<group>"; };
+		B98BD4492089D271008B6619 /* ItemGroupSummaryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGroupSummaryTableViewController.swift; sourceTree = "<group>"; };
+		B98BD44B2089E06C008B6619 /* ItemGroupEditDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGroupEditDTO.swift; sourceTree = "<group>"; };
 		B9B568E5208364E700F89863 /* IndicatorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorHelper.swift; sourceTree = "<group>"; };
 		B9BDB200207DC0E300DE43DB /* NumericHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericHelper.swift; sourceTree = "<group>"; };
 		B9BDB202207E04DE00DE43DB /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
@@ -423,6 +431,9 @@
 				18EC04281FE37C2600A3FE49 /* ItemGroup.swift */,
 				18EC042A1FE3807200A3FE49 /* ItemGroupSummary.swift */,
 				184EE4BE1FFB2973005BB941 /* ItemGroupCheckbox.swift */,
+				B98BD4452089D1CA008B6619 /* ItemGroupTableViewCell.swift */,
+				B98BD4472089D207008B6619 /* ItemGroupViewController.swift */,
+				B98BD4492089D271008B6619 /* ItemGroupSummaryTableViewController.swift */,
 			);
 			name = ItemGroup;
 			path = ..;
@@ -558,6 +569,7 @@
 			children = (
 				B98BD43920899A05008B6619 /* ItemGroupBaseDTO.swift */,
 				B98BD43B20899A58008B6619 /* ItemGroupViewDTO.swift */,
+				B98BD44B2089E06C008B6619 /* ItemGroupEditDTO.swift */,
 			);
 			path = itemgroup;
 			sourceTree = "<group>";
@@ -735,6 +747,7 @@
 				18D83B5D1FCC12F700B79AE8 /* Customer.swift in Sources */,
 				184FC9E42007123D00254F82 /* ReceiveCell.swift in Sources */,
 				B90E08AC2086FC4300547F5C /* CustomerNewDTO.swift in Sources */,
+				B98BD44A2089D271008B6619 /* ItemGroupSummaryTableViewController.swift in Sources */,
 				1883957A1FCBB4B7004A8592 /* AppDelegate.swift in Sources */,
 				B9BDB201207DC0E300DE43DB /* NumericHelper.swift in Sources */,
 				184FC9E720071EC900254F82 /* SearchItem.swift in Sources */,
@@ -754,9 +767,11 @@
 				1826D0D02008D17B00AC8B42 /* IssueCell.swift in Sources */,
 				B97368E220830198002AC6CD /* CustomerTableViewCell.swift in Sources */,
 				18870BF71FFF6CD8003242DC /* MetaDataModel.swift in Sources */,
+				B98BD4462089D1CA008B6619 /* ItemGroupTableViewCell.swift in Sources */,
 				18EC04231FE3754100A3FE49 /* ItemGroupCell.swift in Sources */,
 				B93004C420820DF000731852 /* ConstantHelper.swift in Sources */,
 				B90E08B02086FF4100547F5C /* CustomerEditDTO.swift in Sources */,
+				B98BD44C2089E06C008B6619 /* ItemGroupEditDTO.swift in Sources */,
 				B91B7CCF207CBE25007FF69B /* CustomerBaseDTO.swift in Sources */,
 				B9E3080520888AF100D6EDD5 /* ItemViewController.swift in Sources */,
 				1834ABBD201845350086DC79 /* Mode.swift in Sources */,
@@ -776,6 +791,7 @@
 				184BE1E01FD51882001AA013 /* Loading.swift in Sources */,
 				B936659720736F0B00942592 /* SaleOrderTableViewCell.swift in Sources */,
 				B936659C2073823A00942592 /* SaleOrderBase.swift in Sources */,
+				B98BD4482089D207008B6619 /* ItemGroupViewController.swift in Sources */,
 				B98BD43C20899A58008B6619 /* ItemGroupViewDTO.swift in Sources */,
 				18FA66291FE27AE6002742CE /* ItemSummary.swift in Sources */,
 				181D4AB7200DF82400BFCA06 /* RequestMethod.swift in Sources */,
