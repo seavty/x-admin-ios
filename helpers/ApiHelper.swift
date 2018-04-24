@@ -44,9 +44,8 @@ final class ApiHelper {
         }
         request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
         
-        //let getToken = getDefaultValue.value(forKey: "token") as! String?
-        guard let token = getDefaultValue.value(forKey: ConstantHelper.TOKEN) as? String else {return request }
-        //let getToken = "2c694874-f201-4d6d-b1ac-b9b6c93d57c1" // ip 112 my laptop
+        //guard let token = getDefaultValue.value(forKey: ConstantHelper.TOKEN) as? String else {return request }
+        let token = "66fa56c7-ef9a-406c-92ca-e1030cbc7785" // ip 112 my laptop
         var headers = HTTPHeaders()
         headers["token"] = token
         headers["Accept"] = "application/json"
@@ -73,8 +72,8 @@ final class ApiHelper {
             print(response)
             return false
         case 401:
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "Auth")
+            let storyboard = UIStoryboard(name: ConstantHelper.MAIN_STRORYBOARD, bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: ConstantHelper.LOGIN_CONTROLLER)
             vc.present(controller, animated: true, completion: nil)
             return false
         case 404:

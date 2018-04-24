@@ -104,6 +104,7 @@ extension ItemGroupViewController {
     //-> resetData
     fileprivate func resetData() {
         self.itemGroups.removeAll()
+        tblItemGroup.reloadData()
         isEOF = false
         currentPage = 1
         getItemGroups()
@@ -122,7 +123,7 @@ extension ItemGroupViewController {
     //-> deleteCustomer
     fileprivate func deleteItemGroup(indexPath: IndexPath) {
         let itemGroup = self.itemGroups[indexPath.row]
-        let url = ApiHelper.itemGroupEndPoint + "\(itemGroup.id!)"
+        let url = ApiHelper.itemGroupEndPoint + itemGroup.id!.toString
         let request = ApiHelper.getRequestHeader(url: url, method: RequestMethodEnum.delete)
         IndicatorHelper.showIndicator(view: self.view)
         Alamofire.request(request).responseJSON {
@@ -130,14 +131,16 @@ extension ItemGroupViewController {
             IndicatorHelper.hideIndicator()
             if  ApiHelper.isSuccessful(vc: self, response: response){
                 self.itemGroups.remove(at: indexPath.row)
-                self.tblItemGroup.reloadData()
+                self.tblItemGroup.beginUpdates()
+                self.tblItemGroup.deleteRows(at: [indexPath], with: .middle)
+                self.tblItemGroup.endUpdates()
             }
         }
     }
     
     //-> getCustomers
     fileprivate func getItemGroups() {
-        var url = ApiHelper.itemGroupEndPoint + "?currentPage=\(currentPage)"
+        var url = ApiHelper.itemGroupEndPoint + "?currentPage=" + currentPage.toString
         if(searchBar.text != ""){
             let searchText = searchBar.text!.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
             url += "&search=\(searchText!)"
@@ -153,9 +156,17 @@ extension ItemGroupViewController {
                     let json = try JSONDecoder().decode(GetListDTO<ItemGroupViewDTO>.self, from: data)
                     guard let totalPage = json.metaData?.totalPage as Int! else { return }
                     if(self.currentPage <= totalPage) {
-                        self.itemGroups.append(contentsOf: json.results!)
-                        self.tblItemGroup.reloadData()
-                        self.currentPage = self.currentPage + 1
+                        guard let itemGroups = json.results else {return}
+                        if itemGroups.count > 0 {
+                            self.tblItemGroup.beginUpdates()
+                            for itemGroup in itemGroups {
+                                self.itemGroups.append(itemGroup)
+                                let indexPath:IndexPath = IndexPath(row:(self.itemGroups.count - 1), section:0)
+                                self.tblItemGroup.insertRows(at: [indexPath], with: .automatic)
+                            }
+                            self.tblItemGroup.endUpdates()
+                        }
+                        self.currentPage += 1
                     }
                     else {
                         self.isEOF = true

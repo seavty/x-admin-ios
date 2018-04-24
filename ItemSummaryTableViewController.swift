@@ -153,7 +153,7 @@ extension ItemSummaryTableViewController {
         txtName.text = item.name
         txtCode.text = item.code
         txtDescription.text = item.description
-        txtPrice.text = "\(item.price!)"
+        txtPrice.text = item.price?.to2Decimal
         btnItemGroup.setTitle(item.itemGroup?.name, for: .normal)
         enableComponents()
     }
@@ -164,7 +164,6 @@ extension ItemSummaryTableViewController {
         txtCode.isEnabled = !isEnable
         txtDescription.isEnabled = !isEnable
         txtPrice.isEnabled = !isEnable
-        
         btnItemGroup.isEnabled = !isEnable
     }
     
@@ -185,7 +184,7 @@ extension ItemSummaryTableViewController {
                 var requestMethod = RequestMethodEnum.post
                 if(rowPosition > -1) {
                     item.id = self.item.id
-                    url = url + "\(self.item.id!)"
+                    url = url + self.item.id!.toString
                     requestMethod = RequestMethodEnum.put
                 }
                 item.itemGroup = self.item.itemGroup

@@ -104,6 +104,7 @@ extension ItemViewController {
     //-> resetData
     fileprivate func resetData() {
         self.items.removeAll()
+        tblItem.reloadData()
         isEOF = false
         currentPage = 1
         getItems()
@@ -122,7 +123,7 @@ extension ItemViewController {
     //-> deleteItem
     fileprivate func deleteItem(indexPath: IndexPath) {
         let item = self.items[indexPath.row]
-        let url = ApiHelper.itemEndPoint + "\(item.id!)"
+        let url = ApiHelper.itemEndPoint + item.id!.toString
         let request = ApiHelper.getRequestHeader(url: url, method: RequestMethodEnum.delete)
         IndicatorHelper.showIndicator(view: self.view)
         Alamofire.request(request).responseJSON {
@@ -130,14 +131,16 @@ extension ItemViewController {
             IndicatorHelper.hideIndicator()
             if  ApiHelper.isSuccessful(vc: self, response: response){
                 self.items.remove(at: indexPath.row)
-                self.tblItem.reloadData()
+                self.tblItem.beginUpdates()
+                self.tblItem.deleteRows(at: [indexPath], with: .middle)
+                self.tblItem.endUpdates()
             }
         }
     }
     
     //-> getItems
     fileprivate func getItems() {
-        var url = ApiHelper.itemEndPoint + "?currentPage=\(currentPage)"
+        var url = ApiHelper.itemEndPoint + "?currentPage=" + currentPage.toString
         if(searchBar.text != ""){
             let searchText = searchBar.text!.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
             url += "&search=\(searchText!)"
@@ -153,9 +156,19 @@ extension ItemViewController {
                     let json = try JSONDecoder().decode(GetListDTO<ItemViewDTO>.self, from: data)
                     guard let totalPage = json.metaData?.totalPage as Int! else { return }
                     if(self.currentPage <= totalPage) {
-                        self.items.append(contentsOf: json.results!)
-                        self.tblItem.reloadData()
-                        self.currentPage = self.currentPage + 1
+                       guard let items = json.results else {return}
+                        if items.count > 0 {
+                            self.tblItem.beginUpdates()
+                            for item in items {
+                                self.items.append(item)
+                                let indexPath:IndexPath = IndexPath(row:(self.items.count - 1), section:0)
+                                self.tblItem.insertRows(at: [indexPath], with: .automatic)
+                            }
+                            self.tblItem.endUpdates()
+                            
+                        }
+                        self.currentPage += 1
+                        
                     }
                     else {
                         self.isEOF = true

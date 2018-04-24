@@ -100,8 +100,7 @@ extension CustomerSummaryTableViewController {
     //-> setupData
     fileprivate func setupData(){
         IndicatorHelper.showIndicator(view: self.view)
-        let url = ApiHelper.customerEndPoint + "\(self.customer.id!)"
-        
+        let url = ApiHelper.customerEndPoint + self.customer.id!.toString
         let request = ApiHelper.getRequestHeader(url: url, method: RequestMethodEnum.get)
         Alamofire.request(request).responseJSON {
             (response) in
@@ -136,7 +135,6 @@ extension CustomerSummaryTableViewController {
     
     //-> enableComponents
     fileprivate func enableComponents(isEnable:Bool = true ) {
-        //txtName.isUserInteractionEnabled = !isEnable
         txtName.isEnabled = !isEnable
         txtPhone.isEnabled = !isEnable
         tarAddress.isEditable = !isEnable
@@ -159,13 +157,12 @@ extension CustomerSummaryTableViewController {
                 var requestMethod = RequestMethodEnum.post
                 if(rowPosition > -1) {
                     customer.id = self.customer.id
-                    url = url + "\(self.customer.id!)"
+                    url = url + self.customer.id!.toString
                     requestMethod = RequestMethodEnum.put
                 }
                 customer.name = txtName.text!
                 customer.phone = txtPhone.text!
                 customer.address = tarAddress.text!
-                //let url = ApiHelper.customerEndPoint + "\(self.customer.id!)"
                 var request = ApiHelper.getRequestHeader(url: url, method: requestMethod)
                 request.httpBody = try JSONEncoder().encode(customer)
                 IndicatorHelper.showIndicator(view: self.view)

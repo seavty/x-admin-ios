@@ -90,8 +90,10 @@ extension CustomerViewController {
     //-> resetData
     fileprivate func resetData() {
         self.customers.removeAll()
+        tblCustomer.reloadData()
         isEOF = false
         currentPage = 1
+        
         getCustomers()
     }
     
@@ -108,7 +110,7 @@ extension CustomerViewController {
     //-> deleteCustomer
     fileprivate func deleteCustomer(indexPath: IndexPath) {
         let customer = self.customers[indexPath.row]
-        let url = ApiHelper.customerEndPoint + "\(customer.id!)"
+        let url = ApiHelper.customerEndPoint + customer.id!.toString
         let request = ApiHelper.getRequestHeader(url: url, method: RequestMethodEnum.delete)
         IndicatorHelper.showIndicator(view: self.view)
         Alamofire.request(request).responseJSON {
@@ -116,14 +118,17 @@ extension CustomerViewController {
             IndicatorHelper.hideIndicator()
             if  ApiHelper.isSuccessful(vc: self, response: response){
                 self.customers.remove(at: indexPath.row)
-                self.tblCustomer.reloadData()
+                self.tblCustomer.beginUpdates()
+                self.tblCustomer.deleteRows(at: [indexPath], with: .middle)
+                self.tblCustomer.endUpdates()
             }
         }
     }
     
     //-> getCustomers
     fileprivate func getCustomers() {
-        var url = ApiHelper.customerEndPoint + "?currentPage=\(currentPage)"
+        var url = ApiHelper.customerEndPoint + "?currentPage=" + currentPage.toString
+        print(url)
         if(searchBar.text != ""){
             let searchText = searchBar.text!.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
             url += "&search=\(searchText!)"
@@ -139,9 +144,18 @@ extension CustomerViewController {
                     let json = try JSONDecoder().decode(GetListDTO<CustomerViewDTO>.self, from: data)
                     guard let totalPage = json.metaData?.totalPage as Int! else { return }
                     if(self.currentPage <= totalPage) {
-                        self.customers.append(contentsOf: json.results!)
-                        self.tblCustomer.reloadData()
-                        self.currentPage = self.currentPage + 1
+                        guard let customers = json.results else {return}
+                        if customers.count > 0 {
+                            self.tblCustomer.beginUpdates()
+                            for customer in customers {
+                                self.customers.append(customer)
+                                let indexPath:IndexPath = IndexPath(row:(self.customers.count - 1), section:0)
+                                self.tblCustomer.insertRows(at: [indexPath], with: .automatic)
+                            }
+                            self.tblCustomer.endUpdates()
+                            
+                        }
+                        self.currentPage += 1
                     }
                     else {
                         self.isEOF = true
@@ -159,6 +173,7 @@ extension CustomerViewController {
 
 //*** TableView *** //
 extension CustomerViewController: UITableViewDataSource, UITableViewDelegate {
+    
     //-> heightForRowAt
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
