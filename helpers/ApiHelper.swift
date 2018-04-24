@@ -10,18 +10,22 @@ import Foundation
 import Alamofire
 
 final class ApiHelper {
-    fileprivate let getDefaultValue = UserDefaults.standard
+    fileprivate static let getDefaultValue = UserDefaults.standard
     
     static let customerEndPoint = apiURL() + "customers/"
     static let itemEndPoint = apiURL() + "items/"
     static let itemGroupEndPoint = apiURL() + "itemgroups/"
+    static let receiveEndPoint = apiURL() + "receives/"
+    static let issueEndPoint = apiURL() + "issues/"
+    static let userEndPoint = apiURL() + "users/"
+    
     //-> apiURL()
     static func apiURL() -> String {
         //guard let URL = getDefaultValue.value(forKey: "IP") as! String? else { return "" }
         //return URL + "/api/v1/"
         
-        return "http://192.168.0.107/x-admin-api/api/v1/"
-        //return "http://192.168.1.104/x-admin-api/api/v1/"
+        return "http://192.168.0.111/x-admin-api/api/v1/"
+        //return "http://192.168.1.103/x-admin-api/api/v1/"
     }
     
     //-> getRequestHeader
@@ -41,9 +45,10 @@ final class ApiHelper {
         request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
         
         //let getToken = getDefaultValue.value(forKey: "token") as! String?
-        let getToken = "a51a6b33-f844-4bc8-bbbf-d15a3ca97099" // ip 112 my laptop
+        guard let token = getDefaultValue.value(forKey: ConstantHelper.TOKEN) as? String else {return request }
+        //let getToken = "2c694874-f201-4d6d-b1ac-b9b6c93d57c1" // ip 112 my laptop
         var headers = HTTPHeaders()
-        headers["token"] = getToken
+        headers["token"] = token
         headers["Accept"] = "application/json"
         request.allHTTPHeaderFields = headers
         
@@ -83,6 +88,13 @@ final class ApiHelper {
             vc.view.makeToast(ConstantHelper.errorOccurred, duration: 3.0, position: .center)
             return false
         }
+    }
+    
+    //->
+    static func getWarehouseID() -> Int {
+        guard let warehouseID = getDefaultValue.value(forKey: "warehouseID") as! Int? else {return 0}
+        return warehouseID
+        
     }
 
 }

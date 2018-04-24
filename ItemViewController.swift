@@ -27,6 +27,9 @@ class ItemViewController: UIViewController {
         static let createItemSegue = "CreateItemSegue"
     }
     
+    var isFromReceiveSummaryTableViewController = false
+    var selectTableRowListener: OnSelectedTableRowListener?
+    
     //-> viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,10 +64,21 @@ extension ItemViewController {
     
     //-> initializeComponents
     fileprivate func initializeComponents() {
+        setupNavBar()
         setupTableView()
         setupSearchBar()
         setupRefreshControl()
         self.getItems()
+    }
+    
+    //-> setupNavBar
+    fileprivate func setupNavBar() {
+        if isFromReceiveSummaryTableViewController {
+            navigationItem.rightBarButtonItems = []
+        }
+        else {
+            self.navigationItem.rightBarButtonItems = [bbiAdd]
+        }
     }
     
     //-> setupTableView
@@ -161,7 +175,7 @@ extension ItemViewController {
 extension ItemViewController: UITableViewDataSource, UITableViewDelegate {
     //-> heightForRowAt
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
+        return 80
     }
     
     //-> numberOfRowsInSection
@@ -197,7 +211,13 @@ extension ItemViewController: UITableViewDataSource, UITableViewDelegate {
     
     //-> didSelectRowAt
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: StoryBoardInfo.itemSummarySegue, sender: indexPath)
+        if isFromReceiveSummaryTableViewController {
+            selectTableRowListener?.selectTableRow(data: items[indexPath.row], position: indexPath.row)
+            navigationController?.popViewController(animated: true)
+        }
+        else {
+            self.performSegue(withIdentifier: StoryBoardInfo.itemSummarySegue, sender: indexPath)
+        }
     }
 }
 //*** End TableView ***//
@@ -220,7 +240,8 @@ extension ItemViewController: UISearchBarDelegate {
         searchBar.text = nil
         searchBar.showsCancelButton = false
         searchBar.endEditing(true)
-        self.navigationItem.rightBarButtonItems = [bbiAdd]
+        //self.navigationItem.rightBarButtonItems = [bbiAdd]
+        setupNavBar()
         resetData()
     }
 }
@@ -230,7 +251,7 @@ extension ItemViewController: UISearchBarDelegate {
 //*** handel protocol **/
 extension ItemViewController: OnUpdatedListener, OnCreatedListener {
     
-    //->
+    //-> updateTableRow
     func updateTableRow<T>(data: T, position: Int) {
         guard let item = data as? ItemViewDTO else { return }
         self.items[position] = item

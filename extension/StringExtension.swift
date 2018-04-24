@@ -12,4 +12,8 @@ extension String {
     var toDouble: Double {
         return Double(self) ?? 0.0
     }
+    
+    var toInt : Int {
+        return Int(self) ?? 0
+    }
 }

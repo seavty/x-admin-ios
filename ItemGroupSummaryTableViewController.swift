@@ -71,6 +71,8 @@ extension ItemGroupSummaryTableViewController {
         if(rowPosition == -1) {
             self.navigationItem.rightBarButtonItems = [self.bbiSave]
         }
+        
+        
     }
     
     //-> back
@@ -165,9 +167,7 @@ extension ItemGroupSummaryTableViewController {
     
     //-> handCancel
     fileprivate func handCancel() {
-        navigationItem.rightBarButtonItems = []
-        navigationItem.rightBarButtonItems = [bbiEdit]
-        self.displayData()
+        setupData()
     }
     
     //-> validation
@@ -180,5 +180,18 @@ extension ItemGroupSummaryTableViewController {
         return true
     }
 }
+
+
+//*** table view *** //
+extension ItemGroupSummaryTableViewController {
+    
+    //-> willDisplayHeaderView
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.font = UIFont(name: "Arial", size: 16)
+        header.textLabel?.text? = header.textLabel?.text?.capitalized ?? ""
+    }
+}
+//***  end table view *** //
 
 

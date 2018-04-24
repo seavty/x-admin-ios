@@ -11,10 +11,9 @@ import UIKit
 class ItemTableViewCell: UITableViewCell {
 
     @IBOutlet var lblName: UILabel!
-    
     @IBOutlet var lblCode: UILabel!
-    
     @IBOutlet var lblItemGroup: UILabel!
+    
     func setItem(item: ItemViewDTO) {
         lblName.text = item.name
         lblCode.text = item.code

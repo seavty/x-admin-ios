@@ -26,10 +26,8 @@ class Setting: UITableViewController {
             CustomeHelper().alertMsg(vc: self, message: "IP address is required")
         }
         else {
-            self.def.set(txtIP.text,forKey: "IP");
-            //perform segue
-            
-            performSegue(withIdentifier: "Auth", sender: self)
+            self.def.set(txtIP.text,forKey: ConstantHelper.BASE_URL);
+            navigationController?.popViewController(animated: true)
         }
     }
     

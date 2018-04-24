@@ -27,10 +27,14 @@ class ItemGroupViewController: UIViewController {
         static let createItemGroupSegue = "CreateItemGroupSegue"
     }
     
+    var isFromItemViewController = false
+    var selectTableRowListener: OnSelectedTableRowListener?
+    
     //-> viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeComponents()
+        print(isFromItemViewController)
     }
     
     //-> addClick
@@ -60,10 +64,21 @@ class ItemGroupViewController: UIViewController {
 extension ItemGroupViewController {
     //-> initializeComponents
     fileprivate func initializeComponents() {
+        setupNavBar()
         setupTableView()
         setupSearchBar()
         setupRefreshControl()
         self.getItemGroups()
+    }
+    
+    //-> setupNavBar
+    fileprivate func setupNavBar() {
+        if isFromItemViewController {
+            navigationItem.rightBarButtonItems = []
+        }
+        else {
+            navigationItem.rightBarButtonItems = [bbiAdd]
+        }
     }
     
     //-> setupTableView
@@ -158,9 +173,10 @@ extension ItemGroupViewController {
 
 //*** TableView *** //
 extension ItemGroupViewController: UITableViewDataSource, UITableViewDelegate {
+    
     //-> heightForRowAt
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
+        return 70
     }
     
     //-> numberOfRowsInSection
@@ -196,9 +212,14 @@ extension ItemGroupViewController: UITableViewDataSource, UITableViewDelegate {
     
     //-> didSelectRowAt
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: StoryBoardInfo.itemGroupSummarySegue, sender: indexPath)
+        if isFromItemViewController {
+            selectTableRowListener?.selectTableRow(data: itemGroups[indexPath.row], position: indexPath.row)
+            navigationController?.popViewController(animated: true)
+        }
+        else {
+            self.performSegue(withIdentifier: StoryBoardInfo.itemGroupSummarySegue, sender: indexPath)
+        }
     }
-    
 }
 //*** End TableView ***//
 
@@ -221,7 +242,8 @@ extension ItemGroupViewController: UISearchBarDelegate {
         searchBar.text = nil
         searchBar.showsCancelButton = false
         searchBar.endEditing(true)
-        self.navigationItem.rightBarButtonItems = [bbiAdd]
+        //self.navigationItem.rightBarButtonItems = [bbiAdd]
+        setupNavBar()
         resetData()
     }
 }

@@ -28,6 +28,10 @@ class ItemSummaryTableViewController: UITableViewController {
     
     fileprivate var isEdited = false
     
+    fileprivate struct StoryBoardInfo {
+        static let itemGroupSegue = "ItemGroupViewControllerSegue"
+    }
+    
     //-> viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,10 +54,23 @@ class ItemSummaryTableViewController: UITableViewController {
     }
     @IBAction func itemGroupClick(_ sender: UIButton) {
         print("item group click")
+        //performSegue(withIdentifier: StoryBoardInfo.itemGroupSegue, sender: self)
+    }
+    
+    //-> prepare
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case StoryBoardInfo.itemGroupSegue?:
+            guard let vc = segue.destination as? ItemGroupViewController else {return}
+            vc.isFromItemViewController = true
+            vc.selectTableRowListener = self
+        default:
+            self.view.makeToast(ConstantHelper.wrongSegueName)
+        }
     }
 }
 
-//*** CustomerSummaryTableViewController
+//*** table view *** //
 extension ItemSummaryTableViewController {
     
     //-> willDisplayHeaderView
@@ -63,6 +80,7 @@ extension ItemSummaryTableViewController {
         header.textLabel?.text? = header.textLabel?.text?.capitalized ?? ""
     }
 }
+//***  end table view *** //
 
 
 //*** function  *** /
@@ -118,6 +136,7 @@ extension ItemSummaryTableViewController {
                     self.item.code = json.code
                     self.item.description = json.description
                     self.item.price = json.price
+                    self.item.itemGroup = json.itemGroup
                     
                     self.displayData()
                 }
@@ -145,6 +164,8 @@ extension ItemSummaryTableViewController {
         txtCode.isEnabled = !isEnable
         txtDescription.isEnabled = !isEnable
         txtPrice.isEnabled = !isEnable
+        
+        btnItemGroup.isEnabled = !isEnable
     }
     
     //-> handleEdit
@@ -175,7 +196,7 @@ extension ItemSummaryTableViewController {
                 
                 var request = ApiHelper.getRequestHeader(url: url, method: requestMethod)
                 request.httpBody = try JSONEncoder().encode(item)
-                print(String(data: try JSONEncoder().encode(item), encoding: .utf8)!)
+                //print(String(data: try JSONEncoder().encode(item), encoding: .utf8)!)
                 IndicatorHelper.showIndicator(view: self.view)
                 Alamofire.request(request).responseJSON {
                     (response) in
@@ -200,9 +221,12 @@ extension ItemSummaryTableViewController {
     
     //-> handCancel
     fileprivate func handCancel() {
+        /*
         navigationItem.rightBarButtonItems = []
         navigationItem.rightBarButtonItems = [bbiEdit]
         self.displayData()
+        */
+        setupData()
     }
     
     //-> validation
@@ -224,3 +248,17 @@ extension ItemSummaryTableViewController {
         return true
     }
 }
+//*** end function  ***//
+
+//*** handle protocol ***/
+extension ItemSummaryTableViewController: OnSelectedTableRowListener {
+    
+    //-> selectTableRow
+    func selectTableRow<T>(data: T, position: Int) {
+        guard let itemGroup = data as? ItemGroupViewDTO else {return}
+        self.item.itemGroup = itemGroup
+        btnItemGroup.setTitle(itemGroup.name, for: .normal)
+    }
+}
+
+//*** end handle protocol ***//

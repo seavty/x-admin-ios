@@ -50,7 +50,7 @@ class CustomerSummaryTableViewController: UITableViewController {
     }
 }
 
-//*** CustomerSummaryTableViewController
+//*** table view *** //
 extension CustomerSummaryTableViewController {
     
     //-> willDisplayHeaderView
@@ -60,6 +60,8 @@ extension CustomerSummaryTableViewController {
         header.textLabel?.text? = header.textLabel?.text?.capitalized ?? ""
     }
 }
+
+//*** end table view ***//
 
 //*** function  *** /
 extension CustomerSummaryTableViewController {
@@ -190,9 +192,7 @@ extension CustomerSummaryTableViewController {
     
     //-> handCancel
     fileprivate func handCancel() {
-        navigationItem.rightBarButtonItems = []
-        navigationItem.rightBarButtonItems = [bbiEdit]
-        self.displayData()
+        setupData()
     }
     
     //-> validation

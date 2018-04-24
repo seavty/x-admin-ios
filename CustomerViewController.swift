@@ -161,7 +161,7 @@ extension CustomerViewController {
 extension CustomerViewController: UITableViewDataSource, UITableViewDelegate {
     //-> heightForRowAt
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
+        return 80
     }
     
     //-> numberOfRowsInSection
@@ -228,12 +228,12 @@ extension CustomerViewController: UISearchBarDelegate {
 }
 //*** End SearchBar *** //
 
-//*** handel protocol **/
+//*** handle protocol **/
 extension CustomerViewController: OnUpdatedListener, OnCreatedListener {
     
     //->
     func updateTableRow<T>(data: T, position: Int) {
-       guard let customer = data as? CustomerViewDTO else { return }
+        guard let customer = data as? CustomerViewDTO else { return }
         self.customers[position] = customer
         tblCustomer.reloadData()
         let indexPath = IndexPath(row: position, section: 0)

@@ -63,10 +63,18 @@
 		519958425F64E9A4B435F8C4 /* Pods_X_Admin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B749CE0EF7A3CAEC581BAE62 /* Pods_X_Admin.framework */; };
 		B906FB1720872C3B009BE880 /* ErrorDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B906FB1620872C3B009BE880 /* ErrorDTO.swift */; };
 		B906FB1A208741F5009BE880 /* OnUpdatedListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B906FB19208741F5009BE880 /* OnUpdatedListener.swift */; };
+		B907EDD3208EE6F000DD3564 /* LoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B907EDD2208EE6F000DD3564 /* LoginTableViewController.swift */; };
+		B907EDD5208EE73800DD3564 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B907EDD4208EE73800DD3564 /* SettingTableViewController.swift */; };
+		B907EDD8208F0FBE00DD3564 /* UserLoginDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B907EDD7208F0FBE00DD3564 /* UserLoginDTO.swift */; };
+		B907EDDA208F17CE00DD3564 /* UserViewDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B907EDD9208F17CE00DD3564 /* UserViewDTO.swift */; };
+		B907EDDC208F1B7900DD3564 /* UserProfileViewDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B907EDDB208F1B7900DD3564 /* UserProfileViewDTO.swift */; };
+		B907EDDF208F1C2500DD3564 /* SettingViewDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B907EDDE208F1C2500DD3564 /* SettingViewDTO.swift */; };
+		B907EDE2208F1CD700DD3564 /* WarehouseViewDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B907EDE1208F1CD700DD3564 /* WarehouseViewDTO.swift */; };
 		B90E08AC2086FC4300547F5C /* CustomerNewDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90E08AB2086FC4300547F5C /* CustomerNewDTO.swift */; };
 		B90E08B02086FF4100547F5C /* CustomerEditDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90E08AF2086FF4100547F5C /* CustomerEditDTO.swift */; };
 		B91B7CCF207CBE25007FF69B /* CustomerBaseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91B7CCE207CBE25007FF69B /* CustomerBaseDTO.swift */; };
 		B91B7CD1207CBED1007FF69B /* CustomerViewDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91B7CD0207CBED1007FF69B /* CustomerViewDTO.swift */; };
+		B921F509208C408B00EEC19E /* OnMassSavedListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B921F508208C408B00EEC19E /* OnMassSavedListener.swift */; };
 		B925B2C52080DE370049F70D /* RequestMethodEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B925B2C42080DE370049F70D /* RequestMethodEnum.swift */; };
 		B93004C22081FC6B00731852 /* GetListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93004C12081FC6B00731852 /* GetListDTO.swift */; };
 		B93004C420820DF000731852 /* ConstantHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93004C320820DF000731852 /* ConstantHelper.swift */; };
@@ -76,7 +84,10 @@
 		B936659E2073831900942592 /* SaleOrderViewDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B936659D2073831900942592 /* SaleOrderViewDTO.swift */; };
 		B93665A120739DE700942592 /* ApiHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93665A020739DE700942592 /* ApiHelper.swift */; };
 		B942B3EB20848B7500AF99CB /* CustomerSummaryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B942B3EA20848B7500AF99CB /* CustomerSummaryTableViewController.swift */; };
+		B942F3BF208AF5DF00882EFA /* OnSelectedTableRowListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B942F3BE208AF5DF00882EFA /* OnSelectedTableRowListener.swift */; };
 		B9471C30207786C70065010A /* MetaDataDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9471C2F207786C70065010A /* MetaDataDTO.swift */; };
+		B9520737208D986E00841A21 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9520736208D986E00841A21 /* MoreViewController.swift */; };
+		B952073A208DA87200841A21 /* IssueItemNewDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9520739208DA87200841A21 /* IssueItemNewDTO.swift */; };
 		B97368E02082FD16002AC6CD /* CustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97368DF2082FD16002AC6CD /* CustomerViewController.swift */; };
 		B97368E220830198002AC6CD /* CustomerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97368E120830198002AC6CD /* CustomerTableViewCell.swift */; };
 		B98BD43520898D9E008B6619 /* ItemSummaryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98BD43420898D9E008B6619 /* ItemSummaryTableViewController.swift */; };
@@ -96,6 +107,14 @@
 		B9E3080820888B1400D6EDD5 /* ItemBaseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E3080720888B1400D6EDD5 /* ItemBaseDTO.swift */; };
 		B9E3080A20888BD200D6EDD5 /* ItemViewDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E3080920888BD200D6EDD5 /* ItemViewDTO.swift */; };
 		B9E3080C20888CAB00D6EDD5 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E3080B20888CAB00D6EDD5 /* ItemTableViewCell.swift */; };
+		B9EED929208CB9EE0059DF8D /* SubmitItemDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EED928208CB9EE0059DF8D /* SubmitItemDTO.swift */; };
+		B9F1192B208B432F00F97161 /* ReceiveTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F1192A208B432F00F97161 /* ReceiveTableViewController.swift */; };
+		B9F11935208B7AE300F97161 /* ItemTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F11934208B7AE300F97161 /* ItemTableViewDataSource.swift */; };
+		B9F11937208B7D2300F97161 /* ItemTableViewCellForDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F11936208B7D2300F97161 /* ItemTableViewCellForDataSource.swift */; };
+		B9F1193A208B840A00F97161 /* ReceiveItemNewDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F11939208B840A00F97161 /* ReceiveItemNewDTO.swift */; };
+		B9F1193C208B896000F97161 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F1193B208B896000F97161 /* IntExtension.swift */; };
+		B9F1193E208B89D100F97161 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F1193D208B89D100F97161 /* DoubleExtension.swift */; };
+		B9F11940208B971D00F97161 /* ReceiveSummaryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F1193F208B971D00F97161 /* ReceiveSummaryTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -160,10 +179,18 @@
 		B749CE0EF7A3CAEC581BAE62 /* Pods_X_Admin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_X_Admin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B906FB1620872C3B009BE880 /* ErrorDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDTO.swift; sourceTree = "<group>"; };
 		B906FB19208741F5009BE880 /* OnUpdatedListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnUpdatedListener.swift; sourceTree = "<group>"; };
+		B907EDD2208EE6F000DD3564 /* LoginTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTableViewController.swift; sourceTree = "<group>"; };
+		B907EDD4208EE73800DD3564 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
+		B907EDD7208F0FBE00DD3564 /* UserLoginDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginDTO.swift; sourceTree = "<group>"; };
+		B907EDD9208F17CE00DD3564 /* UserViewDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewDTO.swift; sourceTree = "<group>"; };
+		B907EDDB208F1B7900DD3564 /* UserProfileViewDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewDTO.swift; sourceTree = "<group>"; };
+		B907EDDE208F1C2500DD3564 /* SettingViewDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewDTO.swift; sourceTree = "<group>"; };
+		B907EDE1208F1CD700DD3564 /* WarehouseViewDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseViewDTO.swift; sourceTree = "<group>"; };
 		B90E08AB2086FC4300547F5C /* CustomerNewDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerNewDTO.swift; sourceTree = "<group>"; };
 		B90E08AF2086FF4100547F5C /* CustomerEditDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerEditDTO.swift; sourceTree = "<group>"; };
 		B91B7CCE207CBE25007FF69B /* CustomerBaseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerBaseDTO.swift; sourceTree = "<group>"; };
 		B91B7CD0207CBED1007FF69B /* CustomerViewDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewDTO.swift; sourceTree = "<group>"; };
+		B921F508208C408B00EEC19E /* OnMassSavedListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnMassSavedListener.swift; sourceTree = "<group>"; };
 		B925B2C42080DE370049F70D /* RequestMethodEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMethodEnum.swift; sourceTree = "<group>"; };
 		B93004C12081FC6B00731852 /* GetListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetListDTO.swift; sourceTree = "<group>"; };
 		B93004C320820DF000731852 /* ConstantHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantHelper.swift; sourceTree = "<group>"; };
@@ -173,7 +200,10 @@
 		B936659D2073831900942592 /* SaleOrderViewDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleOrderViewDTO.swift; sourceTree = "<group>"; };
 		B93665A020739DE700942592 /* ApiHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiHelper.swift; sourceTree = "<group>"; };
 		B942B3EA20848B7500AF99CB /* CustomerSummaryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerSummaryTableViewController.swift; sourceTree = "<group>"; };
+		B942F3BE208AF5DF00882EFA /* OnSelectedTableRowListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnSelectedTableRowListener.swift; sourceTree = "<group>"; };
 		B9471C2F207786C70065010A /* MetaDataDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDataDTO.swift; sourceTree = "<group>"; };
+		B9520736208D986E00841A21 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
+		B9520739208DA87200841A21 /* IssueItemNewDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueItemNewDTO.swift; sourceTree = "<group>"; };
 		B97368DF2082FD16002AC6CD /* CustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewController.swift; sourceTree = "<group>"; };
 		B97368E120830198002AC6CD /* CustomerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerTableViewCell.swift; sourceTree = "<group>"; };
 		B98BD43420898D9E008B6619 /* ItemSummaryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSummaryTableViewController.swift; sourceTree = "<group>"; };
@@ -193,6 +223,14 @@
 		B9E3080720888B1400D6EDD5 /* ItemBaseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemBaseDTO.swift; sourceTree = "<group>"; };
 		B9E3080920888BD200D6EDD5 /* ItemViewDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewDTO.swift; sourceTree = "<group>"; };
 		B9E3080B20888CAB00D6EDD5 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		B9EED928208CB9EE0059DF8D /* SubmitItemDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitItemDTO.swift; sourceTree = "<group>"; };
+		B9F1192A208B432F00F97161 /* ReceiveTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveTableViewController.swift; sourceTree = "<group>"; };
+		B9F11934208B7AE300F97161 /* ItemTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewDataSource.swift; sourceTree = "<group>"; };
+		B9F11936208B7D2300F97161 /* ItemTableViewCellForDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCellForDataSource.swift; sourceTree = "<group>"; };
+		B9F11939208B840A00F97161 /* ReceiveItemNewDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveItemNewDTO.swift; sourceTree = "<group>"; };
+		B9F1193B208B896000F97161 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
+		B9F1193D208B89D100F97161 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
+		B9F1193F208B971D00F97161 /* ReceiveSummaryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveSummaryTableViewController.swift; sourceTree = "<group>"; };
 		BF048EF2ED9C46935A6DB050 /* Pods-X-Admin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-X-Admin.release.xcconfig"; path = "Pods/Target Support Files/Pods-X-Admin/Pods-X-Admin.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -221,13 +259,15 @@
 		181B44ED2021804E004631DB /* modules */ = {
 			isa = PBXGroup;
 			children = (
+				B907EDD1208EE6D700DD3564 /* auth */,
+				B9520735208D984E00841A21 /* more */,
 				18FA661B1FE2296E002742CE /* Item */,
 				18D83B5B1FCC118E00B79AE8 /* Customer */,
+				18EC041F1FE374FE00A3FE49 /* ItemGroup */,
 				B92E03FD207331C2002DAD4C /* SaleOrder */,
 				181F18AA2022F924002D4DCB /* Report */,
 				18E6C7F42021C2E000C30FA0 /* SlideShow */,
 				1826D0CC2008D14D00AC8B42 /* Issue */,
-				18EC041F1FE374FE00A3FE49 /* ItemGroup */,
 				184FC9E0200711FC00254F82 /* Receive */,
 				184FC9E520071EB100254F82 /* SearchItem */,
 			);
@@ -293,6 +333,8 @@
 				184FC9E12007122B00254F82 /* Receive.swift */,
 				184FC9EA20074DC200254F82 /* ReceiveSummary.swift */,
 				1826D0C620089CC600AC8B42 /* ReceiveSubmit.swift */,
+				B9F1192A208B432F00F97161 /* ReceiveTableViewController.swift */,
+				B9F1193F208B971D00F97161 /* ReceiveSummaryTableViewController.swift */,
 			);
 			path = Receive;
 			sourceTree = "<group>";
@@ -316,6 +358,7 @@
 		1883956D1FCBB4B7004A8592 = {
 			isa = PBXGroup;
 			children = (
+				B9F11932208B79DB00F97161 /* datasources */,
 				B98BD4402089A745008B6619 /* extension */,
 				188395781FCBB4B7004A8592 /* X-Admin */,
 				B906FB18208741D2009BE880 /* protocols */,
@@ -489,8 +532,45 @@
 			children = (
 				B906FB19208741F5009BE880 /* OnUpdatedListener.swift */,
 				B9E30802208845DB00D6EDD5 /* OnCreatedListener.swift */,
+				B942F3BE208AF5DF00882EFA /* OnSelectedTableRowListener.swift */,
+				B921F508208C408B00EEC19E /* OnMassSavedListener.swift */,
 			);
 			path = protocols;
+			sourceTree = "<group>";
+		};
+		B907EDD1208EE6D700DD3564 /* auth */ = {
+			isa = PBXGroup;
+			children = (
+				B907EDD2208EE6F000DD3564 /* LoginTableViewController.swift */,
+				B907EDD4208EE73800DD3564 /* SettingTableViewController.swift */,
+			);
+			path = auth;
+			sourceTree = "<group>";
+		};
+		B907EDD6208F0FAE00DD3564 /* user */ = {
+			isa = PBXGroup;
+			children = (
+				B907EDD7208F0FBE00DD3564 /* UserLoginDTO.swift */,
+				B907EDD9208F17CE00DD3564 /* UserViewDTO.swift */,
+				B907EDDB208F1B7900DD3564 /* UserProfileViewDTO.swift */,
+			);
+			path = user;
+			sourceTree = "<group>";
+		};
+		B907EDDD208F1C1400DD3564 /* setting */ = {
+			isa = PBXGroup;
+			children = (
+				B907EDDE208F1C2500DD3564 /* SettingViewDTO.swift */,
+			);
+			path = setting;
+			sourceTree = "<group>";
+		};
+		B907EDE0208F1CC300DD3564 /* warehouse */ = {
+			isa = PBXGroup;
+			children = (
+				B907EDE1208F1CD700DD3564 /* WarehouseViewDTO.swift */,
+			);
+			path = warehouse;
 			sourceTree = "<group>";
 		};
 		B91B7CCD207CBE03007FF69B /* customer */ = {
@@ -532,6 +612,11 @@
 		B9366599207381E800942592 /* dto */ = {
 			isa = PBXGroup;
 			children = (
+				B907EDE0208F1CC300DD3564 /* warehouse */,
+				B907EDDD208F1C1400DD3564 /* setting */,
+				B907EDD6208F0FAE00DD3564 /* user */,
+				B9520738208DA86100841A21 /* issueitem */,
+				B9F11938208B83B300F97161 /* receiveitem */,
 				B98BD438208999F4008B6619 /* itemgroup */,
 				B9E3080620888B0000D6EDD5 /* item */,
 				B91B7CCD207CBE03007FF69B /* customer */,
@@ -539,6 +624,7 @@
 				B9471C2F207786C70065010A /* MetaDataDTO.swift */,
 				B93004C12081FC6B00731852 /* GetListDTO.swift */,
 				B906FB1620872C3B009BE880 /* ErrorDTO.swift */,
+				B9EED928208CB9EE0059DF8D /* SubmitItemDTO.swift */,
 			);
 			path = dto;
 			sourceTree = "<group>";
@@ -564,6 +650,22 @@
 			path = helpers;
 			sourceTree = "<group>";
 		};
+		B9520735208D984E00841A21 /* more */ = {
+			isa = PBXGroup;
+			children = (
+				B9520736208D986E00841A21 /* MoreViewController.swift */,
+			);
+			path = more;
+			sourceTree = "<group>";
+		};
+		B9520738208DA86100841A21 /* issueitem */ = {
+			isa = PBXGroup;
+			children = (
+				B9520739208DA87200841A21 /* IssueItemNewDTO.swift */,
+			);
+			path = issueitem;
+			sourceTree = "<group>";
+		};
 		B98BD438208999F4008B6619 /* itemgroup */ = {
 			isa = PBXGroup;
 			children = (
@@ -578,6 +680,8 @@
 			isa = PBXGroup;
 			children = (
 				B98BD4412089A760008B6619 /* StringExtension.swift */,
+				B9F1193B208B896000F97161 /* IntExtension.swift */,
+				B9F1193D208B89D100F97161 /* DoubleExtension.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -590,6 +694,31 @@
 				B98BD43D2089A1EC008B6619 /* ItemEditDTO.swift */,
 			);
 			path = item;
+			sourceTree = "<group>";
+		};
+		B9F11932208B79DB00F97161 /* datasources */ = {
+			isa = PBXGroup;
+			children = (
+				B9F11933208B79E800F97161 /* tableviews */,
+			);
+			path = datasources;
+			sourceTree = "<group>";
+		};
+		B9F11933208B79E800F97161 /* tableviews */ = {
+			isa = PBXGroup;
+			children = (
+				B9F11934208B7AE300F97161 /* ItemTableViewDataSource.swift */,
+				B9F11936208B7D2300F97161 /* ItemTableViewCellForDataSource.swift */,
+			);
+			path = tableviews;
+			sourceTree = "<group>";
+		};
+		B9F11938208B83B300F97161 /* receiveitem */ = {
+			isa = PBXGroup;
+			children = (
+				B9F11939208B840A00F97161 /* ReceiveItemNewDTO.swift */,
+			);
+			path = receiveitem;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -723,6 +852,8 @@
 				184FC9E22007122B00254F82 /* Receive.swift in Sources */,
 				1826D0C92008A2E300AC8B42 /* ReceiveIssueModel.swift in Sources */,
 				B9E3080C20888CAB00D6EDD5 /* ItemTableViewCell.swift in Sources */,
+				B9F1193C208B896000F97161 /* IntExtension.swift in Sources */,
+				B907EDDC208F1B7900DD3564 /* UserProfileViewDTO.swift in Sources */,
 				B906FB1720872C3B009BE880 /* ErrorDTO.swift in Sources */,
 				B93665A120739DE700942592 /* ApiHelper.swift in Sources */,
 				181F8C441FD6AB5900D08AAF /* Server.swift in Sources */,
@@ -734,10 +865,13 @@
 				B9E3080A20888BD200D6EDD5 /* ItemViewDTO.swift in Sources */,
 				1883957C1FCBB4B7004A8592 /* ViewController.swift in Sources */,
 				18E6C7F62021C2FD00C30FA0 /* SlideShowCollectionViewController.swift in Sources */,
+				B9F1192B208B432F00F97161 /* ReceiveTableViewController.swift in Sources */,
 				18FA66271FE23079002742CE /* ItemModel.swift in Sources */,
 				184EE4BF1FFB2973005BB941 /* ItemGroupCheckbox.swift in Sources */,
 				B93004C22081FC6B00731852 /* GetListDTO.swift in Sources */,
+				B907EDE2208F1CD700DD3564 /* WarehouseViewDTO.swift in Sources */,
 				B906FB1A208741F5009BE880 /* OnUpdatedListener.swift in Sources */,
+				B9F1193A208B840A00F97161 /* ReceiveItemNewDTO.swift in Sources */,
 				B98BD43520898D9E008B6619 /* ItemSummaryTableViewController.swift in Sources */,
 				181D4AB1200D9BA300BFCA06 /* UserModel.swift in Sources */,
 				18ADAC4B2015E40E00C04532 /* DocumentModel.swift in Sources */,
@@ -745,29 +879,37 @@
 				181D4AB5200DAF3000BFCA06 /* UserProfileModel.swift in Sources */,
 				18D83B5F1FCC169700B79AE8 /* CustomerCell.swift in Sources */,
 				18D83B5D1FCC12F700B79AE8 /* Customer.swift in Sources */,
+				B907EDDA208F17CE00DD3564 /* UserViewDTO.swift in Sources */,
 				184FC9E42007123D00254F82 /* ReceiveCell.swift in Sources */,
 				B90E08AC2086FC4300547F5C /* CustomerNewDTO.swift in Sources */,
 				B98BD44A2089D271008B6619 /* ItemGroupSummaryTableViewController.swift in Sources */,
 				1883957A1FCBB4B7004A8592 /* AppDelegate.swift in Sources */,
 				B9BDB201207DC0E300DE43DB /* NumericHelper.swift in Sources */,
 				184FC9E720071EC900254F82 /* SearchItem.swift in Sources */,
+				B952073A208DA87200841A21 /* IssueItemNewDTO.swift in Sources */,
 				B98BD4422089A760008B6619 /* StringExtension.swift in Sources */,
 				184FC9EB20074DC200254F82 /* ReceiveSummary.swift in Sources */,
+				B9F1193E208B89D100F97161 /* DoubleExtension.swift in Sources */,
 				186E4591201206C10014E30A /* Setting.swift in Sources */,
 				18D83B5A1FCBF74A00B79AE8 /* Home.swift in Sources */,
 				18EC042B1FE3807200A3FE49 /* ItemGroupSummary.swift in Sources */,
+				B9F11935208B7AE300F97161 /* ItemTableViewDataSource.swift in Sources */,
 				1855FAA6201EDA9C00CD8909 /* ItemGroupWithUploadImagesModel.swift in Sources */,
 				184EE4C11FFB2E6F005BB941 /* ItemGroupCheckboxCell.swift in Sources */,
 				18FA66231FE22F79002742CE /* Item.swift in Sources */,
 				1883958F1FCBB88B004A8592 /* SWRevealViewController.m in Sources */,
 				B98BD43E2089A1EC008B6619 /* ItemEditDTO.swift in Sources */,
+				B9EED929208CB9EE0059DF8D /* SubmitItemDTO.swift in Sources */,
 				B9B568E6208364E700F89863 /* IndicatorHelper.swift in Sources */,
+				B907EDD5208EE73800DD3564 /* SettingTableViewController.swift in Sources */,
 				B9E3080820888B1400D6EDD5 /* ItemBaseDTO.swift in Sources */,
 				181F18AC2022F93F002D4DCB /* ReportViewController.swift in Sources */,
+				B942F3BF208AF5DF00882EFA /* OnSelectedTableRowListener.swift in Sources */,
 				1826D0D02008D17B00AC8B42 /* IssueCell.swift in Sources */,
 				B97368E220830198002AC6CD /* CustomerTableViewCell.swift in Sources */,
 				18870BF71FFF6CD8003242DC /* MetaDataModel.swift in Sources */,
 				B98BD4462089D1CA008B6619 /* ItemGroupTableViewCell.swift in Sources */,
+				B9F11937208B7D2300F97161 /* ItemTableViewCellForDataSource.swift in Sources */,
 				18EC04231FE3754100A3FE49 /* ItemGroupCell.swift in Sources */,
 				B93004C420820DF000731852 /* ConstantHelper.swift in Sources */,
 				B90E08B02086FF4100547F5C /* CustomerEditDTO.swift in Sources */,
@@ -779,21 +921,25 @@
 				182102BB200CBC1F00267F9E /* Auth.swift in Sources */,
 				B9471C30207786C70065010A /* MetaDataDTO.swift in Sources */,
 				B942B3EB20848B7500AF99CB /* CustomerSummaryTableViewController.swift in Sources */,
+				B9520737208D986E00841A21 /* MoreViewController.swift in Sources */,
 				18E6C7F92021C96900C30FA0 /* SlideShowWithDocumentModel.swift in Sources */,
 				18CCC0681FFE23A50043D74C /* CustomHelper.swift in Sources */,
 				B936659520736EAF00942592 /* SaleOrderViewController.swift in Sources */,
 				B9E30803208845DB00D6EDD5 /* OnCreatedListener.swift in Sources */,
+				B907EDD8208F0FBE00DD3564 /* UserLoginDTO.swift in Sources */,
 				18FA66251FE22FBF002742CE /* ItemCell.swift in Sources */,
 				18ADAC452015954E00C04532 /* ItemGalleryCollectionViewCell.swift in Sources */,
 				18EC04291FE37C2600A3FE49 /* ItemGroup.swift in Sources */,
 				B925B2C52080DE370049F70D /* RequestMethodEnum.swift in Sources */,
 				B936659E2073831900942592 /* SaleOrderViewDTO.swift in Sources */,
 				184BE1E01FD51882001AA013 /* Loading.swift in Sources */,
+				B9F11940208B971D00F97161 /* ReceiveSummaryTableViewController.swift in Sources */,
 				B936659720736F0B00942592 /* SaleOrderTableViewCell.swift in Sources */,
 				B936659C2073823A00942592 /* SaleOrderBase.swift in Sources */,
 				B98BD4482089D207008B6619 /* ItemGroupViewController.swift in Sources */,
 				B98BD43C20899A58008B6619 /* ItemGroupViewDTO.swift in Sources */,
 				18FA66291FE27AE6002742CE /* ItemSummary.swift in Sources */,
+				B907EDDF208F1C2500DD3564 /* SettingViewDTO.swift in Sources */,
 				181D4AB7200DF82400BFCA06 /* RequestMethod.swift in Sources */,
 				181F8C401FD6A28500D08AAF /* CustomerModel.swift in Sources */,
 				18ADAC3F20158DD200C04532 /* ItemGallery.swift in Sources */,
@@ -802,7 +948,9 @@
 				1826D0C720089CC600AC8B42 /* ReceiveSubmit.swift in Sources */,
 				184A88D8200F49430094F994 /* ItemBase.swift in Sources */,
 				18F770551FCD0966005D5D21 /* CustomerSummary.swift in Sources */,
+				B921F509208C408B00EEC19E /* OnMassSavedListener.swift in Sources */,
 				18EC04251FE375CF00A3FE49 /* ItemGroupModel.swift in Sources */,
+				B907EDD3208EE6F000DD3564 /* LoginTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
