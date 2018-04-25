@@ -19,6 +19,18 @@ final class ApiHelper {
     static let issueEndPoint = apiURL() + "issues/"
     static let userEndPoint = apiURL() + "users/"
     
+    
+    //-> apiBaseURL
+    static func apiBaseURL() -> String {
+        /*
+        let url = getDefaultValue.value(forKey: ConstantHelper.BASE_URL) as! String?
+        return url!
+        */
+        //guard let url = getDefaultValue.value(forKey: ConstantHelper.BASE_URL) as? String else {return ""}
+        //return url
+        return "http://192.168.0.111/x-admin-api/" //for upload no /api/v1
+    }
+    
     //-> apiURL()
     static func apiURL() -> String {
         //guard let URL = getDefaultValue.value(forKey: "IP") as! String? else { return "" }
@@ -27,6 +39,9 @@ final class ApiHelper {
         return "http://192.168.0.111/x-admin-api/api/v1/"
         //return "http://192.168.1.103/x-admin-api/api/v1/"
     }
+    
+    
+    
     
     //-> getRequestHeader
     static func getRequestHeader(url:String, method:RequestMethodEnum) -> URLRequest{

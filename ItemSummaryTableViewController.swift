@@ -14,6 +14,7 @@ class ItemSummaryTableViewController: UITableViewController {
     @IBOutlet fileprivate var bbiCancel: UIBarButtonItem!
     @IBOutlet fileprivate var bbiSave: UIBarButtonItem!
     @IBOutlet fileprivate var bbiEdit: UIBarButtonItem!
+    @IBOutlet var btnPicture: UIButton!
     
     @IBOutlet fileprivate var txtName: UITextField!
     @IBOutlet fileprivate var txtCode: UITextField!
@@ -30,6 +31,7 @@ class ItemSummaryTableViewController: UITableViewController {
     
     fileprivate struct StoryBoardInfo {
         static let itemGroupSegue = "ItemGroupViewControllerSegue"
+        static let itemGallerySegue = "ItemGallery"
     }
     
     //-> viewDidLoad
@@ -64,6 +66,10 @@ class ItemSummaryTableViewController: UITableViewController {
             guard let vc = segue.destination as? ItemGroupViewController else {return}
             vc.isFromItemViewController = true
             vc.selectTableRowListener = self
+        case StoryBoardInfo.itemGallerySegue?:
+            guard let vc = segue.destination as? ItemGalleryCollectionViewController else {return}
+            vc.item = item
+            
         default:
             self.view.makeToast(ConstantHelper.wrongSegueName)
         }
@@ -165,6 +171,7 @@ extension ItemSummaryTableViewController {
         txtDescription.isEnabled = !isEnable
         txtPrice.isEnabled = !isEnable
         btnItemGroup.isEnabled = !isEnable
+        btnPicture.isEnabled = !(!isEnable)
     }
     
     //-> handleEdit

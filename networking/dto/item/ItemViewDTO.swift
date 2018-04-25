@@ -12,10 +12,12 @@ class ItemViewDTO: ItemBaseDTO {
     
     var price: Double?
     var itemGroup: ItemGroupViewDTO?
+    var documents: [DocumentViewDTO]?
     
     fileprivate enum CodingKeys: String, CodingKey {
         case price
         case itemGroup
+        case documents
     }
     
     required init(from decoder: Decoder) throws {
@@ -23,6 +25,7 @@ class ItemViewDTO: ItemBaseDTO {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.price = try container.decode(Double?.self, forKey: .price)
         self.itemGroup = try container.decode(ItemGroupViewDTO?.self, forKey: .itemGroup)
+        self.documents = try container.decode([DocumentViewDTO]?.self, forKey: .documents)
     }
     
     override func encode(to encoder: Encoder) throws {
