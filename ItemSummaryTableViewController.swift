@@ -85,6 +85,7 @@ extension ItemSummaryTableViewController {
         header.textLabel?.font = UIFont(name: "Arial", size: 16)
         header.textLabel?.text? = header.textLabel?.text?.capitalized ?? ""
     }
+    
 }
 //***  end table view *** //
 
@@ -98,8 +99,10 @@ extension ItemSummaryTableViewController {
         setupNavBar()
         if(rowPosition > -1) {
             setupData()
+            btnPicture.isHidden = false
         }
         else {
+            btnPicture.isHidden = true
             txtName.becomeFirstResponder()
         }
     }
@@ -171,7 +174,8 @@ extension ItemSummaryTableViewController {
         txtDescription.isEnabled = !isEnable
         txtPrice.isEnabled = !isEnable
         btnItemGroup.isEnabled = !isEnable
-        btnPicture.isEnabled = !(!isEnable)
+        
+        
     }
     
     //-> handleEdit

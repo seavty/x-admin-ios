@@ -268,8 +268,8 @@ extension ItemViewController: OnUpdatedListener, OnCreatedListener {
     func updateTableRow<T>(data: T, position: Int) {
         guard let item = data as? ItemViewDTO else { return }
         self.items[position] = item
-        tblItem.reloadData()
         let indexPath = IndexPath(row: position, section: 0)
+        tblItem.reloadRows(at: [indexPath], with: .middle)
         tblItem.selectRow(at: indexPath, animated: true, scrollPosition: .middle)
     }
     

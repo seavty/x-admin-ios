@@ -17,6 +17,7 @@ class ItemGroupSummaryTableViewController: UITableViewController {
    
     @IBOutlet var txtName: UITextField!
     
+    @IBOutlet var btnPicture: UIButton!
     
     var itemGroup = ItemGroupViewDTO()
     var rowPosition = -1
@@ -24,6 +25,10 @@ class ItemGroupSummaryTableViewController: UITableViewController {
     var createdListener: OnCreatedListener?
     
     fileprivate var isEdited = false
+    
+    fileprivate struct StoryboardInfo {
+        static let itemGroupGallerySegue = "ItemGroupGallery"
+    }
     
     //-> viewDidLoad
     override func viewDidLoad() {
@@ -45,6 +50,21 @@ class ItemGroupSummaryTableViewController: UITableViewController {
     @IBAction func EditClick(_ sender: UIBarButtonItem) {
         handleEdit()
     }
+    
+    
+    //-> prepare
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case StoryboardInfo.itemGroupGallerySegue?:
+            guard let vc = segue.destination as? ItemGalleryCollectionViewController else {return}
+            vc.isFromItemGroupController = true
+            vc.itemGroup = itemGroup
+        default:
+            self.view.makeToast(ConstantHelper.wrongSegueName)
+        }
+    }
+    
+    
 }
 
 //*** function  *** /
@@ -55,8 +75,10 @@ extension ItemGroupSummaryTableViewController {
         setupNavBar()
         if(rowPosition > -1) {
             setupData()
+            btnPicture.isHidden = false
         }
         else {
+            btnPicture.isHidden = true
             txtName.becomeFirstResponder()
         }
     }

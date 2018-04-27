@@ -56,7 +56,6 @@ class ReceiveTableViewController: UITableViewController {
             self.navigationController?.view.makeToast("Cannot submit your request without item(s)!", duration: 3.0, position: .center)
         }
         else {
-            
             let alert = UIAlertController(title: "Sumbit", message: "Do you want to sumbit data to server?", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
                 self.handleSumbit()
@@ -205,14 +204,23 @@ extension ReceiveTableViewController: OnMassSavedListener, OnUpdatedListener {
     func updateTableRow<T>(data: T, position: Int) {
         guard let receiveItem = data as? ReceiveItemNewDTO else {return}
         tableItemDataSource?.receiveItems[position] = receiveItem
-        tblItem.reloadData()
+        let indexPath = IndexPath(row: position, section: 0)
+        tblItem.reloadRows(at: [indexPath], with: .middle)
+        tblItem.selectRow(at: indexPath, animated: true, scrollPosition: .middle)
     }
     
     //-> massSaved
     func massSaved<T>(data: [T]) {
-       guard let receiveItems = data as? [ReceiveItemNewDTO] else {return}
-        tableItemDataSource?.receiveItems.append(contentsOf: receiveItems)
-        tblItem.reloadData()
+        guard let receiveItems = data as? [ReceiveItemNewDTO] else {return}
+        if receiveItems.count > 0 {
+            tblItem.beginUpdates()
+            for item in receiveItems {
+                tableItemDataSource?.receiveItems.append(item)
+                let indexPath:IndexPath = IndexPath(row:((tableItemDataSource?.receiveItems.count)! - 1), section:0)
+                tblItem.insertRows(at: [indexPath], with: .automatic)
+            }
+            tblItem.endUpdates()
+        }
         isEnableSumbitButton()
     }
 }

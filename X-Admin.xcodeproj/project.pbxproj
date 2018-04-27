@@ -61,6 +61,8 @@
 		18FA66271FE23079002742CE /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA66261FE23079002742CE /* ItemModel.swift */; };
 		18FA66291FE27AE6002742CE /* ItemSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA66281FE27AE6002742CE /* ItemSummary.swift */; };
 		519958425F64E9A4B435F8C4 /* Pods_X_Admin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B749CE0EF7A3CAEC581BAE62 /* Pods_X_Admin.framework */; };
+		B902756920918CD3000723E1 /* ItemGroupUploadImagesDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B902756820918CD3000723E1 /* ItemGroupUploadImagesDTO.swift */; };
+		B902756C2091C717000723E1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B902756B2091C717000723E1 /* HomeViewController.swift */; };
 		B906FB1720872C3B009BE880 /* ErrorDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B906FB1620872C3B009BE880 /* ErrorDTO.swift */; };
 		B906FB1A208741F5009BE880 /* OnUpdatedListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B906FB19208741F5009BE880 /* OnUpdatedListener.swift */; };
 		B907EDD3208EE6F000DD3564 /* LoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B907EDD2208EE6F000DD3564 /* LoginTableViewController.swift */; };
@@ -182,6 +184,8 @@
 		18FA66281FE27AE6002742CE /* ItemSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSummary.swift; sourceTree = "<group>"; };
 		3DC30710F44923CEBE2A1A92 /* Pods-X-Admin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-X-Admin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-X-Admin/Pods-X-Admin.debug.xcconfig"; sourceTree = "<group>"; };
 		B749CE0EF7A3CAEC581BAE62 /* Pods_X_Admin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_X_Admin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B902756820918CD3000723E1 /* ItemGroupUploadImagesDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGroupUploadImagesDTO.swift; sourceTree = "<group>"; };
+		B902756B2091C717000723E1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B906FB1620872C3B009BE880 /* ErrorDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDTO.swift; sourceTree = "<group>"; };
 		B906FB19208741F5009BE880 /* OnUpdatedListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnUpdatedListener.swift; sourceTree = "<group>"; };
 		B907EDD2208EE6F000DD3564 /* LoginTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTableViewController.swift; sourceTree = "<group>"; };
@@ -269,6 +273,7 @@
 		181B44ED2021804E004631DB /* modules */ = {
 			isa = PBXGroup;
 			children = (
+				B902756A2091C6EC000723E1 /* home */,
 				B907EDD1208EE6D700DD3564 /* auth */,
 				B9520735208D984E00841A21 /* more */,
 				18FA661B1FE2296E002742CE /* Item */,
@@ -539,6 +544,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B902756A2091C6EC000723E1 /* home */ = {
+			isa = PBXGroup;
+			children = (
+				B902756B2091C717000723E1 /* HomeViewController.swift */,
+			);
+			path = home;
+			sourceTree = "<group>";
+		};
 		B906FB18208741D2009BE880 /* protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -694,6 +707,7 @@
 				B98BD43920899A05008B6619 /* ItemGroupBaseDTO.swift */,
 				B98BD43B20899A58008B6619 /* ItemGroupViewDTO.swift */,
 				B98BD44B2089E06C008B6619 /* ItemGroupEditDTO.swift */,
+				B902756820918CD3000723E1 /* ItemGroupUploadImagesDTO.swift */,
 			);
 			path = itemgroup;
 			sourceTree = "<group>";
@@ -946,7 +960,9 @@
 				1834ABBD201845350086DC79 /* Mode.swift in Sources */,
 				1826D0CB2008CA2B00AC8B42 /* SettingModel.swift in Sources */,
 				182102BB200CBC1F00267F9E /* Auth.swift in Sources */,
+				B902756920918CD3000723E1 /* ItemGroupUploadImagesDTO.swift in Sources */,
 				B9471C30207786C70065010A /* MetaDataDTO.swift in Sources */,
+				B902756C2091C717000723E1 /* HomeViewController.swift in Sources */,
 				B942B3EB20848B7500AF99CB /* CustomerSummaryTableViewController.swift in Sources */,
 				B9520737208D986E00841A21 /* MoreViewController.swift in Sources */,
 				18E6C7F92021C96900C30FA0 /* SlideShowWithDocumentModel.swift in Sources */,

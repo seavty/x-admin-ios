@@ -263,12 +263,12 @@ extension ItemGroupViewController: UISearchBarDelegate {
 //*** handel protocol **/
 extension ItemGroupViewController: OnUpdatedListener, OnCreatedListener {
     
-    //->
+    //-> updateTableRow
     func updateTableRow<T>(data: T, position: Int) {
         guard let itemGroup = data as? ItemGroupViewDTO else { return }
         self.itemGroups[position] = itemGroup
-        tblItemGroup.reloadData()
         let indexPath = IndexPath(row: position, section: 0)
+        tblItemGroup.reloadRows(at: [indexPath], with: .middle)
         tblItemGroup.selectRow(at: indexPath, animated: true, scrollPosition: .middle)
     }
     

@@ -250,8 +250,8 @@ extension CustomerViewController: OnUpdatedListener, OnCreatedListener {
     func updateTableRow<T>(data: T, position: Int) {
         guard let customer = data as? CustomerViewDTO else { return }
         self.customers[position] = customer
-        tblCustomer.reloadData()
         let indexPath = IndexPath(row: position, section: 0)
+        tblCustomer.reloadRows(at: [indexPath], with: .middle)
         tblCustomer.selectRow(at: indexPath, animated: true, scrollPosition: .middle)
     }
     

@@ -22,22 +22,16 @@ final class ApiHelper {
     
     //-> apiBaseURL
     static func apiBaseURL() -> String {
-        /*
-        let url = getDefaultValue.value(forKey: ConstantHelper.BASE_URL) as! String?
-        return url!
-        */
-        //guard let url = getDefaultValue.value(forKey: ConstantHelper.BASE_URL) as? String else {return ""}
-        //return url
-        return "http://192.168.0.111/x-admin-api/" //for upload no /api/v1
+        guard let url = getDefaultValue.value(forKey: ConstantHelper.BASE_URL) as? String else {return ""}
+        return url
+        //return "http://192.168.0.111/x-admin-api/" //for upload no /api/v1
     }
     
     //-> apiURL()
     static func apiURL() -> String {
-        //guard let URL = getDefaultValue.value(forKey: "IP") as! String? else { return "" }
-        //return URL + "/api/v1/"
-        
-        return "http://192.168.0.111/x-admin-api/api/v1/"
-        //return "http://192.168.1.103/x-admin-api/api/v1/"
+        guard let URL = getDefaultValue.value(forKey: ConstantHelper.BASE_URL) as! String? else { return "" }
+        return URL + "/api/v1/"
+        //return "http://192.168.0.111/x-admin-api/api/v1/"
     }
     
     
@@ -59,8 +53,8 @@ final class ApiHelper {
         }
         request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
         
-        //guard let token = getDefaultValue.value(forKey: ConstantHelper.TOKEN) as? String else {return request }
-        let token = "66fa56c7-ef9a-406c-92ca-e1030cbc7785" // ip 112 my laptop
+        guard let token = getDefaultValue.value(forKey: ConstantHelper.TOKEN) as? String else {return request }
+        //let token = "66fa56c7-ef9a-406c-92ca-e1030cbc7785" // ip 112 my laptop
         var headers = HTTPHeaders()
         headers["token"] = token
         headers["Accept"] = "application/json"
@@ -84,7 +78,6 @@ final class ApiHelper {
             catch {
                vc.view.makeToast(ConstantHelper.error404, duration: 3.0, position: .center)
             }
-            print(response)
             return false
         case 401:
             let storyboard = UIStoryboard(name: ConstantHelper.MAIN_STRORYBOARD, bundle: nil)
@@ -106,7 +99,7 @@ final class ApiHelper {
     
     //->
     static func getWarehouseID() -> Int {
-        guard let warehouseID = getDefaultValue.value(forKey: "warehouseID") as! Int? else {return 0}
+        guard let warehouseID = getDefaultValue.value(forKey: ConstantHelper.WAREHOUSE_ID) as! Int? else {return 0}
         return warehouseID
         
     }

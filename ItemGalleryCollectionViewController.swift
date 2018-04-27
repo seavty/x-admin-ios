@@ -18,7 +18,11 @@ class ItemGalleryCollectionViewController: UICollectionViewController {
     
     fileprivate var images = [UIImage]()
     fileprivate var selectImages = [UIImage]()
+    fileprivate var documents = [DocumentViewDTO]()
+    
     var item = ItemViewDTO()
+    var itemGroup = ItemGroupViewDTO()
+    var isFromItemGroupController = false
     
     struct StoryboardInfo {
         static let collectionViewCell = "cell"
@@ -30,6 +34,7 @@ class ItemGalleryCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeComponents()
+        print("isFromItemGroupController=\(isFromItemGroupController)")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -92,7 +97,15 @@ extension ItemGalleryCollectionViewController {
     //-> setupData
     fileprivate func setupData(){
         IndicatorHelper.showIndicator(view: self.view)
-        let url = ApiHelper.itemEndPoint + self.item.id!.toString
+        var url = ""
+        
+        //var url = ApiHelper.itemEndPoint + self.item.id!.toString
+        if isFromItemGroupController {
+            url = ApiHelper.itemGroupEndPoint + self.itemGroup.id!.toString
+        }
+        else {
+           url = ApiHelper.itemEndPoint + self.item.id!.toString
+        }
         
         let request = ApiHelper.getRequestHeader(url: url, method: RequestMethodEnum.get)
         Alamofire.request(request).responseJSON {
@@ -101,12 +114,18 @@ extension ItemGalleryCollectionViewController {
             if  ApiHelper.isSuccessful(vc: self, response: response){
                 do {
                     guard let data = response.data as Data! else { return }
-                    let json = try JSONDecoder().decode(ItemViewDTO.self, from: data)
-                    self.item.documents = json.documents
-                    if(self.item.documents!.count > 0) {
+                    if self.isFromItemGroupController {
+                        let json = try JSONDecoder().decode(ItemGroupViewDTO.self, from: data)
+                        self.documents = json.documents!
+                    }
+                    else {
+                        let json = try JSONDecoder().decode(ItemViewDTO.self, from: data)
+                        self.documents = json.documents!
+                    }
+                    
+                    if self.documents.count > 0  {
                         IndicatorHelper.showIndicator(view: self.view)
                         self.loadImage(index: 0)
-                        print(self.item.documents!.count)
                     }
                 }
                 catch {
@@ -119,15 +138,12 @@ extension ItemGalleryCollectionViewController {
     //->
     fileprivate func loadImage(index: Int) {
         var myIndex = index
-        var url = ApiHelper.apiBaseURL()
-        url = url + item.documents![myIndex].path!
-        print(url)
+        let url = ApiHelper.apiBaseURL() + documents[myIndex].path!
         Alamofire.request(url).responseImage { response in
             if let image = response.result.value {
                 self.images.append(image)
                 myIndex = index + 1
-                
-                if index < self.item.documents!.count - 1 {
+                if index < self.documents.count - 1 {
                     self.loadImage(index: myIndex)
                 }
                 else {
@@ -136,7 +152,6 @@ extension ItemGalleryCollectionViewController {
                 }
             }
         }
-        
     }
     
     
@@ -183,22 +198,44 @@ extension ItemGalleryCollectionViewController {
     //-> uploadImage
     fileprivate func uploadImage() {
         do {
-            let item = ItemUploadImagesDTO()
-            item.id = self.item.id
-            item.base64s = ImageHelper.convertImageToBase64(images: self.selectImages)
-            self.selectImages.removeAll()
-            let url = ApiHelper.itemEndPoint + item.id!.toString + "/uploadimages"
-            var request = ApiHelper.getRequestHeader(url: url, method: RequestMethodEnum.post )
-            request.httpBody = try JSONEncoder().encode(item)
-            IndicatorHelper.showIndicator(view: self.view)
-            Alamofire.request(request).responseJSON {
-                (response) in
-                print(response.result)
-                IndicatorHelper.hideIndicator()
-                if  ApiHelper.isSuccessful(vc: self, response: response){
-                    self.clvItemGallery.reloadData()
+            if isFromItemGroupController {
+                let itemGroup = ItemGroupUploadImagesDTO()
+                itemGroup.id = self.itemGroup.id
+                itemGroup.base64s = ImageHelper.convertImageToBase64(images: self.selectImages)
+                self.selectImages.removeAll()
+                let url = ApiHelper.itemGroupEndPoint + itemGroup.id!.toString + "/uploadimages"
+                var request = ApiHelper.getRequestHeader(url: url, method: RequestMethodEnum.post )
+                request.httpBody = try JSONEncoder().encode(itemGroup)
+                IndicatorHelper.showIndicator(view: self.view)
+                Alamofire.request(request).responseJSON {
+                    (response) in
+                    print(response.result)
+                    IndicatorHelper.hideIndicator()
+                    if  ApiHelper.isSuccessful(vc: self, response: response){
+                        self.clvItemGallery.reloadData()
+                    }
                 }
             }
+            else {
+                let item = ItemUploadImagesDTO()
+                item.id = self.item.id
+                item.base64s = ImageHelper.convertImageToBase64(images: self.selectImages)
+                self.selectImages.removeAll()
+                let url = ApiHelper.itemEndPoint + item.id!.toString + "/uploadimages"
+                var request = ApiHelper.getRequestHeader(url: url, method: RequestMethodEnum.post )
+                request.httpBody = try JSONEncoder().encode(item)
+                IndicatorHelper.showIndicator(view: self.view)
+                Alamofire.request(request).responseJSON {
+                    (response) in
+                    print(response.result)
+                    IndicatorHelper.hideIndicator()
+                    if  ApiHelper.isSuccessful(vc: self, response: response){
+                        self.clvItemGallery.reloadData()
+                    }
+                }
+            }
+            
+            
         }
         catch {
             self.navigationController?.view.makeToast(ConstantHelper.errorOccurred)
