@@ -34,9 +34,6 @@ final class ApiHelper {
         //return "http://192.168.0.111/x-admin-api/api/v1/"
     }
     
-    
-    
-    
     //-> getRequestHeader
     static func getRequestHeader(url:String, method:RequestMethodEnum) -> URLRequest{
         let requestURL = URL(string: url)!

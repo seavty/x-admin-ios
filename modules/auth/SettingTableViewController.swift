@@ -12,6 +12,7 @@ class SettingTableViewController: UITableViewController {
 
     fileprivate let def = UserDefaults.standard
     
+    @IBOutlet fileprivate var bbiSave: UIBarButtonItem!
     @IBOutlet fileprivate var txtSetting: UITextField!
     
     //-> viewDidLoad
@@ -23,7 +24,9 @@ class SettingTableViewController: UITableViewController {
     //-> saveClick
     @IBAction func saveClick(_ sender: UIBarButtonItem) {
         if isValidated() {
-            self.def.set(txtSetting.text,forKey: ConstantHelper.BASE_URL);
+            def.removeObject(forKey: ConstantHelper.BASE_URL)
+            self.def.set(txtSetting.text,forKey: ConstantHelper.BASE_URL)
+            def.synchronize()
             navigationController?.popViewController(animated: true)
         }
     }
@@ -35,7 +38,12 @@ extension SettingTableViewController {
     
     //-> initializeComponents
     fileprivate func initializeComponents() {
-       guard let url = def.value(forKey: ConstantHelper.BASE_URL) as? String else {return}
+       guard let url = def.value(forKey: ConstantHelper.BASE_URL) as? String
+        else {
+            txtSetting.text = "http://47.74.130.38/x-admin-api/"
+            saveClick(bbiSave)
+            return
+        }
         txtSetting.text = url
     }
     

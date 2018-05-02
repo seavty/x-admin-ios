@@ -2532,7 +2532,7 @@
         <scene sceneID="in4-rr-l65">
             <objects>
                 <tableViewController id="jm7-vH-O7a" customClass="SettingTableViewController" customModule="X_Admin" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="YzO-hK-Zba">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="YzO-hK-Zba">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2576,6 +2576,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bbiSave" destination="yUA-P0-5UP" id="vf5-7l-sDn"/>
                         <outlet property="txtSetting" destination="BhO-Ps-grB" id="RPV-N3-TV1"/>
                     </connections>
                 </tableViewController>
@@ -2703,7 +2704,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90B-Wq-3SG">
                                                     <rect key="frame" x="16" y="4" width="296" height="36"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <state key="normal" title="Item Group">
+                                                    <state key="normal">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     </state>
                                                     <connections>

@@ -792,9 +792,9 @@
 				TargetAttributes = {
 					188395751FCBB4B7004A8592 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = C2W9K3KBQ2;
+						DevelopmentTeam = 538SRD5P28;
 						LastSwiftMigration = 0920;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -1123,14 +1123,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = C2W9K3KBQ2;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 538SRD5P28;
 				INFOPLIST_FILE = "X-Admin/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "x-ware.X-Admin";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xware.XPOSAdmin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "6b0cf1f7-a67a-4786-8eff-d7941f82f014";
+				PROVISIONING_PROFILE_SPECIFIER = XPOSAdmin;
 				SWIFT_OBJC_BRIDGING_HEADER = "X-Admin-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -1145,14 +1146,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = C2W9K3KBQ2;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 538SRD5P28;
 				INFOPLIST_FILE = "X-Admin/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "x-ware.X-Admin";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xware.XPOSAdmin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "6b0cf1f7-a67a-4786-8eff-d7941f82f014";
+				PROVISIONING_PROFILE_SPECIFIER = XPOSAdmin;
 				SWIFT_OBJC_BRIDGING_HEADER = "X-Admin-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;

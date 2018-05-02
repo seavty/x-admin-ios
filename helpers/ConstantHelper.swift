@@ -21,4 +21,6 @@ final class ConstantHelper {
     static let MAIN_STRORYBOARD = "Main"
     static let MAIN_CONTROLLER = "MainController"
     static let LOGIN_CONTROLLER = "Login"
+    
+    static let DEFALUT_URL = "http://47.74.130.38/x-admin-api/"
 }

@@ -11,6 +11,8 @@ import Alamofire
 
 class LoginTableViewController: UITableViewController {
 
+    fileprivate let def = UserDefaults.standard
+    
     @IBOutlet var txtUserName: UITextField!
     @IBOutlet var txtPassword: UITextField!
     
@@ -19,17 +21,27 @@ class LoginTableViewController: UITableViewController {
         super.viewDidLoad()
 
     }
+    
     //-> loginClick
     @IBAction func loginClick(_ sender: UIButton) {
         if isValidated() {
+            /*
             let def = UserDefaults.standard
             guard (def.value(forKey: ConstantHelper.BASE_URL) as? String) != nil
                 else {
-                    self.navigationController?.view.makeToast("Please configure setting first", duration: 3.0, position: .center)
-                    return
+                    //self.navigationController?.view.makeToast("Please configure setting first", duration: 3.0, position: .center)
+                    self.def.set(ConstantHelper.DEFALUT_URL,forKey: ConstantHelper.BASE_URL)
+                    //return
                     
             }
             handleLogin()
+            */
+            if def.value(forKey: ConstantHelper.BASE_URL) == nil {
+                self.def.set(ConstantHelper.DEFALUT_URL,forKey: ConstantHelper.BASE_URL)
+            }
+            else {
+                handleLogin()
+            }
         }
     }
     
@@ -43,12 +55,14 @@ extension LoginTableViewController {
     
     //-> handleLogin
     fileprivate func handleLogin() {
+        print("login")
         do {
             let user = UserLoginDTO()
             user.userName = txtUserName.text
             user.password = txtPassword.text == nil ? "" : txtPassword.text
             
             let url = URL(string: ApiHelper.userEndPoint)!
+            print(ApiHelper.apiBaseURL())
             var request = URLRequest(url: url)
             request.httpMethod = HTTPMethod.post.rawValue
             request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
