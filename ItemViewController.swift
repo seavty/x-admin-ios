@@ -165,10 +165,8 @@ extension ItemViewController {
                                 self.tblItem.insertRows(at: [indexPath], with: .automatic)
                             }
                             self.tblItem.endUpdates()
-                            
                         }
                         self.currentPage += 1
-                        
                     }
                     else {
                         self.isEOF = true

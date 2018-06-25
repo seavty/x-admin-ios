@@ -28,13 +28,13 @@ class ItemGalleryCollectionViewController: UICollectionViewController {
         static let collectionViewCell = "cell"
         static let leftAndRight :CGFloat = 10.0
         static let numberOfrow : CGFloat = 3.0
+        static let imageViewerSegue = "ImageViewerSegue"
     }
     
     //-> viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeComponents()
-        print("isFromItemGroupController=\(isFromItemGroupController)")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -96,6 +96,7 @@ extension ItemGalleryCollectionViewController {
     
     //-> setupData
     fileprivate func setupData(){
+        self.images.removeAll()
         IndicatorHelper.showIndicator(view: self.view)
         var url = ""
         
@@ -135,7 +136,7 @@ extension ItemGalleryCollectionViewController {
         }
     }
     
-    //->
+    //-> loadImage
     fileprivate func loadImage(index: Int) {
         var myIndex = index
         let url = ApiHelper.apiBaseURL() + documents[myIndex].path!
@@ -209,9 +210,9 @@ extension ItemGalleryCollectionViewController {
                 IndicatorHelper.showIndicator(view: self.view)
                 Alamofire.request(request).responseJSON {
                     (response) in
-                    print(response.result)
                     IndicatorHelper.hideIndicator()
                     if  ApiHelper.isSuccessful(vc: self, response: response){
+                        self.setupData()
                         self.clvItemGallery.reloadData()
                     }
                 }
@@ -227,15 +228,13 @@ extension ItemGalleryCollectionViewController {
                 IndicatorHelper.showIndicator(view: self.view)
                 Alamofire.request(request).responseJSON {
                     (response) in
-                    print(response.result)
                     IndicatorHelper.hideIndicator()
                     if  ApiHelper.isSuccessful(vc: self, response: response){
+                        self.setupData()
                         self.clvItemGallery.reloadData()
                     }
                 }
             }
-            
-            
         }
         catch {
             self.navigationController?.view.makeToast(ConstantHelper.errorOccurred)
@@ -246,15 +245,52 @@ extension ItemGalleryCollectionViewController {
 
 //*** collectionview ***//
 extension ItemGalleryCollectionViewController {
+    
+    //-> numberOfItemsInSection
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return images.count
     }
     
+    //-> cellForItemAt
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoryboardInfo.collectionViewCell, for: indexPath) as! ItemGalleryCollectionViewCell2
         cell.imgItem.image = images[indexPath.row]
         return cell
     }
+    
+    //-> willDisplay
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tap(_:))))
+    }
+    
+    //-> tap
+    @objc func tap(_ sender: UITapGestureRecognizer) {
+        let location = sender.location(in: self.collectionView)
+        let indexPath = self.clvItemGallery.indexPathForItem(at: location)
+        guard let index = indexPath else { return }
+        let image =  images[index.row]
+        
+        let imageViewerDTO = DocumentImageViewerDTO()
+        imageViewerDTO.documentID = documents[index.row].id
+        imageViewerDTO.image = image
+        
+        performSegue(withIdentifier: StoryboardInfo.imageViewerSegue, sender: imageViewerDTO)
+    }
+    
+    //-> prepare
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case StoryboardInfo.imageViewerSegue?:
+            guard let vc = segue.destination as? ImageViewerViewController else { return }
+            guard let imageViewerDTO = sender as? DocumentImageViewerDTO else { return }
+            vc.deletedImageListener = self
+            vc.imageViewerDTO = imageViewerDTO
+        default:
+            self.view.makeToast(ConstantHelper.wrongSegueName)
+        }
+    }
+    
+    
 }
 //*** end collectionview ***//
 
@@ -305,3 +341,19 @@ extension ItemGalleryCollectionViewController: OpalImagePickerControllerDelegate
     
 }
 //*** OpalImagePickerControllerDelegate ***//
+
+
+
+
+//*** handel protocol **/
+extension ItemGalleryCollectionViewController: OnDeletedImageListener {
+    
+    //*** for delete and add photo  -> consider better not reload all collection viewer , should reload at specific point
+    //*** if have time need to refactor this file again, ** add , remove image .... -> take a look at ItemViewController add, and delete item
+    
+    //-> deletedImage
+    func deletedImage() {
+        self.clvItemGallery.reloadData()
+        self.setupData()
+    }
+}

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="HGy-a9-ozE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BNA-P8-Bdg">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1854,6 +1854,7 @@
                     <connections>
                         <outlet property="bbiUpload" destination="ux0-1q-gTU" id="FnT-ov-gKs"/>
                         <outlet property="clvItemGallery" destination="nD9-3I-n8F" id="mAr-cR-2D9"/>
+                        <segue destination="lal-w3-tuy" kind="show" identifier="ImageViewerSegue" id="2g1-EY-Xig"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Cu-OS-eWv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3394,6 +3395,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4y1-or-khQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-11453" y="6699"/>
+        </scene>
+        <!--Image Viewer View Controller-->
+        <scene sceneID="1xV-8t-AgC">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="lal-w3-tuy" customClass="ImageViewerViewController" customModule="X_Admin" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RRg-RD-GYz"/>
+                        <viewControllerLayoutGuide type="bottom" id="ofX-iK-WGv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="T9K-2B-B5z">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UNl-lQ-ccI">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="UNl-lQ-ccI" firstAttribute="leading" secondItem="T9K-2B-B5z" secondAttribute="leading" id="ATd-Wu-Puc"/>
+                            <constraint firstItem="UNl-lQ-ccI" firstAttribute="top" secondItem="RRg-RD-GYz" secondAttribute="bottom" id="Izm-w8-TYO"/>
+                            <constraint firstItem="ofX-iK-WGv" firstAttribute="top" secondItem="UNl-lQ-ccI" secondAttribute="bottom" id="p3U-UL-mAg"/>
+                            <constraint firstAttribute="trailing" secondItem="UNl-lQ-ccI" secondAttribute="trailing" id="ybJ-cS-pfC"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="h33-Fq-ixG">
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="xPj-UN-pQm">
+                            <connections>
+                                <action selector="deleteClick:" destination="lal-w3-tuy" id="pIZ-DR-V4Q"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bbiDelete" destination="xPj-UN-pQm" id="6zb-eT-ywZ"/>
+                        <outlet property="imageViewer" destination="UNl-lQ-ccI" id="Ag0-oc-H6O"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="548-Nx-zOv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-10534" y="5536"/>
         </scene>
         <!--More-->
         <scene sceneID="bw6-0W-OWE">

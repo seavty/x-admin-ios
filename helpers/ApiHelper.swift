@@ -19,6 +19,8 @@ final class ApiHelper {
     static let issueEndPoint = apiURL() + "issues/"
     static let userEndPoint = apiURL() + "users/"
     
+    static let documentEndPoint = apiURL() + "documents/"
+    
     
     //-> apiBaseURL
     static func apiBaseURL() -> String {
@@ -50,8 +52,8 @@ final class ApiHelper {
         }
         request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
         
-        guard let token = getDefaultValue.value(forKey: ConstantHelper.TOKEN) as? String else {return request }
-        //let token = "66fa56c7-ef9a-406c-92ca-e1030cbc7785" // ip 112 my laptop
+        //guard let token = getDefaultValue.value(forKey: ConstantHelper.TOKEN) as? String else {return request }
+        let token = "38eb07f3-321c-4b37-bec5-abcfe5908722" // ip 112 my laptop
         var headers = HTTPHeaders()
         headers["token"] = token
         headers["Accept"] = "application/json"
