@@ -20,6 +20,7 @@ final class ApiHelper {
     static let userEndPoint = apiURL() + "users/"
     
     static let documentEndPoint = apiURL() + "documents/"
+    static let warehouseEndPoint = apiURL() + "warehouses/"
     
     
     //-> apiBaseURL
@@ -52,8 +53,8 @@ final class ApiHelper {
         }
         request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
         
-        //guard let token = getDefaultValue.value(forKey: ConstantHelper.TOKEN) as? String else {return request }
-        let token = "38eb07f3-321c-4b37-bec5-abcfe5908722" // ip 112 my laptop
+        guard let token = getDefaultValue.value(forKey: ConstantHelper.TOKEN) as? String else {return request }
+        //let token = "38eb07f3-321c-4b37-bec5-abcfe5908722" // ip 112 my laptop
         var headers = HTTPHeaders()
         headers["token"] = token
         headers["Accept"] = "application/json"

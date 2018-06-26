@@ -15,9 +15,17 @@ class ReceiveTableViewController: UITableViewController {
     @IBOutlet var tblItem: UITableView!
     
     @IBOutlet var tvRemarks: UITextView!
+    
     var tableItemDataSource: ItemTableViewDataSource?
     
     var isIssueModule = false
+    
+    @IBOutlet var txtWarehouse: UITextField!
+    
+    fileprivate var warehouses: [(Int, String)] = []
+    fileprivate var selectedPickerRow: Int?
+    
+    let warehousePicker = UIPickerView()
     
     struct StoryBoardInfo {
         static let createReceiveItemSegue = "CreateReceiveItemSegue"
@@ -32,6 +40,7 @@ class ReceiveTableViewController: UITableViewController {
     
     //-> prepare
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        dimissKeyboard()
         switch segue.identifier {
         case StoryBoardInfo.createReceiveItemSegue?:
             guard let vc = segue.destination as? ReceiveSummaryTableViewController else {return}
@@ -71,9 +80,13 @@ extension ReceiveTableViewController {
     
     //-> initializeComponents
     fileprivate func initializeComponents() {
+        self.txtWarehouse.delegate = self
         setupDataSource()
         setupNavbar()
         isEnableSumbitButton()
+        setupWarehousePicker()
+        
+        self.getWarehouses()
     }
     
     //-> file setupDatasouce
@@ -104,9 +117,30 @@ extension ReceiveTableViewController {
         }
     }
     
+    //-> setup warehouse picker
+    func setupWarehousePicker() {
+        warehousePicker.delegate = self
+        txtWarehouse.inputView = warehousePicker
+        setupToolBarForWarehousePicker()
+    }
+    
+    //-> setupToolBarForWarehousePicker
+    func setupToolBarForWarehousePicker(){
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(ReceiveTableViewController.dimissKeyboard))
+        toolBar.setItems([doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        txtWarehouse.inputAccessoryView = toolBar
+    }
+    
+    //-> dimissKeyboard
+    @objc func dimissKeyboard() {
+        view.endEditing(true)
+    }
+    
     //-> handleSumbit
     fileprivate func handleSumbit() {
-        print("Handle Ok logic here sumbit")
         do {
             var request = ApiHelper.getRequestHeader(url: ApiHelper.receiveEndPoint, method: RequestMethodEnum.post)
             
@@ -129,7 +163,8 @@ extension ReceiveTableViewController {
                     issueItems.append(issue)
                 }
                 let submitIssueItems = SubmitItemDTO<IssueItemNewDTO>()
-                submitIssueItems.warehouseID = ApiHelper.getWarehouseID()
+                //submitIssueItems.warehouseID = ApiHelper.getWarehouseID()
+                submitIssueItems.warehouseID = self.warehouses[selectedPickerRow!].0
                 submitIssueItems.remarks = tvRemarks.text
                 submitIssueItems.items = issueItems
                 request = ApiHelper.getRequestHeader(url: ApiHelper.issueEndPoint, method: RequestMethodEnum.post)
@@ -138,7 +173,8 @@ extension ReceiveTableViewController {
             }
             else {
                 let submitReceiveItems = SubmitItemDTO<ReceiveItemNewDTO>()
-                submitReceiveItems.warehouseID = ApiHelper.getWarehouseID()
+                //submitReceiveItems.warehouseID = ApiHelper.getWarehouseID()
+                submitReceiveItems.warehouseID = self.warehouses[selectedPickerRow!].0
                 submitReceiveItems.remarks = tvRemarks.text
                 submitReceiveItems.items = tableItemDataSource?.receiveItems
                 request = ApiHelper.getRequestHeader(url: ApiHelper.receiveEndPoint, method: RequestMethodEnum.post)
@@ -163,15 +199,57 @@ extension ReceiveTableViewController {
         }
     }
     
-    //->
+    //-> clearData
     fileprivate func clearData() {
         tvRemarks.text = nil
         tableItemDataSource?.receiveItems.removeAll()
         tblItem.reloadData()
         isEnableSumbitButton()
     }
+    
+    //-> getWarehouses
+    fileprivate func getWarehouses() {
+        let url = ApiHelper.warehouseEndPoint + "?currentPage=\(1)"
+        let request = ApiHelper.getRequestHeader(url: url, method: RequestMethodEnum.get)
+        IndicatorHelper.showIndicator(view: self.view)
+        Alamofire.request(request).responseJSON {
+            response in
+            IndicatorHelper.hideIndicator()
+            if  ApiHelper.isSuccessful(vc: self, response: response){
+                do {
+                    guard let data = response.data as Data! else { return }
+                    let json = try JSONDecoder().decode(GetListDTO<WarehouseViewDTO>.self, from: data)
+                    guard let warehouses = json.results else {return}
+                    if warehouses.count > 0 {
+                        for warehouse in warehouses {
+                            self.warehouses.append((warehouse.id!, warehouse.name!))
+                        }
+                        guard let index = self.warehouses.index(where: { $0.0 == ApiHelper.getWarehouseID() }) else { return }
+                        self.warehousePicker.selectRow(index, inComponent:0, animated:true)
+                        self.txtWarehouse.text = self.warehouses[index].1
+                        self.selectedPickerRow = index
+                    }
+                }
+                catch {
+                    self.view.makeToast(ConstantHelper.errorOccurred)
+                }
+            }
+        }
+    }
 }
 //*** end function ***//
+
+//** UITextFieldDelegate **//
+extension ReceiveTableViewController: UITextFieldDelegate {
+    
+    //-> shouldChangeCharactersIn
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return false
+    }
+}
+//** end UITextFieldDelegate **//
+
+
 
 
 //*** table view *** //
@@ -186,14 +264,18 @@ extension ReceiveTableViewController {
     
     //-> heightForRowAt
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let firstSectionHeight:CGFloat = 140
+        let firstSectionHeight:CGFloat = 50
+        let secondSectionHeight:CGFloat = 140
         if indexPath.section == 0 {
             return firstSectionHeight
         }
-        return tableView.frame.size.height - firstSectionHeight
+        if indexPath.section == 1  {
+            return secondSectionHeight
+        }
+        return tableView.frame.size.height - firstSectionHeight - secondSectionHeight
     }
 }
-//*** table view ***/
+//*** end table view ***//
 
 
 
@@ -224,5 +306,32 @@ extension ReceiveTableViewController: OnMassSavedListener, OnUpdatedListener {
         isEnableSumbitButton()
     }
 }
+//*** end protocol ***//
+
+//*** pickerviewr ***//
+extension ReceiveTableViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    //-> numberOfComponents
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    //-> numberOfRowsInComponent
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return warehouses.count
+    }
+    
+    //-> titleForRow
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return warehouses[row].1
+    }
+    
+    //-> didSelectRow
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedPickerRow = row
+        txtWarehouse.text = warehouses[row].1
+    }
+}
+//*** end pickerviewr ***//
 
 
