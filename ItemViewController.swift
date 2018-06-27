@@ -34,7 +34,6 @@ class ItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeComponents()
-
     }
 
     //-> addClick

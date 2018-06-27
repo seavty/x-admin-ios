@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import WebKit
 
 class HomeViewController: UIViewController {
 
+    fileprivate var webView: WKWebView!
+    
+    //-> viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        initializeComponents()
     }
-    
     
     //-> logoutClick
     @IBAction func logoutClick(_ sender: UIBarButtonItem) {
@@ -26,8 +30,21 @@ class HomeViewController: UIViewController {
     }
 }
 
-//*** function ***/
+//** function **/
 extension HomeViewController {
+    
+    //-> initializeComponents
+    fileprivate func initializeComponents() {
+        setupWebView()
+    }
+    
+    //-> setupWebView
+    fileprivate func setupWebView() {
+        let myURL = URL(string: ApiHelper.homeURL)
+        var myRequest = URLRequest(url: myURL!)
+        myRequest.setValue(ApiHelper.getToken(), forHTTPHeaderField: "token")
+        webView.load(myRequest)
+    }
     
     //-> handleLogout
     fileprivate func handleLogout() {
@@ -36,4 +53,22 @@ extension HomeViewController {
         self.present(controller, animated: true, completion: nil)
     }
 }
-//*** end function  ***/
+//** end function  **/
+
+
+//** WKUIDelegate **//
+
+extension HomeViewController: WKUIDelegate, UIWebViewDelegate {
+    
+    //-> loadView
+    override func loadView() {
+        let webConfiguration = WKWebViewConfiguration()
+        webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        webView.uiDelegate = self
+        view = webView
+    }
+    
+   
+}
+
+//** end WKUIDelegate **//

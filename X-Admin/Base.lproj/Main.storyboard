@@ -1538,7 +1538,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RQd-Sx-odF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2004.375" y="3251.4084507042253"/>
+            <point key="canvasLocation" x="-2359" y="3251"/>
         </scene>
         <!--Receive-->
         <scene sceneID="sNL-D3-ZpN">
@@ -2096,7 +2096,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zad-xX-vvK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-13524" y="2846"/>
+            <point key="canvasLocation" x="-15803" y="4350"/>
         </scene>
         <!--SlideShow-->
         <scene sceneID="rCz-61-sNj">
@@ -2152,7 +2152,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DH4-xk-8kv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-14306" y="2846"/>
+            <point key="canvasLocation" x="-16584" y="4350"/>
         </scene>
         <!--Customer View Controller-->
         <scene sceneID="p35-zq-h7r">
@@ -3284,6 +3284,25 @@
             </objects>
             <point key="canvasLocation" x="-12489.375" y="6697.1830985915494"/>
         </scene>
+        <!--Report View Controller-->
+        <scene sceneID="LSV-Th-3kz">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="YHe-HL-Too" customClass="ReportViewController" customModule="X_Admin" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="V84-S0-eqA"/>
+                        <viewControllerLayoutGuide type="bottom" id="cUH-va-Ihy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Q1B-sx-K0I">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="PQU-lv-74j"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vm7-NC-ivV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-12486" y="7462"/>
+        </scene>
         <!--Item-->
         <scene sceneID="pQD-Bt-vsy">
             <objects>
@@ -3503,9 +3522,25 @@
                                     <segue destination="5u3-ss-jr6" kind="show" identifier="IssueSegue" id="lQl-lB-r9Q"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2x-tW-zfw">
+                                <rect key="frame" x="192" y="84" width="70" height="70"/>
+                                <color key="backgroundColor" red="0.0" green="0.56031829119999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="VqY-5a-tDT"/>
+                                    <constraint firstAttribute="height" constant="70" id="Wvu-xa-K3e"/>
+                                </constraints>
+                                <state key="normal" title="Report">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="YHe-HL-Too" kind="show" id="f0Q-KN-XJl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="C2x-tW-zfw" firstAttribute="top" secondItem="KNQ-MZ-gbx" secondAttribute="bottom" constant="20" id="05n-g5-kU4"/>
+                            <constraint firstItem="C2x-tW-zfw" firstAttribute="leading" secondItem="lWl-vK-Gbl" secondAttribute="trailing" constant="16" id="ICq-VE-Zbj"/>
                             <constraint firstItem="lWl-vK-Gbl" firstAttribute="leading" secondItem="cey-Pt-cCz" secondAttribute="trailing" constant="16" id="TDq-3r-og5"/>
                             <constraint firstItem="lWl-vK-Gbl" firstAttribute="top" secondItem="KNQ-MZ-gbx" secondAttribute="bottom" constant="20" id="aWw-qh-Oxo"/>
                             <constraint firstItem="cey-Pt-cCz" firstAttribute="top" secondItem="KNQ-MZ-gbx" secondAttribute="bottom" constant="20" id="wy6-Eb-veU"/>
@@ -3627,8 +3662,8 @@
         <segue reference="bSg-bM-kcM"/>
         <segue reference="cEa-pd-DKY"/>
         <segue reference="1aP-TD-vSl"/>
-        <segue reference="BkZ-lq-852"/>
-        <segue reference="L97-v5-DsE"/>
+        <segue reference="XmW-Ah-s3K"/>
+        <segue reference="dU4-Yf-5Ql"/>
         <segue reference="57X-8A-mkH"/>
         <segue reference="pjF-0Y-jmg"/>
         <segue reference="qMu-3I-Oxx"/>

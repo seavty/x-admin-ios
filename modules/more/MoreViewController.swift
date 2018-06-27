@@ -30,7 +30,4 @@ class MoreViewController: UIViewController {
             print("no segue")
         }
     }
-    
-    
-
 }

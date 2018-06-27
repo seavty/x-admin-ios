@@ -8,24 +8,46 @@
 
 import UIKit
 import WebKit
-class ReportViewController: UIViewController, WKUIDelegate {
 
-    var webView: WKWebView!
+class ReportViewController: UIViewController {
+
+    fileprivate var webView: WKWebView!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        initializeComponents()
+    }
+}
+
+//** function **/
+extension ReportViewController {
+    
+    //-> initializeComponents
+    fileprivate func initializeComponents() {
+        setupWebView()
+    }
+    
+    //-> setupWebView
+    fileprivate func setupWebView() {
+        let myURL = URL(string: ApiHelper.reportURL)
+        var myRequest = URLRequest(url: myURL!)
+        myRequest.setValue(ApiHelper.getToken(), forHTTPHeaderField: "token")
+        webView.load(myRequest)
+    }
+    
+}
+//** end function **/
+
+//** WKUIDelegate **//
+extension ReportViewController: WKUIDelegate {
+    
+    //-> loadView
     override func loadView() {
         let webConfiguration = WKWebViewConfiguration()
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
         webView.uiDelegate = self
         view = webView
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        //let myURL = URL(string: "https://www.apple.com")
-        let myURL = URL(string: "http://192.168.0.3/xpos/mobile/default.aspx?st=1")
-        let myRequest = URLRequest(url: myURL!)
-        webView.load(myRequest)
-    }
 }
-
+//** end WKUIDelegate **//
 

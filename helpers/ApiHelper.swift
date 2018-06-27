@@ -22,6 +22,11 @@ final class ApiHelper {
     static let documentEndPoint = apiURL() + "documents/"
     static let warehouseEndPoint = apiURL() + "warehouses/"
     
+    static let homeURL = "http://xware-kh.com/Home/Default.aspx"
+    static let reportURL = "http://xware-kh.com/Home/Default.aspx"
+    
+    
+    
     
     //-> apiBaseURL
     static func apiBaseURL() -> String {
@@ -54,7 +59,7 @@ final class ApiHelper {
         request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
         
         guard let token = getDefaultValue.value(forKey: ConstantHelper.TOKEN) as? String else {return request }
-        //let token = "38eb07f3-321c-4b37-bec5-abcfe5908722" // ip 112 my laptop
+        //let token = "64b32fca-5c0d-4656-8469-c207749381dc" // ip 112 my laptop
         var headers = HTTPHeaders()
         headers["token"] = token
         headers["Accept"] = "application/json"
@@ -97,12 +102,17 @@ final class ApiHelper {
         }
     }
     
-    //->
+    //-> getWarehouseID
     static func getWarehouseID() -> Int {
         guard let warehouseID = getDefaultValue.value(forKey: ConstantHelper.WAREHOUSE_ID) as! Int? else {return 0}
         return warehouseID
         
     }
-
+    
+    //-> getToken
+    static func getToken() -> String {
+        guard let token = getDefaultValue.value(forKey: ConstantHelper.TOKEN) as! String? else {return ""}
+        return token
+    }
 }
 
