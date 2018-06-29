@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import Toast_Swift
 
 final class ApiHelper {
     fileprivate static let getDefaultValue = UserDefaults.standard
