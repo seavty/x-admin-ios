@@ -23,4 +23,6 @@ final class ConstantHelper {
     static let LOGIN_CONTROLLER = "Login"
     
     static let DEFALUT_URL = "http://47.74.130.38/x-admin-api/"
+    
+    static let REPORT_URL = "REPORT_URL"
 }

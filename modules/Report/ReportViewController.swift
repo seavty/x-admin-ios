@@ -29,7 +29,7 @@ extension ReportViewController {
     
     //-> setupWebView
     fileprivate func setupWebView() {
-        let myURL = URL(string: ApiHelper.reportURL)
+        let myURL = URL(string: ApiHelper.reportURL())
         var myRequest = URLRequest(url: myURL!)
         myRequest.setValue(ApiHelper.getToken(), forHTTPHeaderField: "token")
         webView.load(myRequest)

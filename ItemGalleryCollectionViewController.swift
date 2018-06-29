@@ -139,7 +139,8 @@ extension ItemGalleryCollectionViewController {
     //-> loadImage
     fileprivate func loadImage(index: Int) {
         var myIndex = index
-        let url = ApiHelper.apiBaseURL() + documents[myIndex].path!
+        //let url = ApiHelper.apiBaseURL() + documents[myIndex].path!
+        let url = documents[myIndex].path! //logic change, document will return full path 
         Alamofire.request(url).responseImage { response in
             if let image = response.result.value {
                 self.images.append(image)

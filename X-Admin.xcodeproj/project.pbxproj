@@ -380,14 +380,9 @@
 		1883956D1FCBB4B7004A8592 = {
 			isa = PBXGroup;
 			children = (
-				B9F11932208B79DB00F97161 /* datasources */,
-				B98BD4402089A745008B6619 /* extension */,
+				B95FE1CB20E6341E00837B47 /* utils */,
 				188395781FCBB4B7004A8592 /* X-Admin */,
-				B906FB18208741D2009BE880 /* protocols */,
-				B9366598207381BB00942592 /* networking */,
 				181B44ED2021804E004631DB /* modules */,
-				B936659F20739D6B00942592 /* helpers */,
-				B925B2C32080DE020049F70D /* enums */,
 				182102B9200CBC0200267F9E /* Auth */,
 				18ADAC432015952A00C04532 /* CollectionViewCell */,
 				18CCC0661FFE23810043D74C /* CustomHelper */,
@@ -716,6 +711,19 @@
 				B94C2E9120E0F4C400CDAF6D /* DocumentImageViewerDTO.swift */,
 			);
 			path = document;
+			sourceTree = "<group>";
+		};
+		B95FE1CB20E6341E00837B47 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				B925B2C32080DE020049F70D /* enums */,
+				B936659F20739D6B00942592 /* helpers */,
+				B9366598207381BB00942592 /* networking */,
+				B906FB18208741D2009BE880 /* protocols */,
+				B98BD4402089A745008B6619 /* extension */,
+				B9F11932208B79DB00F97161 /* datasources */,
+			);
+			path = utils;
 			sourceTree = "<group>";
 		};
 		B98BD438208999F4008B6619 /* itemgroup */ = {

@@ -23,9 +23,16 @@ final class ApiHelper {
     static let warehouseEndPoint = apiURL() + "warehouses/"
     
     static let homeURL = "http://xware-kh.com/Home/Default.aspx"
-    static let reportURL = "http://xware-kh.com/Home/Default.aspx"
+    //static let reportURL = "http://xware-kh.com/Home/Default.aspx"
+    
+    fileprivate static let xwareURL = "http://xware-kh.com/Home/Default.aspx"
     
     
+    //-> reportURL
+    static func reportURL() -> String {
+        guard let url = getDefaultValue.value(forKey: ConstantHelper.REPORT_URL) as? String else { return xwareURL }
+        return url
+    }
     
     
     //-> apiBaseURL

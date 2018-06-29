@@ -55,7 +55,6 @@ extension LoginTableViewController {
     
     //-> handleLogin
     fileprivate func handleLogin() {
-        print("login")
         do {
             let user = UserLoginDTO()
             user.userName = txtUserName.text

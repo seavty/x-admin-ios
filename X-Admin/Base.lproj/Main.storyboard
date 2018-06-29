@@ -2547,8 +2547,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="304"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Setting" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BhO-Ps-grB">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Api URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BhO-Ps-grB">
                                                     <rect key="frame" x="20" y="20" width="280" height="30"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Report URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8b5-kT-p8C">
+                                                    <rect key="frame" x="20" y="58" width="280" height="30"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -2556,8 +2562,11 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="BhO-Ps-grB" firstAttribute="leading" secondItem="yO9-UZ-q6Q" secondAttribute="leading" constant="20" id="OMm-4j-ERk"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="8b5-kT-p8C" secondAttribute="trailing" constant="4" id="QC6-WJ-zX0"/>
                                                 <constraint firstAttribute="trailing" secondItem="BhO-Ps-grB" secondAttribute="trailing" constant="20" id="TSe-Dg-Ab5"/>
+                                                <constraint firstItem="8b5-kT-p8C" firstAttribute="leading" secondItem="yO9-UZ-q6Q" secondAttribute="leadingMargin" constant="4" id="gRF-30-huk"/>
                                                 <constraint firstItem="BhO-Ps-grB" firstAttribute="top" secondItem="yO9-UZ-q6Q" secondAttribute="top" constant="20" id="jD9-vE-hLs"/>
+                                                <constraint firstItem="8b5-kT-p8C" firstAttribute="top" secondItem="BhO-Ps-grB" secondAttribute="bottom" constant="8" id="pFJ-FK-Jqe"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -2578,12 +2587,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bbiSave" destination="yUA-P0-5UP" id="vf5-7l-sDn"/>
+                        <outlet property="txtReportURL" destination="8b5-kT-p8C" id="74w-0o-b8p"/>
                         <outlet property="txtSetting" destination="BhO-Ps-grB" id="RPV-N3-TV1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lwp-Je-r2D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-16584" y="6700"/>
+            <point key="canvasLocation" x="-16584.375" y="6699.2957746478878"/>
         </scene>
         <!--Item View Controller-->
         <scene sceneID="HLP-me-i0t">

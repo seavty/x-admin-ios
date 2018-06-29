@@ -128,7 +128,6 @@ extension CustomerViewController {
     //-> getCustomers
     fileprivate func getCustomers() {
         var url = ApiHelper.customerEndPoint + "?currentPage=" + currentPage.toString
-        print(url)
         if(searchBar.text != ""){
             let searchText = searchBar.text!.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
             url += "&search=\(searchText!)"

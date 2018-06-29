@@ -35,7 +35,7 @@ extension HomeViewController {
     
     //-> initializeComponents
     fileprivate func initializeComponents() {
-        setupWebView()
+        //setupWebView()
     }
     
     //-> setupWebView
@@ -67,8 +67,6 @@ extension HomeViewController: WKUIDelegate, UIWebViewDelegate {
         webView.uiDelegate = self
         view = webView
     }
-    
-   
 }
 
 //** end WKUIDelegate **//

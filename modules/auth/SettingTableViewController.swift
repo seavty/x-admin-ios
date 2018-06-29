@@ -14,6 +14,7 @@ class SettingTableViewController: UITableViewController {
     
     @IBOutlet fileprivate var bbiSave: UIBarButtonItem!
     @IBOutlet fileprivate var txtSetting: UITextField!
+    @IBOutlet fileprivate var txtReportURL: UITextField!
     
     //-> viewDidLoad
     override func viewDidLoad() {
@@ -26,6 +27,10 @@ class SettingTableViewController: UITableViewController {
         if isValidated() {
             def.removeObject(forKey: ConstantHelper.BASE_URL)
             self.def.set(txtSetting.text,forKey: ConstantHelper.BASE_URL)
+            
+            def.removeObject(forKey: ConstantHelper.REPORT_URL)
+            self.def.set(txtReportURL.text,forKey: ConstantHelper.REPORT_URL)
+            
             def.synchronize()
             navigationController?.popViewController(animated: true)
         }
@@ -38,21 +43,36 @@ extension SettingTableViewController {
     
     //-> initializeComponents
     fileprivate func initializeComponents() {
-       guard let url = def.value(forKey: ConstantHelper.BASE_URL) as? String
+        guard let apiURL = def.value(forKey: ConstantHelper.BASE_URL) as? String
         else {
             txtSetting.text = "http://47.74.130.38/x-admin-api/"
             saveClick(bbiSave)
             return
         }
-        txtSetting.text = url
+        txtSetting.text = apiURL
+        
+        guard let reportURL = def.value(forKey: ConstantHelper.REPORT_URL) as? String
+            else {
+                txtSetting.text = "http://47.74.130.38/x-admin-api/"
+                saveClick(bbiSave)
+                return
+        }
+        txtReportURL.text = reportURL
+        
     }
     
     //-> validation
     fileprivate func isValidated() -> Bool {
         if(txtSetting.text == "") {
-            self.navigationController?.view.makeToast("Setting is required", duration: 3.0, position: .center)
+            self.navigationController?.view.makeToast("API URL is required", duration: 3.0, position: .center)
             return false
         }
+        
+        if(txtReportURL.text == "") {
+            self.navigationController?.view.makeToast("Report URL is required", duration: 3.0, position: .center)
+            return false
+        }
+        
         return true
     }
 }
