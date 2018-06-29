@@ -2,18 +2,14 @@ PODS:
   - Alamofire (4.6.0)
   - AlamofireImage (3.3.0):
     - Alamofire (~> 4.5)
-  - HandyJSON (1.8.0)
   - OpalImagePicker (1.4.0)
-  - SwiftyJSON (4.0.0)
   - Toast-Swift (3.0.1)
   - Toaster (2.1.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.5)
   - AlamofireImage (~> 3.3)
-  - HandyJSON (~> 1.8.0)
   - OpalImagePicker (~> 1.4.0)
-  - SwiftyJSON
   - Toast-Swift (~> 3.0.1)
   - Toaster (from `https://github.com/devxoul/Toaster.git`, branch `ios-11-above-keyboard`)
 
@@ -21,9 +17,7 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - AlamofireImage
-    - HandyJSON
     - OpalImagePicker
-    - SwiftyJSON
     - Toast-Swift
 
 EXTERNAL SOURCES:
@@ -39,12 +33,10 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
-  HandyJSON: edaaa3278bf4c4c96d6f7382b80d6b91c88d3bf5
   OpalImagePicker: 64c2d87f8e1839d1233a6720d3909a22504e3c5d
-  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
   Toaster: 683521465d8d4d684baca3b55cd248030b51e813
 
-PODFILE CHECKSUM: a4a87c6a77d61c054f3c0a81dfdfadce48a0291f
+PODFILE CHECKSUM: 778c3982ced55d721adb3422d5282a5ab505175e
 
 COCOAPODS: 1.5.0

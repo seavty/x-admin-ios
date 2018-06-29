@@ -8,6 +8,8 @@ target 'X-Admin' do
   # Pods for X-Admin
 	pod 'Alamofire', '~> 4.5'
 	pod 'AlamofireImage', '~> 3.3'
+	pod 'SwiftyJSON'
+	pod 'HandyJSON', '~> 1.8.0'
 	pod 'OpalImagePicker', '~> 1.4.0’
 	pod 'Toast-Swift', '~> 3.0.1'
 	pod 'Toaster', :git => 'https://github.com/devxoul/Toaster.git', :branch => 'ios-11-above-keyboard'
