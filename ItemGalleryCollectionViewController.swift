@@ -354,7 +354,7 @@ extension ItemGalleryCollectionViewController: OnDeletedImageListener {
     
     //-> deletedImage
     func deletedImage() {
-        self.clvItemGallery.reloadData()
+        //self.clvItemGallery.reloadData()
         self.setupData()
     }
 }

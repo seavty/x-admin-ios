@@ -50,9 +50,9 @@ extension ImageViewerViewController {
     
     //-> deletePhoto
     fileprivate func deletePhoto() {
-        print(self.imageViewerDTO.documentID!.toString)
+        //print(self.imageViewerDTO.documentID!.toString)
         let url = ApiHelper.documentEndPoint + self.imageViewerDTO.documentID!.toString
-        print(url)
+        //print(url)
         let request = ApiHelper.getRequestHeader(url: url, method: RequestMethodEnum.delete)
         IndicatorHelper.showIndicator(view: self.view)
         Alamofire.request(request).responseJSON {
