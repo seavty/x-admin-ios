@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SubmitItemDTO<T>: Codable {
+class SubmitItemDTO<T:Codable>: Codable {
     var warehouseID: Int?
     var remarks: String?
     var items: [T]?
@@ -23,7 +23,7 @@ class SubmitItemDTO<T>: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         warehouseID = try container.decode(Int?.self, forKey: .warehouseID)
         remarks = try container.decode(String?.self, forKey: .remarks)
-        items = try container.decode([T]?.self, forKey: .remarks)
+        items = try container.decode([T]?.self, forKey: .items)
         
     }
     

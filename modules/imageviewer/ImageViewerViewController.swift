@@ -23,7 +23,7 @@ class ImageViewerViewController: UIViewController {
     }
     
     @IBAction func deleteClick(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "Delete Photo", message: "Do you want to this delete this photo?", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "Delete Photo", message: "Do you want to delete this photo?", preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Yes", style: .destructive , handler:{ (UIAlertAction)in
             self.deletePhoto()

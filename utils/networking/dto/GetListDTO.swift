@@ -8,11 +8,11 @@
 
 import Foundation
 
-class GetListDTO<T>: Codable {
+class GetListDTO<T:Codable>: Codable {
     var metaData: MetaDataDTO?
     var results: [T]?
     
-    private enum CodingKeys: String, CodingKey {
+    fileprivate enum CodingKeys: String, CodingKey {
         case metaData
         case results
     }
