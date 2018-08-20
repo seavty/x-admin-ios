@@ -19,9 +19,11 @@ final class ApiHelper {
     static let receiveEndPoint = apiURL() + "receives/"
     static let issueEndPoint = apiURL() + "issues/"
     static let userEndPoint = apiURL() + "users/"
+    static let companyEndPoint = "companies/"
     
     static let documentEndPoint = apiURL() + "documents/"
     static let warehouseEndPoint = apiURL() + "warehouses/"
+    static let tokenEndPoint = apiURL() + "token/"
     
     static let homeURL = "http://xware-kh.com/Home/Default.aspx"
     //static let reportURL = "http://xware-kh.com/Home/Default.aspx"
@@ -71,6 +73,9 @@ final class ApiHelper {
         var headers = HTTPHeaders()
         headers["token"] = token
         headers["Accept"] = "application/json"
+        guard let db = getDefaultValue.value(forKey: ConstantHelper.CURRENT_DB) as? String else {return request }
+        print("db=\(db)")
+        headers["_token"] = db;
         request.allHTTPHeaderFields = headers
         
         return request
@@ -120,6 +125,12 @@ final class ApiHelper {
     //-> getToken
     static func getToken() -> String {
         guard let token = getDefaultValue.value(forKey: ConstantHelper.TOKEN) as! String? else {return ""}
+        return token
+    }
+    
+    //-> getToken
+    static func get_Token() -> String {
+        guard let token = getDefaultValue.value(forKey: ConstantHelper.CURRENT_DB) as! String? else {return ""}
         return token
     }
 }

@@ -9,14 +9,16 @@
 import UIKit
 import WebKit
 
-class ReportViewController: UIViewController {
+class ReportViewController: UIViewController,UIWebViewDelegate {
 
     fileprivate var webView: WKWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeComponents()
+        
     }
+    
 }
 
 //** function **/
@@ -32,7 +34,9 @@ extension ReportViewController {
         let myURL = URL(string: ApiHelper.reportURL())
         var myRequest = URLRequest(url: myURL!)
         myRequest.setValue(ApiHelper.getToken(), forHTTPHeaderField: "token")
+        myRequest.setValue(ApiHelper.get_Token(), forHTTPHeaderField: "_token")
         webView.load(myRequest)
+        print(ApiHelper.getToken());
     }
     
 }
@@ -47,7 +51,15 @@ extension ReportViewController: WKUIDelegate {
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
         webView.uiDelegate = self
         view = webView
+        IndicatorHelper.showIndicator(view: self.view);
     }
+    
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        IndicatorHelper.hideIndicator()
+    }
+    
+    
 }
 //** end WKUIDelegate **//
 

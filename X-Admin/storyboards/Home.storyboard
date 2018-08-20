@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="U1X-AM-COS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="U1X-AM-COS">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,7 +21,20 @@
                     <view key="view" contentMode="scaleToFill" id="Aks-Ro-Ugw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Get Token" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CxH-KW-JHP">
+                                <rect key="frame" x="16" y="72" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Djf-N6-GlJ" firstAttribute="trailing" secondItem="CxH-KW-JHP" secondAttribute="trailing" constant="16" id="L0A-YT-HE9"/>
+                            <constraint firstItem="CxH-KW-JHP" firstAttribute="top" secondItem="T0E-GR-R9k" secondAttribute="bottom" constant="8" id="bUr-5I-4iu"/>
+                            <constraint firstItem="CxH-KW-JHP" firstAttribute="leading" secondItem="Djf-N6-GlJ" secondAttribute="leading" constant="16" id="o3w-ko-amA"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Djf-N6-GlJ"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="ln6-Cq-f0A">
@@ -31,10 +44,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="txtToken" destination="CxH-KW-JHP" id="LGz-2A-oYY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dmf-Dy-vTv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-15726" y="5092"/>
+            <point key="canvasLocation" x="-15983" y="4943"/>
         </scene>
         <!--Home-->
         <scene sceneID="Q4T-MJ-4CU">
@@ -53,7 +69,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ubt-X6-f5r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-16584" y="5092"/>
+            <point key="canvasLocation" x="-16932" y="4943"/>
         </scene>
     </scenes>
     <resources>

@@ -15,13 +15,21 @@ class LoginTableViewController: UITableViewController {
     
     @IBOutlet var txtUserName: UITextField!
     @IBOutlet var txtPassword: UITextField!
+    @IBOutlet weak var lblCompany: UILabel!
     
     //-> viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if def.value(forKey: ConstantHelper.COMPANY_NAME) == nil {
+            lblCompany.text = "Company Not Found !";
+        }else{
+            lblCompany.text = def.value(forKey: ConstantHelper.COMPANY_NAME) as? String;
+        }
+    }
     //-> loginClick
     @IBAction func loginClick(_ sender: UIButton) {
         if isValidated() {
@@ -38,10 +46,14 @@ class LoginTableViewController: UITableViewController {
             */
             if def.value(forKey: ConstantHelper.BASE_URL) == nil {
                 self.def.set(ConstantHelper.DEFALUT_URL,forKey: ConstantHelper.BASE_URL)
+            }else if def.value(forKey: ConstantHelper.REPORT_URL) == nil {
+                self.def.set(ConstantHelper.DEFALUT_REPORT_URL,forKey: ConstantHelper.REPORT_URL)
             }
             else {
                 handleLogin()
             }
+            
+            
         }
     }
     
@@ -61,10 +73,13 @@ extension LoginTableViewController {
             user.password = txtPassword.text == nil ? "" : txtPassword.text
             
             let url = URL(string: ApiHelper.userEndPoint)!
-            print(ApiHelper.apiBaseURL())
             var request = URLRequest(url: url)
             request.httpMethod = HTTPMethod.post.rawValue
             request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+            if let db = def.value(forKey: ConstantHelper.CURRENT_DB) as? String {
+                request.setValue(db, forHTTPHeaderField: "_token")
+            }
+            
             request.httpBody = try JSONEncoder().encode(user)
             IndicatorHelper.showIndicator(view: self.view)
             Alamofire.request(request).responseJSON {
@@ -107,6 +122,11 @@ extension LoginTableViewController {
         if(txtUserName.text == "") {
             self.navigationController?.view.makeToast("User name is required", duration: 3.0, position: .center)
             return false
+        }
+        
+        if def.value(forKey: ConstantHelper.COMPANY_NAME) == nil {
+            self.navigationController?.view.makeToast("Company Not Found !\nSetup your company in Setting", duration: 3.0, position: .center)
+            return false;
         }
         /*
         if(txtPassword.text == "") {

@@ -16,13 +16,16 @@ final class ConstantHelper {
     static let BASE_URL = "BASE_URL"
     static let TOKEN = "TOKEN"
     static let WAREHOUSE_ID = "WAREHOUSE_ID"
+    static let CURRENT_DB = "DB"
+    static let COMPANY_NAME = "CompanyName"
     
     
     static let MAIN_STRORYBOARD = "Main"
     static let MAIN_CONTROLLER = "MainController"
     static let LOGIN_CONTROLLER = "Login"
     
-    static let DEFALUT_URL = "http://47.74.130.38/x-admin-api/"
+    static let DEFALUT_URL = "http://xware-kh.com/x-admin-api/"
+    static let DEFALUT_REPORT_URL = "http://xware-kh.com/xware/mReport/"
     
     static let REPORT_URL = "REPORT_URL"
 }
