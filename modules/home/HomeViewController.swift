@@ -16,8 +16,13 @@ class HomeViewController: UIViewController {
     let tokenPicker = UIPickerView()
     
     @IBOutlet weak var txtToken: UITextField!
-    let tokenOptions = ["cancel", "discount", "editPrice"]
-    fileprivate var selectedPickerRow: Int?
+    //let tokenOptions = ["cancel", "discount", "editPrice"]
+    fileprivate let tokenOptions: [(String, String)] = [ ("cancel", "Cancel-Token"),
+                                                         ("discount", "Discount-Token"),
+                                                         ("editPrice", "Edit Price-Token"),
+                                                       ]
+    //fileprivate var selectedPickerRow: Int?
+    fileprivate var selectedPickerRow = 0
     
     //-> viewDidLoad
     override func viewDidLoad() {
@@ -43,6 +48,7 @@ extension HomeViewController {
     //-> initializeComponents
     fileprivate func initializeComponents() {
         //setupWebView()
+        self.txtToken.delegate = self
         setupTokenPicker()
     }
     
@@ -92,7 +98,10 @@ extension HomeViewController {
             let token = TokenGetTokenDTO()
             token.isUser = "Y"
             token.toke_CustomerID = 1
-            token.toke_Module = "cancel" // -> should be dynamic get from  UI Picker view 
+            //token.toke_Module = "cancel" // -> should be dynamic get from  UI Picker view
+            //token.toke_Module = self.tokenOptions[selectedPickerRow!].0
+            //print("getToken\(self.tokenOptions[selectedPickerRow].0)")
+            token.toke_Module = self.tokenOptions[selectedPickerRow].0
             var request = ApiHelper.getRequestHeader(url: url, method: RequestMethodEnum.post)
             request.httpBody = try JSONEncoder().encode(token)
             IndicatorHelper.showIndicator(view: self.view)
@@ -100,12 +109,13 @@ extension HomeViewController {
                 (response) in
                 IndicatorHelper.hideIndicator()
                 if  ApiHelper.isSuccessful(vc: self, response: response){
-                    print("ok")
                     do {
                         guard let data = response.data as Data! else { return }
                         let json = try JSONDecoder().decode(TokenViewDTO.self, from: data)
-                        print(json.toke_Name)
-                        AlertHelper().alertMessage(vc: self, message: json.toke_Name!)
+                        self.dimissKeyboard()
+                        //print(response)
+                        self.txtToken.text = self.tokenOptions[self.selectedPickerRow].1
+                        AlertHelper().alertMessage(vc: self, message: "Your token: \(json.toke_Name!)")
                     }
                     catch {
                         self.navigationController?.view.makeToast(ConstantHelper.errorOccurred)
@@ -117,10 +127,7 @@ extension HomeViewController {
         catch {
             self.navigationController?.view.makeToast(ConstantHelper.errorOccurred)
         }
-       
     }
-    
-    
 }
 //** end function  **/
 
@@ -157,15 +164,28 @@ extension HomeViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     //-> titleForRow
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return tokenOptions[row]
+        //return tokenOptions[row]
+        return tokenOptions[row].1
     }
     
     //-> didSelectRow
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        //selectedPickerRow = row
-        //var displayText =
-        txtToken.text = tokenOptions[row]
+        //txtToken.text = tokenOptions[row]
+        selectedPickerRow = row
+        txtToken.text = tokenOptions[row].1
         
     }
 }
 //*** end pickerviewr ***//
+
+
+//** UITextFieldDelegate **//
+extension HomeViewController: UITextFieldDelegate {
+    
+    //-> shouldChangeCharactersIn
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return false
+    }
+}
+//** end UITextFieldDelegate **//
+

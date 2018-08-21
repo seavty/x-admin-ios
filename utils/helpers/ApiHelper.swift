@@ -74,7 +74,7 @@ final class ApiHelper {
         headers["token"] = token
         headers["Accept"] = "application/json"
         guard let db = getDefaultValue.value(forKey: ConstantHelper.CURRENT_DB) as? String else {return request }
-        print("db=\(db)")
+        //print("db=\(db)")
         headers["_token"] = db;
         request.allHTTPHeaderFields = headers
         
